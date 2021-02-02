@@ -1,4 +1,4 @@
-package sample;
+package HydCalC;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,8 +13,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("sample.fxml");
-      //  Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        URL xmlUrl = getClass().getResource("HydCalC.fxml");
+      //  Parent root = FXMLLoader.load(getClass().getResource("HydCalC.fxml"));
         loader.setLocation(xmlUrl);
         Parent root = loader.load();
         primaryStage.setTitle("Caluls de Vérins");

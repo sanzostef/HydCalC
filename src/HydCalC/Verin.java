@@ -1,4 +1,4 @@
-package sample;
+package HydCalC;
 
 public class Verin {
     private double DFond, DTige, course;

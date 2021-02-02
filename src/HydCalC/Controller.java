@@ -1,4 +1,4 @@
-package sample;
+package HydCalC;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -21,7 +21,7 @@ public class Controller {
     private static final int dtige = 1;
     private static final int course = 2;
     private static final int sfond = 3;
-    private static final int sann= 4;
+    private static final int sann = 4;
     private static final int r = 5;
     private static final int rinv = 6;
     private static final int vfond = 7;
@@ -58,10 +58,13 @@ public class Controller {
         }
 
         creationDesListesDeMethodes();
-        recopTextfieldDansCompo();
-
         try {
-            do{
+        recopTextfieldDansCompo();
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        try {
+            do {
                 calculerSansParametreExterne();
 
                 if ((double) lstGet.get(pression).invoke(pompe) != 0.0d) {
@@ -81,7 +84,7 @@ public class Controller {
                 }
                 calculerSansParametreExterne();
                 if ((double) lstGet.get(sfond).invoke(verin) != 0.0d & (double) lstGet.get(forcesortie).invoke(verin) != 0.0d) {
-                    pompe.calculerPression((double) lstGet.get(sfond).invoke(verin), (double) lstGet.get(pression).invoke(verin));
+                    pompe.calculerPression((double) lstGet.get(sfond).invoke(verin), (double) lstGet.get(forcesortie).invoke(verin));
                 }
                 if ((double) lstGet.get(sann).invoke(verin) != 0.0d & (double) lstGet.get(forcerentree).invoke(verin) != 0.0d) {
                     pompe.calculerPression((double) lstGet.get(sann).invoke(verin), (double) lstGet.get(forcerentree).invoke(verin));
@@ -107,10 +110,9 @@ public class Controller {
                 pompe.calculerRendement();
                 calculerSansParametreExterne();
                 count++;
-            } while (count<1);
+            } while (count < 1);
             recopierComposantsDansTextField();
-        }
-        catch (IllegalAccessException | InvocationTargetException e) {
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
@@ -121,26 +123,27 @@ public class Controller {
     private final ArrayList<Method> lstSet = new ArrayList<>();
     private final ArrayList<Method> lstGet = new ArrayList<>();
     private final ArrayList<Method> lstCalcul = new ArrayList<>();
-    private void creationDesListesDeMethodes(){
+
+    private void creationDesListesDeMethodes() {
         Method[] tabMethod = Verin.class.getMethods();
-        for (int i = sfond; i < tpsdiff+1; i++) {
+        for (int i = dfond; i < tpsdiff + 1; i++) {
             for (Method methode : tabMethod) {
                 if (methode.getParameterCount() == 0) {
                     if (methode.getName().contains("get" + listeDesTextfield.get(i).getId())) {
-                        if (!lstGet.contains(methode) & lstGet.size() < tpsdiff+1) {
+                        if (!lstGet.contains(methode) & lstGet.size() < tpsdiff + 1) {
                             if (i > lstGet.size() - 1) lstGet.add(methode);
                             else lstGet.add(i, methode);
                         }
                     }
                     if (methode.getName().contains("calculer" + listeDesTextfield.get(i).getId())) {
-                        if (!lstCalcul.contains(methode) & lstCalcul.size() < tpsdiff+1) {
+                        if (!lstCalcul.contains(methode) & lstCalcul.size() < tpsdiff + 1) {
                             if (i > lstCalcul.size() - 1) lstCalcul.add(methode);
                             else lstCalcul.add(i, methode);
                         }
                     }
                 } else if (methode.getParameterCount() == 1) {
                     if (methode.getName().contains("set" + listeDesTextfield.get(i).getId())) {
-                        if (!lstSet.contains(methode) & lstSet.size() < tpsdiff+1) {
+                        if (!lstSet.contains(methode) & lstSet.size() < tpsdiff + 1) {
                             if (i > lstSet.size() - 1) lstSet.add(methode);
                             else lstSet.add(i, methode);
                         }
@@ -149,24 +152,25 @@ public class Controller {
             }
         }
         tabMethod = Pump.class.getMethods();               // récupère la liste des methode de la class dans un tableau
-        for (int i=debit; i<rendement+1; i++) {                                        //<= pour chaque textfields pompe 18 => 24
+        for (int i = debit; i < rendement + 1; i++) {                                        //<= pour chaque textfields pompe 18 => 24
             for (Method methode : tabMethod) {                         // si une methode dans le tableau des methode de la class
                 if (methode.getParameterCount() == 0) {                                        // n'a pas de parametre
                     if (methode.getName().contains("get" + listeDesTextfield.get(i).getId())) {  // a un nom qui contient "get"
-                        if (!lstGet.contains(methode) & lstGet.size() < rendement+1) {    // si la methode n'est pas deja ou que
+                        if (!lstGet.contains(methode) & lstGet.size() < rendement + 1) {    // si la methode n'est pas deja ou que
                             if (i > lstGet.size() - 1) lstGet.add(methode);
-                            else lstGet.add(i, methode);                 //la liste n'ai pas deja remplie ajout a la liste des
+                            else
+                                lstGet.add(i, methode);                 //la liste n'ai pas deja remplie ajout a la liste des
                         }                                           //get a sa place ou a la dernière si sa place n'existe pas encore
                     }
                     if (methode.getName().contains("calculer" + listeDesTextfield.get(i).getId())) {
-                        if (!lstCalcul.contains(methode) & lstCalcul.size() < rendement+1) {
+                        if (!lstCalcul.contains(methode) & lstCalcul.size() < rendement + 1) {
                             if (i > lstCalcul.size() - 1) lstCalcul.add(methode);
                             else lstCalcul.add(i, methode);
                         }
                     }
                 } else if (methode.getParameterCount() == 1) {
                     if (methode.getName().contains("set" + listeDesTextfield.get(i).getId())) {
-                        if (!lstSet.contains(methode) & lstSet.size() < rendement+1) {
+                        if (!lstSet.contains(methode) & lstSet.size() < rendement + 1) {
                             if (i > lstSet.size() - 1) lstSet.add(methode);
                             else lstSet.add(i, methode);
                         }
@@ -176,21 +180,22 @@ public class Controller {
         }
         System.out.println("  Impression des listes de méthodes vérin: ");
         System.out.println("  liste des Set    ");
-        for (int i=0; i<lstSet.size(); i++)
+        for (int i = dfond; i < lstSet.size(); i++)
             System.out.println(i + "   -   " + lstSet.get(i).toString());
         System.out.println("      ");
         System.out.println("  liste des Get    ");
-        for (int i=0; i<lstGet.size(); i++)
+        for (int i = dfond; i < lstGet.size(); i++)
             System.out.println(i + "   -   " + lstGet.get(i).toString());
         System.out.println("      ");
         System.out.println("  liste des Calculer    ");
-        for (int i=0; i<lstCalcul.size(); i++)
+        for (int i = dfond; i < lstCalcul.size(); i++)
             System.out.println(i + "   -   " + lstCalcul.get(i).toString());
         System.out.println("fini");
         System.out.println("      ");
     }
 
     private final ArrayList<TextField> listeDesTextfield = new ArrayList<>();
+
     /**
      * Vérifie que les champs sont biens remplis avec des nombres supérieurs a zéro
      * Elle crée en même temps la liste des Textfields
@@ -201,7 +206,7 @@ public class Controller {
             if (node instanceof TextField) {
                 double nb;
                 listeDesTextfield.add((TextField) node);
-                String s = (((TextField) node).getText()).replace(',','.').replace("\\s+","");
+                String s = (((TextField) node).getText()).replace(',', '.').replace("\\s+", "");
                 if (!s.isEmpty()) {
                     try {
                         nb = Double.parseDouble(s);
@@ -219,69 +224,125 @@ public class Controller {
             }
         }
         System.out.println("Impression de la liste des textfields et des valeurs entrées:");
-        for (int i=debit; i<listeDesTextfield.size(); i++)
+        for (int i = dfond; i < listeDesTextfield.size(); i++)
             System.out.println(i + " - " + listeDesTextfield.get(i).getId() + " = " + listeDesTextfield.get(i).getText());
         System.out.println("fini");
         System.out.println();
     }
+
     private boolean modif = false;
     private double valeurDuParametre;
-    private void recopTextfieldDansCompo(){
-        for (int i = debit; i < rendement+1; i++) {
 
-            if (!listeDesTextfield.get(i).getText().isEmpty()) {
-                valeurDuParametre = Double.parseDouble(listeDesTextfield.get(i).getText().replace(',','.').replace("\\s+",""));
-                try {
-                    if (i<course+1) {
-                        ComparerValeurEntreEtExistant(i, verin);
-                        EcrireDansCoposant(i, verin);
-                    }
-                    if (i==sfond & i<tpsdiff+1) {
-                        if (modif) initialiserCoposant(i, verin);
-                        else EcrireDansCoposant(i, verin);
-                    }
-                    if (i==debit & i<cyl+1) {
-                        ComparerValeurEntreEtExistant(i, pompe);
-                        EcrireDansCoposant(i, pompe);
-                    }
-                    if (i==vitDeRot & i<rendement+1 & modif) initialiserCoposant(i, pompe);
-                }
-                catch (IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            }
-            else {
-                try {
-                    if (i < vitdiff+1){
-                        initialiserCoposant(i, verin);
-                    }
-                    if (i ==debit & i < rendement+1) {
-                        initialiserCoposant(i, pompe);
-                    }
-                }
-                catch (IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        modif = false;
+    private void recopTextfieldDansCompo() throws IllegalAccessException, InvocationTargetException {
+
+         for (int i = dfond; i < rendement + 1; i++) {
+             if (!listeDesTextfield.get(i).getText().isEmpty()) {
+                 valeurDuParametre = Double.parseDouble(listeDesTextfield.get(i).getText().replace(',', '.').replace("\\s+", ""));
+                 if (i < course + 1) {EcrireDansCoposant(i, verin);}
+                 if (i > debit-1 & i < cyl + 1) { EcrireDansCoposant(i, pompe); }
+             }
+             else {
+                  if (i < vitdiff + 1) {initialiserCoposant(i, verin);}
+                  if (i > debit-1 & i < rendement + 1) {initialiserCoposant(i, pompe); }
+             }
+         }
+         for (int i = dfond; i < rendement + 1; i++) {
+             if (!listeDesTextfield.get(i).getText().isEmpty()) {
+                 valeurDuParametre = Double.parseDouble(listeDesTextfield.get(i).getText().replace(',', '.').replace("\\s+", ""));
+                 if (i == sfond & i < tpsdiff + 1) {
+                     if (modif) initialiserCoposant(i, verin);
+                     else EcrireDansCoposant(i, verin);
+                 }
+                 if (i == vitDeRot & i < rendement + 1 & modif) {
+                     if (modif) initialiserCoposant(i, pompe);
+                     else EcrireDansCoposant(i, pompe);
+                 }
+             }
+         }
+         modif = false;
     }
 
     private void ComparerValeurEntreEtExistant(int i, Object composant) throws IllegalAccessException, InvocationTargetException {
         if ((valeurDuParametre != (double) lstGet.get(i).invoke(composant)))
             modif = true;
     }
+
     private void EcrireDansCoposant(int i, Object composant) throws IllegalAccessException, InvocationTargetException {
         lstSet.get(i).invoke(composant, valeurDuParametre);
         System.out.println("j'ecris " + valeurDuParametre + " dans: " + listeDesTextfield.get(i).getId());
     }
+
     private void initialiserCoposant(int i, Object composant) throws IllegalAccessException, InvocationTargetException {
-        if (i==rendement) { lstSet.get(i).invoke(composant, 80);
-            System.out.println("j'ecris " + 80.0d + " dans: " + listeDesTextfield.get(i).getId());}
-        else { lstSet.get(i).invoke(composant, 0.0d);
-            System.out.println("j'ecris " + 0.0d + " dans: " + listeDesTextfield.get(i).getId());}
+        if (i == rendement) {
+            lstSet.get(i).invoke(composant, 80);
+            System.out.println("j'ecris " + 80.0d + " dans: " + listeDesTextfield.get(i).getId());
+        } else {
+            lstSet.get(i).invoke(composant, 0.0d);
+            System.out.println("j'ecris " + 0.0d + " dans: " + listeDesTextfield.get(i).getId());
+        }
     }
 
+    private void calculerSansParametreExterne() {
+        System.out.println(" Entre dans les calculs sans paramètres");
+        System.out.println();
+        double valeurDuParametre;
+        for (int i = dfond; i < tpsdiff + 1; i++) { // VERIN
+            try {
+                valeurDuParametre = (double) lstGet.get(i).invoke(verin);
+                if (valeurDuParametre == 0.0d) {
+                    lstCalcul.get(i).invoke(verin);
+                    valeurDuParametre = (double) lstGet.get(i).invoke(verin);
+                    System.out.println("je calcul : " + listeDesTextfield.get(i).getId() + " - résultat => " + valeurDuParametre);
+                }
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+        for (int i = debit; i < rendement + 1; i++) { // POMPE
+            try {
+                valeurDuParametre = (double) lstGet.get(i).invoke(pompe);
+                if (valeurDuParametre == 0.0d) {
+                    lstCalcul.get(i).invoke(pompe);
+                    valeurDuParametre = (double) lstGet.get(i).invoke(pompe);
+                    System.out.println("je calcul : " + listeDesTextfield.get(i).getId() + " - résultat => " + valeurDuParametre);
+                }
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("fini");
+        System.out.println();
+    }
+
+    private void recopierComposantsDansTextField() {
+        System.out.println("Recopie Valeurs des composants dans les textfields");
+        double valeurDuParametre;
+        for (int i = dfond; i < tpsdiff + 1; i++) { // NB de textfields Verin : 18
+            try {
+                valeurDuParametre = (double) lstGet.get(i).invoke(verin);
+                if (valeurDuParametre != 0.0d) {
+                    listeDesTextfield.get(i).setText(df.format(valeurDuParametre));
+                }
+                System.out.println(listeDesTextfield.get(i).getId() + " - " + valeurDuParametre);
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+        for (int i = debit; i < rendement + 1; i++) { // 1er textfields Pompe: 18 => dernier: 25
+            try {
+                valeurDuParametre = (double) lstGet.get(i).invoke(pompe);
+                if (valeurDuParametre != 0.0d) {
+                    listeDesTextfield.get(i).setText(df.format(valeurDuParametre));
+                }
+                System.out.println(listeDesTextfield.get(i).getId() + " - " + valeurDuParametre);
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("fini");
+    }
+
+}
    /* private void recopierTextfiedlsDansComposants() {
         System.out.println("Recopie valeurs des textfields dans les composants:");
         System.out.println();
@@ -331,59 +392,3 @@ public class Controller {
         System.out.println();
     } */
 
-    private void calculerSansParametreExterne(){
-        System.out.println(" Entre dans les calculs sans paramètres");
-        System.out.println();
-        double valeurDuParametre;
-        for (int i = 0; i < 18 ; i++) { // VERIN
-            try {
-                valeurDuParametre = (double) lstGet.get(i).invoke(verin);
-                if (valeurDuParametre == 0.0d) {
-                    lstCalcul.get(i).invoke(verin);
-                    valeurDuParametre = (double) lstGet.get(i).invoke(verin);
-                    System.out.println("je calcul : " + listeDesTextfield.get(i).getId() + " - résultat => " + valeurDuParametre);
-                }
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        }
-        for (int i = 18; i < 24 ; i++) { // POMPE
-            try {
-                valeurDuParametre = (double) lstGet.get(i).invoke(pompe);
-                if (valeurDuParametre == 0.0d) {
-                    lstCalcul.get(i).invoke(pompe);
-                    valeurDuParametre = (double) lstGet.get(i).invoke(pompe);
-                    System.out.println("je calcul : " + listeDesTextfield.get(i).getId() + " - résultat => " + valeurDuParametre);
-                }
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println("fini");
-        System.out.println();
-    }
-
-    private void recopierComposantsDansTextField() {
-        System.out.println("Recopie Valeurs des composants dans les textfields");
-        double valeurDuParametre;
-        for (int i = 0; i < 18; i++) { // NB de textfields Verin : 18
-            try {
-                valeurDuParametre = (double) lstGet.get(i).invoke(verin);
-                if (valeurDuParametre != 0.0d) { listeDesTextfield.get(i).setText(df.format(valeurDuParametre)); }
-                System.out.println(listeDesTextfield.get(i).getId() + " - " + valeurDuParametre);
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        }
-        for (int i = 18; i < 25; i++) { // 1er textfields Pompe: 18 => dernier: 25
-            try {
-                valeurDuParametre = (double) lstGet.get(i).invoke(pompe);
-                if (valeurDuParametre != 0.0d) { listeDesTextfield.get(i).setText(df.format(valeurDuParametre)); }
-                System.out.println(listeDesTextfield.get(i).getId() + " - " + valeurDuParametre);
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println("fini");
-    }
-}

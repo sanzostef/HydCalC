@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller">
     <Button id="btCalcul" fx:id="btCalculer" layoutX="422.0" layoutY="138.0" mnemonicParsing="false" onAction="#buttonClicked" text="Calculer" />
     <!-- TextField Verin -->
     <TextField id="DFond" fx:id="DFond" layoutX="120.0" layoutY="51.0" prefHeight="25.0" prefWidth="50.0" />
@@ -43,8 +43,6 @@
     <Label layoutX="27.0" layoutY="55.0" prefHeight="17.0" prefWidth="75.0" text="Diam. Fond:" />
     <Label layoutX="27.0" layoutY="95.0" text="Diam. Tige:" />
     <Label layoutX="28.0" layoutY="142.0" text="Course:" />
-    <Label layoutX="316.0" layoutY="55.0" text="Débit pompe:" />
-    <Label layoutX="316.0" layoutY="95.0" text="Pression pompe:" />
     <Label layoutX="26.0" layoutY="200.0" text="Section Fond:" />
     <Label layoutX="211.0" layoutY="192.0" text="Section Tige:" />
     <Label layoutX="215.0" layoutY="296.0" text="Vitesse de sortie:" />
@@ -54,9 +52,16 @@
     <Label layoutX="383.0" layoutY="353.0" text="Tps de sortie en différentiel:" />
     <Label layoutX="27.0" layoutY="295.0" text="Force en sortie:" />
     <Label layoutX="26.0" layoutY="321.0" text="Force en rentrée:" />
+    <Label layoutX="316.0" layoutY="55.0" text="Débit:" />
+    <Label layoutX="316.0" layoutY="95.0" text="Pression:" />
+    <Label layoutX="521.0" layoutY="23.0" text="Cylindrée:" />
+    <Label layoutX="500.0" layoutY="122.0" text="Vitesse de Rot.:" />
+    <Label layoutX="618.0" layoutY="23.0" prefHeight="17.0" prefWidth="108.0" text="Puissance Hydrau.:" />
+    <Label layoutX="611.0" layoutY="130.0" text="Puissance Méca.:" />
+    <Label layoutX="726.0" layoutY="83.0" text="Rendement:" />
 
     <Separator layoutX="86.0" layoutY="273.0" prefHeight="3.0" prefWidth="422.0" />
     <Separator prefWidth="200.0" />
     <Separator layoutX="88.0" layoutY="180.0" prefHeight="3.0" prefWidth="422.0" />
     <Separator layoutX="89.0" layoutY="40.0" prefHeight="3.0" prefWidth="422.0" />
-</Pane>
+  </Pane>

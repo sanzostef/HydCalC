@@ -1,4 +1,4 @@
-package sample;
+package HydCalC;
 
 public class Pump {
     private double cyl;
