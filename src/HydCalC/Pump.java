@@ -57,14 +57,14 @@ public class Pump {
             this.pwrHyd = (this.pression * this.debit) / 600;
         }
         if (this.pwrMeca != 0.0d & this.rendement != 0.0d)
-            this.pwrHyd = this.pwrMeca * rendement / 100;
+            this.pwrHyd = this.pwrMeca * this.rendement / 100;
     }
 
     public void setPwrMeca(double pwr){	this.pwrMeca = pwr;	}
     public double getPwrMeca(){	return this.pwrMeca;	}
     public void calculerPwrMeca() {
         if (this.pwrHyd != 0.0d & this.rendement != 0.0d) {
-            this.pwrMeca = this.pwrHyd / this.rendement;
+            this.pwrMeca = this.pwrHyd / this.rendement * 100;
         }
     }
 
