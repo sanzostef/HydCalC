@@ -3,99 +3,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.MainController">
+    <Label layoutX="247.0" layoutY="14.0" prefHeight="17.0" prefWidth="67.0" text="HydCalC" />
     <Button id="btCalcul" fx:id="btCalculer" layoutX="310.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonCalculer" text="Calculer" />
     <Button id="btInit" layoutX="400.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonInit" text="Ré-initialiser" />
-    <!-- TextField Verin -->
-    <TextField id="DFond" fx:id="txtDFond" layoutX="115.0" layoutY="55.0" onKeyTyped="#modifDFond" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="DTige" fx:id="txtDTige" layoutX="115.0" layoutY="85.0" onKeyTyped="#modifDTige" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="Course" fx:id="txtCourse" layoutX="115.0" layoutY="115.0" onKeyTyped="#modifCourse" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="SFond" fx:id="txtSFond" layoutX="115.0" layoutY="145.0" onKeyTyped="#modifSFond" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="SAnnulaire" fx:id="txtSAnn" layoutX="307.0" layoutY="145.0" onKeyTyped="#modifSAnn" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="Rap" fx:id="txtR" layoutX="530.0" layoutY="145.0" onKeyTyped="#modifR" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="RInv" fx:id="txtrInv" layoutX="530.0" layoutY="175.0" onKeyTyped="#modifRinv" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="VFond" fx:id="txtVFond" layoutX="115.0" layoutY="175.0" onKeyTyped="#modifVFond" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="VTige" fx:id="txtVTige" layoutX="307.0" layoutY="175.0" onKeyTyped="#modifVTige" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="ForceSortie" fx:id="txtForceSortie" layoutX="115.0" layoutY="205.0" onKeyTyped="#modifForceSortie" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="ForceRentree" fx:id="txtForceRentree" layoutX="115.0" layoutY="235.0" onKeyTyped="#modifForceRentree" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="ForceDiff" fx:id="txtForceDiff" layoutX="115.0" layoutY="265.0" onKeyTyped="#RAZverin" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="VitSortie" fx:id="txtVitSortie" layoutX="307.0" layoutY="205.0" onKeyTyped="#modifVitSortie" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="VitRentree" fx:id="txtVitRentree" layoutX="307.0" layoutY="235.0" onKeyTyped="#modifVitRentree" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="VitDiff" fx:id="txtVitDiff" layoutX="307.0" layoutY="265.0" onKeyTyped="#RAZverin" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="TpsSortie" fx:id="txtTpsSortie" layoutX="530.0" layoutY="206.0" onKeyTyped="#modifTpsSortie" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="TpsRentree" fx:id="txtTpsRentree" layoutX="530.0" layoutY="235.0" onKeyTyped="#modifTpsRentree" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="TpsDiff" fx:id="txtTpsDiff" layoutX="530.0" layoutY="266.0" onKeyTyped="#RAZverin" prefHeight="25.0" prefWidth="50.0" />
-    <!-- TextField Pompe -->
-    <TextField id="Debit" fx:id="txtDebit" layoutX="823.0" layoutY="25.0" onKeyTyped="#modifDebit" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="Pression" fx:id="txtPression" layoutX="823.0" layoutY="55.0" onKeyTyped="#modifPression" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="Cyl" fx:id="txtCyl" layoutX="823.0" layoutY="85.0" onKeyTyped="#modifCyl" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="VitDeRotation" fx:id="txtVitDeRotation" layoutX="823.0" layoutY="115.0" onKeyTyped="#modifVitDeRot" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="PwrHyd" fx:id="txtPwrHyd" layoutX="823.0" layoutY="145.0" onKeyTyped="#modifPwrHyd" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="PwrMeca" fx:id="txtPwrMeca" layoutX="823.0" layoutY="175.0" onKeyTyped="#modifPwrMeca" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="Rendement" fx:id="txtRendement" layoutX="823.0" layoutY="205.0" onKeyTyped="#modifRendement" prefHeight="25.0" prefWidth="50.0" />
-    <!-- TextField Accu -->
-    <TextField id="V0" fx:id="txtV0" layoutX="35.0" layoutY="325.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="V1" fx:id="txtV1" layoutX="35.0" layoutY="355.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="V2" fx:id="txtV2" layoutX="35.0" layoutY="385.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="P0" fx:id="txtP0" layoutX="125.0" layoutY="325.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="P1" layoutX="125.0" layoutY="355.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="P2" layoutX="125.0" layoutY="385.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="DeltaV" fx:id="txtDeltaV" layoutX="250.0" layoutY="325.0" onKeyTyped="#resetV0" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="n" fx:id="txtn" layoutX="250.0" layoutY="355.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
-    <RadioButton fx:id="instant" layoutX="325.0" layoutY="325.0" mnemonicParsing="false" onAction="#gestionDesRadioButton" text="Instantanée">
-        <toggleGroup>
-            <ToggleGroup fx:id="ratioGroup" />
-        </toggleGroup>
-    </RadioButton>
-    <RadioButton fx:id="rap20" layoutX="325.0" layoutY="350.0" mnemonicParsing="false" onAction="#gestionDesRadioButton" text="20s...30s" toggleGroup="$ratioGroup" />
-    <RadioButton fx:id="lent1" layoutX="325.0" layoutY="375.0" mnemonicParsing="false" onAction="#gestionDesRadioButton" text="1min...1.5min" toggleGroup="$ratioGroup" />
-    <RadioButton fx:id="lent2" layoutX="325.0" layoutY="400.0" mnemonicParsing="false" onAction="#gestionDesRadioButton" text="2min...3min" toggleGroup="$ratioGroup" />
-    <RadioButton fx:id="lent3" layoutX="325.0" layoutY="425.0" mnemonicParsing="false" onAction="#gestionDesRadioButton" text="4min...8min" toggleGroup="$ratioGroup" />
 
-    <Label layoutX="247.0" layoutY="14.0" prefHeight="17.0" prefWidth="67.0" text="HydCalC" />
-    <!-- Label Verin -->
-    <Label layoutX="5.0" layoutY="60.0" text="Diam. Fond:" />
-    <Label layoutX="5.0" layoutY="90.0" text="Diam. Tige:" />
-    <Label layoutX="5.0" layoutY="120.0" text="Course:" />
-    <Label layoutX="5.0" layoutY="150.0" text="Section Fond:" />
-    <Label layoutX="185.0" layoutY="150.0" text="Section Tige:" />
-    <Label layoutX="380.0" layoutY="150.0" text="Rapport de section:" />
-    <Label layoutX="380.0" layoutY="180.0" text="Rapport inverse:" />
-    <Label layoutX="5.0" layoutY="180.0" text="Volume fond:" />
-    <Label layoutX="185.0" layoutY="180.0" text="Volume tige:" />
-    <Label layoutX="5.0" layoutY="210.0" text="Force en sortie:" />
-    <Label layoutX="5.0" layoutY="240.0" text="Force en rentrée:" />
-    <Label layoutX="5.0" layoutY="270.0" text="Force en differentiel:" />
-    <Label layoutX="185.0" layoutY="210.0" text="Vitesse de sortie:" />
-    <Label layoutX="185.0" layoutY="240.0" text="Vitesse de rentrée:" />
-    <Label layoutX="185.0" layoutY="270.0" text="Vitesse en differentiel:" />
-    <Label layoutX="380.0" layoutY="210.0" text="Tps de sortie:" />
-    <Label layoutX="380.0" layoutY="240.0" text="Tps de rentrée:" />
-    <Label layoutX="380.0" layoutY="269.0" text="Tps de sortie en différentiel:" />
-    <!-- Label Pompe -->
-    <Label layoutX="710.0" layoutY="30.0" text="Débit:" />
-    <Label layoutX="710.0" layoutY="60.0" text="Pression:" />
-    <Label layoutX="710.0" layoutY="90.0" text="Cylindrée:" />
-    <Label layoutX="710.0" layoutY="120.0" text="Vitesse de Rot.:" />
-    <Label layoutX="710.0" layoutY="150.0" text="Puissance Hydrau.:" />
-    <Label layoutX="710.0" layoutY="180.0" text="Puissance Méca.:" />
-    <Label layoutX="710.0" layoutY="210.0" text="Rendement:" />
-    <!-- Label ACCU -->
-    <Label layoutX="101.0" layoutY="330.0" text="P0:" />
-    <Label layoutX="101.0" layoutY="360.0" text="P1:" />
-    <Label layoutX="101.0" layoutY="390.0" text="P2:" />
-    <Label layoutX="10.0" layoutY="330.0" text="V0:" />
-    <Label layoutX="10.0" layoutY="360.0" text="V1:" />
-    <Label layoutX="10.0" layoutY="390.0" text="V2:" />
-    <Label layoutX="183.0" layoutY="330.0" text="DelatV:" />
-    <Label layoutX="183.0" layoutY="360.0" text="Coefficient:" />
+    <Pane layoutX="5.0" layoutY="50.0" maxHeight="250" maxWidth="600.0" prefHeight="250.0" prefWidth="600.0">
+        <fx:include fx:id="dspVerin" source="verin.fxml" />
+    </Pane>
+    <Pane layoutX="700.0" layoutY="10.0" maxHeight="125" maxWidth="300.0" prefHeight="250.0" prefWidth="300.0">
+        <fx:include fx:id="dspPump" source="pump.fxml" />
+    </Pane>
+    <Pane layoutX="5.0" layoutY="310.0" maxHeight="125" maxWidth="150.0" prefHeight="125.0" prefWidth="150.0">
+        <fx:include fx:id="dspAccu" source="accu.fxml" />
+    </Pane>
+    <Pane layoutX="500.0" layoutY="310.0" maxHeight="125" maxWidth="150.0" prefHeight="125.0" prefWidth="150.0">
+        <fx:include fx:id="dspDeltaP" source="deltaP.fxml" />
+    </Pane>
 
-    <Separator layoutX="85.0" layoutY="202.0" prefHeight="3.0" prefWidth="406.0" />
-    <Separator layoutX="83.0" layoutY="142.0" prefHeight="3.0" prefWidth="406.0" />
     <Separator layoutX="89.0" layoutY="40.0" prefHeight="3.0" prefWidth="422.0" />
-   <Label layoutX="624.0" layoutY="377.0" text="Pertes de charge:" />
-   <Label layoutX="688.0" layoutY="350.0" text="Diametre" />
-   <TextField layoutX="734.0" layoutY="348.0" />
-   <TextField layoutX="734.0" layoutY="373.0" />
 
   </Pane>

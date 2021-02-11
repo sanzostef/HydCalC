@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="130.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.AccuController">
+    <!-- TextField Accu -->
+    <TextField id="V0" fx:id="txtV0" layoutX="35.0" layoutY="5.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="V1" fx:id="txtV1" layoutX="35.0" layoutY="35.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="V2" fx:id="txtV2" layoutX="35.0" layoutY="65.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="P0" fx:id="txtP0" layoutX="125.0" layoutY="5.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="P1" layoutX="125.0" layoutY="35.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="P2" layoutX="125.0" layoutY="65.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="DeltaV" fx:id="txtDeltaV" layoutX="250.0" layoutY="5.0" onKeyTyped="#resetV0" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="n" fx:id="txtn" layoutX="250.0" layoutY="35.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
+    <RadioButton fx:id="instant" layoutX="325.0" layoutY="5.0" mnemonicParsing="false" onAction="#gestionDesRadioButton" text="Instantanée">
+        <toggleGroup>
+            <ToggleGroup fx:id="ratioGroup" />
+        </toggleGroup>
+    </RadioButton>
+    <RadioButton fx:id="rap20" layoutX="325.0" layoutY="30.0" mnemonicParsing="false" onAction="#gestionDesRadioButton" text="20s...30s" toggleGroup="$ratioGroup" />
+    <RadioButton fx:id="lent1" layoutX="325.0" layoutY="55.0" mnemonicParsing="false" onAction="#gestionDesRadioButton" text="1min...1.5min" toggleGroup="$ratioGroup" />
+    <RadioButton fx:id="lent2" layoutX="325.0" layoutY="80.0" mnemonicParsing="false" onAction="#gestionDesRadioButton" text="2min...3min" toggleGroup="$ratioGroup" />
+    <RadioButton fx:id="lent3" layoutX="325.0" layoutY="105.0" mnemonicParsing="false" onAction="#gestionDesRadioButton" text="4min...8min" toggleGroup="$ratioGroup" />
+    <!-- Label ACCU -->
+    <Label layoutX="101.0" layoutY="10.0" text="P0:" />
+    <Label layoutX="101.0" layoutY="40.0" text="P1:" />
+    <Label layoutX="101.0" layoutY="70.0" text="P2:" />
+    <Label layoutX="10.0" layoutY="10.0" text="V0:" />
+    <Label layoutX="10.0" layoutY="40.0" text="V1:" />
+    <Label layoutX="10.0" layoutY="70.0" text="V2:" />
+    <Label layoutX="183.0" layoutY="10.0" text="DelatV:" />
+    <Label layoutX="183.0" layoutY="40.0" text="Coefficient:" />
+</Pane>
