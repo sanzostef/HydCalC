@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="175.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.PumpController">
+    <!-- TextField Pompe -->
+    <TextField id="Debit" fx:id="txtDebit" layoutX="110.0" layoutY="25.0" onKeyTyped="#modifDebit" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="Pression" fx:id="txtPression" layoutX="110.0" layoutY="55.0" onKeyTyped="#modifPression" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="Cyl" fx:id="txtCyl" layoutX="110.0" layoutY="85.0" onKeyTyped="#modifCyl" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="VitDeRotation" fx:id="txtVitDeRotation" layoutX="110.0" layoutY="115.0" onKeyTyped="#modifVitDeRot" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="PwrHyd" fx:id="txtPwrHyd" layoutX="110.0" layoutY="145.0" onKeyTyped="#modifPwrHyd" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="PwrMeca" fx:id="txtPwrMeca" layoutX="110.0" layoutY="175.0" onKeyTyped="#modifPwrMeca" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="Rendement" fx:id="txtRendement" layoutX="110.0" layoutY="205.0" onKeyTyped="#modifRendement" prefHeight="25.0" prefWidth="50.0" />
+    <!-- Label Pompe -->
+    <Label layoutX="5.0" layoutY="30.0" text="Débit:" />
+    <Label layoutX="5.0" layoutY="60.0" text="Pression:" />
+    <Label layoutX="5.0" layoutY="90.0" text="Cylindrée:" />
+    <Label layoutX="5.0" layoutY="120.0" text="Vitesse de Rot.:" />
+    <Label layoutX="5.0" layoutY="150.0" text="Puissance Hydrau.:" />
+    <Label layoutX="5.0" layoutY="180.0" text="Puissance Méca.:" />
+    <Label layoutX="5.0" layoutY="210.0" text="Rendement:" />
+</Pane>

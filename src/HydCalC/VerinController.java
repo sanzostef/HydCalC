@@ -1,7 +1,6 @@
 package HydCalC;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import java.lang.reflect.InvocationTargetException;
 
 public class VerinController {
@@ -26,128 +25,204 @@ public class VerinController {
         System.out.println("fini");
         System.out.println();
     }
-    @FXML TextField txtDFond, txtDTige, txtCourse;
-    @FXML TextField txtSFond, txtSAnn, txtR, txtrInv, txtVFond, txtVTige;
-    @FXML TextField txtForceSortie, txtForceRentree, txtForceDiff, txtVitSortie, txtVitRentree, txtVitDiff, txtTpsSortie, txtTpsRentree, txtTpsDiff;
     @FXML private void modifDFond(){
-        txtSFond.setText(""); txtSAnn.setText("");
-        txtVFond.setText(""); txtVTige.setText(""); txtR.setText(""); txtrInv.setText("");
-        txtForceSortie.setText(""); txtForceRentree.setText(""); txtForceDiff.setText("");
-        txtVitSortie.setText(""); txtVitRentree.setText(""); txtVitDiff.setText("");
-        txtTpsSortie.setText(""); txtTpsRentree.setText(""); txtTpsDiff.setText("");
+        mainController.listeDesTextfield.get(MainController.sfond).setText("");
+        mainController.listeDesTextfield.get(MainController.sann).setText("");
+        mainController.listeDesTextfield.get(MainController.vfond).setText("");
+        mainController.listeDesTextfield.get(MainController.vtige).setText("");
+        mainController.listeDesTextfield.get(MainController.r).setText("");
+        mainController.listeDesTextfield.get(MainController.rinv).setText("");
+        mainController.listeDesTextfield.get(MainController.forcesortie).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
+        mainController.listeDesTextfield.get(MainController.vitsortie).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpssortie).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifDTige(){
-        txtSAnn.setText(""); txtVTige.setText(""); txtR.setText(""); txtrInv.setText("");
-        txtForceRentree.setText(""); txtForceDiff.setText("");
-        txtVitRentree.setText(""); txtVitDiff.setText("");
-        txtTpsRentree.setText(""); txtTpsDiff.setText("");
+    @FXML private void modifDTige(){
+        mainController.listeDesTextfield.get(MainController.sann).setText("");
+        mainController.listeDesTextfield.get(MainController.vtige).setText("");
+        mainController.listeDesTextfield.get(MainController.r).setText("");
+        mainController.listeDesTextfield.get(MainController.rinv).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifCourse(){
-        txtVTige.setText(""); txtVFond.setText("");
-        txtTpsSortie.setText(""); txtTpsRentree.setText(""); txtTpsDiff.setText("");
+    @FXML private void modifCourse(){
+        mainController.listeDesTextfield.get(MainController.vtige).setText("");
+        mainController.listeDesTextfield.get(MainController.vfond).setText("");
+        mainController.listeDesTextfield.get(MainController.tpssortie).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifSFond(){
-        txtDFond.setText(""); txtSAnn.setText("");
-        txtVFond.setText(""); txtVTige.setText(""); txtR.setText(""); txtrInv.setText("");
-        txtForceSortie.setText(""); txtForceRentree.setText(""); txtForceDiff.setText("");
-        txtVitSortie.setText(""); txtVitRentree.setText(""); txtVitDiff.setText("");
-        txtTpsSortie.setText(""); txtTpsRentree.setText(""); txtTpsDiff.setText("");
+    @FXML private void modifSFond(){
+        mainController.listeDesTextfield.get(MainController.dfond).setText("");
+        mainController.listeDesTextfield.get(MainController.sann).setText("");
+        mainController.listeDesTextfield.get(MainController.vfond).setText("");
+        mainController.listeDesTextfield.get(MainController.vtige).setText("");
+        mainController.listeDesTextfield.get(MainController.r).setText("");
+        mainController.listeDesTextfield.get(MainController.rinv).setText("");
+        mainController.listeDesTextfield.get(MainController.forcesortie).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
+        mainController.listeDesTextfield.get(MainController.vitsortie).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpssortie).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifSAnn(){
-        txtDTige.setText(""); txtVTige.setText(""); txtR.setText(""); txtrInv.setText("");
-        txtForceRentree.setText(""); txtForceDiff.setText("");
-        txtVitRentree.setText(""); txtVitDiff.setText("");
-        txtTpsRentree.setText(""); txtTpsDiff.setText("");
+    @FXML private void modifSAnn(){
+        mainController.listeDesTextfield.get(MainController.dtige).setText("");
+        mainController.listeDesTextfield.get(MainController.vtige).setText("");
+        mainController.listeDesTextfield.get(MainController.rinv).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifR(){
-        txtDTige.setText(""); txtDFond.setText(""); txtSFond.setText(""); txtSAnn.setText("");
-        txtrInv.setText(""); txtVFond.setText(""); txtVTige.setText(""); txtrInv.setText("");
-        txtForceRentree.setText(""); txtForceDiff.setText("");
-        txtForceSortie.setText(""); txtForceRentree.setText(""); txtForceDiff.setText("");
-        txtVitSortie.setText(""); txtVitRentree.setText(""); txtVitDiff.setText("");
-        txtTpsSortie.setText(""); txtTpsRentree.setText(""); txtTpsDiff.setText("");
+    @FXML private void modifVFond(){
+        mainController.listeDesTextfield.get(MainController.dfond).setText("");
+        mainController.listeDesTextfield.get(MainController.sann).setText("");
+        mainController.listeDesTextfield.get(MainController.sfond).setText("");
+        mainController.listeDesTextfield.get(MainController.vtige).setText("");
+        mainController.listeDesTextfield.get(MainController.r).setText("");
+        mainController.listeDesTextfield.get(MainController.rinv).setText("");
+        mainController.listeDesTextfield.get(MainController.forcesortie).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
+        mainController.listeDesTextfield.get(MainController.vitsortie).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpssortie).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifRinv(){
-        txtDTige.setText(""); txtDFond.setText(""); txtSFond.setText(""); txtSAnn.setText("");
-        txtR.setText(""); txtVFond.setText(""); txtVTige.setText(""); txtrInv.setText("");
-        txtForceRentree.setText(""); txtForceDiff.setText("");
-        txtForceSortie.setText(""); txtForceRentree.setText(""); txtForceDiff.setText("");
-        txtVitSortie.setText(""); txtVitRentree.setText(""); txtVitDiff.setText("");
-        txtTpsSortie.setText(""); txtTpsRentree.setText(""); txtTpsDiff.setText("");
+    @FXML private void modifVTige(){
+        mainController.listeDesTextfield.get(MainController.dtige).setText("");
+        mainController.listeDesTextfield.get(MainController.sann).setText("");
+        mainController.listeDesTextfield.get(MainController.course).setText("");
+        mainController.listeDesTextfield.get(MainController.r).setText("");
+        mainController.listeDesTextfield.get(MainController.rinv).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifVFond(){
-        txtDFond.setText(""); txtSAnn.setText("");
-        txtSFond.setText(""); txtVTige.setText(""); txtR.setText(""); txtrInv.setText("");
-        txtForceSortie.setText(""); txtForceRentree.setText(""); txtForceDiff.setText("");
-        txtVitSortie.setText(""); txtVitRentree.setText(""); txtVitDiff.setText("");
-        txtTpsSortie.setText(""); txtTpsRentree.setText(""); txtTpsDiff.setText("");
+    @FXML private void modifForceSortie(){
+        mainController.listeDesTextfield.get(MainController.dfond).setText("");
+        mainController.listeDesTextfield.get(MainController.sfond).setText("");
+        mainController.listeDesTextfield.get(MainController.sann).setText("");
+        mainController.listeDesTextfield.get(MainController.vtige).setText("");
+        mainController.listeDesTextfield.get(MainController.r).setText("");
+        mainController.listeDesTextfield.get(MainController.rinv).setText("");
+        mainController.listeDesTextfield.get(MainController.vfond).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
+        mainController.listeDesTextfield.get(MainController.vitsortie).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpssortie).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifVTige(){
-        txtDTige.setText(""); txtSAnn.setText(""); txtCourse.setText(""); txtR.setText(""); txtrInv.setText("");
-        txtForceRentree.setText(""); txtForceDiff.setText("");
-        txtVitRentree.setText(""); txtVitDiff.setText("");
-        txtTpsRentree.setText(""); txtTpsDiff.setText("");
+    @FXML private void modifForceRentree(){
+        mainController.listeDesTextfield.get(MainController.dtige).setText("");
+        mainController.listeDesTextfield.get(MainController.sann).setText("");
+        mainController.listeDesTextfield.get(MainController.r).setText("");
+        mainController.listeDesTextfield.get(MainController.rinv).setText("");
+        mainController.listeDesTextfield.get(MainController.vtige).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifForceSortie(){
-        txtDFond.setText(""); txtSAnn.setText("");
-        txtSFond.setText(""); txtVTige.setText(""); txtR.setText(""); txtrInv.setText("");
-        txtVFond.setText(""); txtForceRentree.setText(""); txtForceDiff.setText("");
-        txtVitSortie.setText(""); txtVitRentree.setText(""); txtVitDiff.setText("");
-        txtTpsSortie.setText(""); txtTpsRentree.setText(""); txtTpsDiff.setText("");
+    @FXML private void modifVitSortie(){
+        mainController.listeDesTextfield.get(MainController.dfond).setText("");
+        mainController.listeDesTextfield.get(MainController.sfond).setText("");
+        mainController.listeDesTextfield.get(MainController.sann).setText("");
+        mainController.listeDesTextfield.get(MainController.vfond).setText("");
+        mainController.listeDesTextfield.get(MainController.vtige).setText("");
+        mainController.listeDesTextfield.get(MainController.r).setText("");
+        mainController.listeDesTextfield.get(MainController.rinv).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
+        mainController.listeDesTextfield.get(MainController.forcesortie).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpssortie).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifForceRentree(){
-        txtSAnn.setText(""); txtVTige.setText(""); txtR.setText(""); txtrInv.setText("");
-        txtDTige.setText(""); txtForceDiff.setText("");
-        txtVitRentree.setText(""); txtVitDiff.setText("");
-        txtTpsRentree.setText(""); txtTpsDiff.setText("");
+    @FXML private void modifVitRentree(){
+        mainController.listeDesTextfield.get(MainController.dtige).setText("");
+        mainController.listeDesTextfield.get(MainController.sann).setText("");
+        mainController.listeDesTextfield.get(MainController.r).setText("");
+        mainController.listeDesTextfield.get(MainController.rinv).setText("");
+        mainController.listeDesTextfield.get(MainController.vtige).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifVitSortie(){
-        txtDFond.setText(""); txtSAnn.setText("");
-        txtSFond.setText(""); txtVTige.setText(""); txtR.setText(""); txtrInv.setText("");
-        txtVFond.setText(""); txtForceRentree.setText(""); txtForceDiff.setText("");
-        txtForceSortie.setText(""); txtVitRentree.setText(""); txtVitDiff.setText("");
-        txtTpsSortie.setText(""); txtTpsRentree.setText(""); txtTpsDiff.setText("");
+    @FXML private void modifTpsSortie(){
+        mainController.listeDesTextfield.get(MainController.dfond).setText("");
+        mainController.listeDesTextfield.get(MainController.sfond).setText("");
+        mainController.listeDesTextfield.get(MainController.sann).setText("");
+        mainController.listeDesTextfield.get(MainController.vfond).setText("");
+        mainController.listeDesTextfield.get(MainController.vtige).setText("");
+        mainController.listeDesTextfield.get(MainController.r).setText("");
+        mainController.listeDesTextfield.get(MainController.rinv).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcesortie).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
+        mainController.listeDesTextfield.get(MainController.vitsortie).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifVitRentree(){
-        txtSAnn.setText(""); txtVTige.setText(""); txtR.setText(""); txtrInv.setText("");
-        txtDTige.setText(""); txtForceDiff.setText("");
-        txtForceRentree.setText(""); txtVitDiff.setText("");
-        txtTpsRentree.setText(""); txtTpsDiff.setText("");
+    @FXML private void modifTpsRentree(){
+        mainController.listeDesTextfield.get(MainController.sann).setText("");
+        mainController.listeDesTextfield.get(MainController.vtige).setText("");
+        mainController.listeDesTextfield.get(MainController.r).setText("");
+        mainController.listeDesTextfield.get(MainController.rinv).setText("");
+        mainController.listeDesTextfield.get(MainController.dtige).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifTpsSortie(){
-        txtDFond.setText(""); txtSAnn.setText("");
-        txtSFond.setText(""); txtVTige.setText(""); txtR.setText(""); txtrInv.setText("");
-        txtVFond.setText(""); txtForceRentree.setText(""); txtForceDiff.setText("");
-        txtVitSortie.setText(""); txtVitRentree.setText(""); txtVitDiff.setText("");
-        txtForceSortie.setText(""); txtTpsRentree.setText(""); txtTpsDiff.setText("");
-    }
-    @FXML
-    private void modifTpsRentree(){
-        txtSAnn.setText(""); txtVTige.setText(""); txtR.setText(""); txtrInv.setText("");
-        txtDTige.setText(""); txtForceDiff.setText("");
-        txtForceRentree.setText(""); txtVitDiff.setText("");
-        txtVitRentree.setText(""); txtTpsDiff.setText("");
-    }
-    @FXML
-    private void RAZverin(){
-        txtDFond.setText(""); txtDTige.setText("");
-        txtSFond.setText(""); txtSAnn.setText("");
-        txtVFond.setText(""); txtVTige.setText(""); txtR.setText(""); txtrInv.setText("");
-        txtForceSortie.setText(""); txtForceRentree.setText(""); txtForceDiff.setText("");
-        txtVitSortie.setText(""); txtVitRentree.setText(""); txtVitDiff.setText("");
-        txtTpsSortie.setText(""); txtTpsRentree.setText(""); txtTpsDiff.setText("");
+    @FXML private void RAZverin(){
+        mainController.listeDesTextfield.get(MainController.dfond).setText("");
+        mainController.listeDesTextfield.get(MainController.dtige).setText("");
+        mainController.listeDesTextfield.get(MainController.sfond).setText("");
+        mainController.listeDesTextfield.get(MainController.sann).setText("");
+        mainController.listeDesTextfield.get(MainController.vfond).setText("");
+        mainController.listeDesTextfield.get(MainController.vtige).setText("");
+        mainController.listeDesTextfield.get(MainController.r).setText("");
+        mainController.listeDesTextfield.get(MainController.rinv).setText("");
+        mainController.listeDesTextfield.get(MainController.forcesortie).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
+        mainController.listeDesTextfield.get(MainController.vitsortie).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpssortie).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
 }

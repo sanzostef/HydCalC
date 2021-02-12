@@ -13,9 +13,6 @@ public class PumpController {
 
     void injection(MainController controller) { this.mainController = controller; }
     void injectionDspVerin(VerinController controller) { this.dspVerin = controller; }
-
-    @FXML private TextField txtDebit, txtPression, txtCyl, txtVitDeRotation, txtPwrHyd, txtPwrMeca;
-
     void calculerSansParametreExterne() throws IllegalAccessException, InvocationTargetException{
         System.out.println(" Entre dans les calculs sans paramètres Pompe:");
         System.out.println();
@@ -32,54 +29,82 @@ public class PumpController {
         System.out.println();
     }
 
-    @FXML
-    protected void modifDebit(){
-        txtCyl.setText(""); txtPwrHyd.setText(""); txtPwrMeca.setText("");
-        dspVerin.txtVitSortie.setText(""); dspVerin.txtVitRentree.setText(""); dspVerin.txtVitDiff.setText("");
-        dspVerin.txtTpsSortie.setText(""); dspVerin.txtTpsRentree.setText(""); dspVerin.txtTpsDiff.setText("");
+    @FXML protected void modifDebit(){
+        mainController.listeDesTextfield.get(MainController.cyl).setText("");
+        mainController.listeDesTextfield.get(MainController.pwrHyd).setText("");
+        mainController.listeDesTextfield.get(MainController.pwrMeca).setText("");
+        mainController.listeDesTextfield.get(MainController.vitsortie).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpssortie).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifPression(){
-        txtPwrHyd.setText(""); txtPwrMeca.setText(""); dspVerin.txtForceSortie.setText("");
-        dspVerin.txtForceRentree.setText(""); dspVerin.txtForceDiff.setText("");
+    @FXML private void modifPression(){
+        mainController.listeDesTextfield.get(MainController.pwrHyd).setText("");
+        mainController.listeDesTextfield.get(MainController.pwrMeca).setText("");
+        mainController.listeDesTextfield.get(MainController.forcesortie).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
     }
-    @FXML
-    private void modifCyl(){
-        txtPwrHyd.setText(""); txtPwrMeca.setText(""); txtDebit.setText("");
-        txtPwrHyd.setText(""); txtPwrMeca.setText("");
-        dspVerin.txtVitSortie.setText(""); dspVerin.txtVitRentree.setText("");
-        dspVerin.txtVitDiff.setText(""); dspVerin.txtTpsSortie.setText("");
-        dspVerin.txtTpsRentree.setText(""); dspVerin.txtTpsDiff.setText("");
+    @FXML private void modifCyl(){
+        mainController.listeDesTextfield.get(MainController.pwrHyd).setText("");
+        mainController.listeDesTextfield.get(MainController.pwrMeca).setText("");
+        mainController.listeDesTextfield.get(MainController.debit).setText("");
+        mainController.listeDesTextfield.get(MainController.pwrHyd).setText("");
+        mainController.listeDesTextfield.get(MainController.pwrMeca).setText("");
+        mainController.listeDesTextfield.get(MainController.vitsortie).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpssortie).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifVitDeRot(){
-        txtPwrHyd.setText(""); txtPwrMeca.setText(""); txtCyl.setText(""); txtPwrHyd.setText("");
-        dspVerin.txtVitSortie.setText(""); dspVerin.txtVitRentree.setText("");
-        dspVerin.txtVitDiff.setText(""); dspVerin.txtTpsSortie.setText("");
-        dspVerin.txtTpsRentree.setText(""); dspVerin.txtTpsDiff.setText("");
+    @FXML private void modifVitDeRot(){
+        mainController.listeDesTextfield.get(MainController.pwrHyd).setText("");
+        mainController.listeDesTextfield.get(MainController.pwrMeca).setText("");
+        mainController.listeDesTextfield.get(MainController.cyl).setText("");
+        mainController.listeDesTextfield.get(MainController.pwrHyd).setText("");
+        mainController.listeDesTextfield.get(MainController.vitsortie).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpssortie).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML
-    private void modifPwrHyd(){
-        txtPression.setText(""); txtPwrMeca.setText(""); txtDebit.setText("");
-        txtCyl.setText(""); txtVitDeRotation.setText("");
-        dspVerin.txtVitSortie.setText(""); dspVerin.txtVitRentree.setText("");
-        dspVerin.txtVitDiff.setText(""); dspVerin.txtTpsSortie.setText("");
-        dspVerin.txtTpsRentree.setText(""); dspVerin.txtTpsDiff.setText("");
-        dspVerin.txtForceSortie.setText(""); dspVerin.txtForceRentree.setText("");
-        dspVerin.txtForceDiff.setText("");
+    @FXML private void modifPwrHyd(){
+        mainController.listeDesTextfield.get(MainController.pression).setText("");
+        mainController.listeDesTextfield.get(MainController.pwrMeca).setText("");
+        mainController.listeDesTextfield.get(MainController.debit).setText("");
+        mainController.listeDesTextfield.get(MainController.cyl).setText("");
+        mainController.listeDesTextfield.get(MainController.vitDeRot).setText("");
+        mainController.listeDesTextfield.get(MainController.vitsortie).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpssortie).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.forcesortie).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
     }
-    @FXML
-    private void modifPwrMeca(){
-        txtPression.setText(""); txtPwrHyd.setText(""); txtDebit.setText("");
-        txtCyl.setText(""); txtVitDeRotation.setText("");
-        dspVerin.txtVitSortie.setText(""); dspVerin.txtVitRentree.setText("");
-        dspVerin.txtVitDiff.setText(""); dspVerin.txtTpsSortie.setText("");
-        dspVerin.txtTpsRentree.setText(""); dspVerin.txtTpsDiff.setText("");
-        dspVerin.txtForceSortie.setText(""); dspVerin.txtForceRentree.setText("");
-        dspVerin.txtForceDiff.setText("");
+    @FXML private void modifPwrMeca(){
+        mainController.listeDesTextfield.get(MainController.pression).setText("");
+        mainController.listeDesTextfield.get(MainController.pwrHyd).setText("");
+        mainController.listeDesTextfield.get(MainController.debit).setText("");
+        mainController.listeDesTextfield.get(MainController.cyl).setText("");
+        mainController.listeDesTextfield.get(MainController.vitDeRot).setText("");
+        mainController.listeDesTextfield.get(MainController.vitsortie).setText("");
+        mainController.listeDesTextfield.get(MainController.vitrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.vitdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.tpssortie).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
+        mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
+        mainController.listeDesTextfield.get(MainController.forcesortie).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
     }
-    @FXML
-    private void modifRendement(){
-        txtPwrMeca.setText("");
+    @FXML private void modifRendement(){
+        mainController.listeDesTextfield.get(MainController.pwrMeca).setText("");
     }
 }

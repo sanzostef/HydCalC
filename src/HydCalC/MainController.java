@@ -1,13 +1,12 @@
 package HydCalC;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -18,10 +17,6 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
     @FXML
     private Button btCalculer;
-    @FXML
-    private RadioButton instant, rap20, lent1, lent2, lent3, perso;
-    @FXML
-    private TextField txtV0, txtV1, txtV2, txtP0, txtDeltaV, txtn;
 
     @FXML private Pane dspVerin;
     @FXML private VerinController dspVerinController;
@@ -54,128 +49,135 @@ public class MainController implements Initializable {
         for (Node node : dspDeltaP.getChildren()) {
             if (node instanceof TextField) {listeDesTextfield.add((TextField) node);}
         }
+        creationDesListesDeMethodes(verin, dfond, tpsdiff);
+        creationDesListesDeMethodes(pompe, debit, rendement);
+        creationDesListesDeMethodes(accu, V0, n);
+        creationDesListesDeMethodes(deltaPSing, diam, deltaP);
     }
 
     //DecimalFormat df = new DecimalFormat("###.##");
     NumberFormat df = NumberFormat.getInstance();
-    private static final int dfond = 0, dtige = 1, course = 2, sfond = 3, sann = 4, r = 5, rinv = 6, vfond = 7, vtige = 8;
-    private static final int forcesortie = 9, forcerentree = 10, forcediff = 11, vitsortie = 12, vitrentree = 13, vitdiff = 14;
-    private static final int tpssortie = 15, tpsrentree = 16, tpsdiff = 17;
-    private static final int debit = 18, pression = 19, cyl = 20, vitDeRot = 21, pwrHyd = 22, pwrMeca = 23, rendement = 24;
-    private static final int V0 = 25, V1 = 26, V2 = 27, P0 = 28, P1 = 29, P2 = 30, DeltaV = 31, n = 32;
+    static final int dfond = 0, dtige = 1, course = 2, sfond = 3, sann = 4, r = 5, rinv = 6, vfond = 7, vtige = 8;
+    static final int forcesortie = 9, forcerentree = 10, forcediff = 11, vitsortie = 12, vitrentree = 13, vitdiff = 14;
+    static final int tpssortie = 15, tpsrentree = 16, tpsdiff = 17;
+    static final int debit = 18, pression = 19, cyl = 20, vitDeRot = 21, pwrHyd = 22, pwrMeca = 23, rendement = 24;
+    static final int V0 = 25, V1 = 26, V2 = 27, P0 = 28, P1 = 29, P2 = 30, DeltaV = 31, n = 32;
+    static final int diam = 33, masseVol = 34, deltaP = 35;
 
     private boolean erreurDeSaisie = false;
-
     final Verin verin = new Verin();
     final Pump pompe = new Pump();
     final Accu accu = new Accu();
-    final DeltaP DeltaPSing = new DeltaP();
-    @FXML
-    private void buttonCalculer() {
-        try {
-                int count = 0;
-        erreurDeSaisie = false;
-        verifConversion_StringToDouble_possible();
-        if (erreurDeSaisie) {
-            listeDesTextfield.clear();
-            return;
-        }
-        creationDesListesDeMethodes();
-        recopTextfieldDansCompo();
-        accu.Cste(0);
-        accu.Cste();
-            do {
-                calculerSansParametreExterne();
-                if (!listeDesTextfield.get(debit).getText().isEmpty() & listeDesTextfield.get(P2).getText().isEmpty())
-                        accu.setP2(pompe.getPression());
-
-                if ((double) lstGet.get(pression).invoke(pompe) != 0.0d & (double) lstGet.get(sfond).invoke(verin) == 0.0d) {
-                    verin.calculerSFond((double) lstGet.get(pression).invoke(pompe));}
-                if ((double) lstGet.get(pression).invoke(pompe) != 0.0d & (double) lstGet.get(sann).invoke(verin) == 0.0d) {
-                    verin.calculerSAnnulaire((double) lstGet.get(pression).invoke(pompe));
-                }
-                verin.calculerForceSortie((double) lstGet.get(pression).invoke(pompe));
-                verin.calculerForceRentree((double) lstGet.get(pression).invoke(pompe));
-                verin.calculerForceDiff((double) lstGet.get(pression).invoke(pompe));
-
-                calculerSansParametreExterne();
-                if ((double) lstGet.get(debit).invoke(pompe) != 0.0d & (double) lstGet.get(vfond).invoke(verin) == 0.0d) {
-                    verin.calculerVFond((double) lstGet.get(debit).invoke(pompe));
-                }
-                if ((double) lstGet.get(debit).invoke(pompe) != 0.0d & (double) lstGet.get(vtige).invoke(verin) == 0.0d) {
-                    verin.calculerVTige((double) lstGet.get(debit).invoke(pompe));
-                }
-                verin.calculerVitSortie((double) lstGet.get(debit).invoke(pompe));
-                verin.calculerVitRentree((double) lstGet.get(debit).invoke(pompe));
-                verin.calculerVitDiff((double) lstGet.get(debit).invoke(pompe));
-
-                calculerSansParametreExterne();
-                if ((double) lstGet.get(sfond).invoke(verin) != 0.0d & (double) lstGet.get(forcesortie).invoke(verin) != 0.0d) {
-                    pompe.calculerPression((double) lstGet.get(sfond).invoke(verin), (double) lstGet.get(forcesortie).invoke(verin));
-                }
-                if ((double) lstGet.get(sann).invoke(verin) != 0.0d & (double) lstGet.get(forcerentree).invoke(verin) != 0.0d) {
-                    pompe.calculerPression((double) lstGet.get(sann).invoke(verin), (double) lstGet.get(forcerentree).invoke(verin));
-                }
-                if (verin.getSDeLaTige() != 0.0d & (double) lstGet.get(forcediff).invoke(verin) != 0.0d) {
-                    pompe.calculerPression(verin.getSDeLaTige(), (double) lstGet.get(forcediff).invoke(verin));
-                }
-                calculerSansParametreExterne();
-                if ((double) lstGet.get(sfond).invoke(verin) != 0.0d & (double) lstGet.get(vitsortie).invoke(verin) != 0.0d) {
-                    pompe.calculerDebit((double) lstGet.get(sfond).invoke(verin), (double) lstGet.get(vitsortie).invoke(verin));
-                }
-                if ((double) lstGet.get(sann).invoke(verin) != 0.0d & (double) lstGet.get(vitrentree).invoke(verin) != 0.0d) {
-                    pompe.calculerDebit((double) lstGet.get(sann).invoke(verin), (double) lstGet.get(vitrentree).invoke(verin));
-                }
-                if (verin.getSDeLaTige() != 0.0d & (double) lstGet.get(vitdiff).invoke(verin) != 0.0d) {
-                    pompe.calculerDebit(verin.getSDeLaTige(), (double) lstGet.get(vitdiff).invoke(verin));
-                }
-                calculerSansParametreExterne();
-                pompe.calculerCyl();
-                pompe.calculerVitDeRotation();
-                pompe.calculerPwrHyd();
-                pompe.calculerPwrMeca();
-                pompe.calculerRendement();
-                calculerSansParametreExterne();
-                    
-                count++;
-            } while (count < 2);
-
-            recopierComposantsDansTextField();
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    private void buttonInit() {
-        if (!(listeDesTextfield.size() == 0))
-            for (TextField textfield : listeDesTextfield)
-                textfield.setText("");
-    }
+    final DeltaP deltaPSing = new DeltaP();
 
     final ArrayList<Method> lstSet = new ArrayList<>();
     final ArrayList<Method> lstGet = new ArrayList<>();
     final ArrayList<Method> lstCalcul = new ArrayList<>();
 
-    private void creationDesListesDeMethodes() {
-        Method[] tabMethod = Verin.class.getMethods();
-        for (int i = dfond; i < tpsdiff + 1; i++) {
+    @FXML private void buttonCalculer() {
+        try {
+            int count = 0;
+            erreurDeSaisie = false;
+            verifConversion_StringToDouble_possible();
+            if (erreurDeSaisie) {
+                listeDesTextfield.clear();
+                return;
+            }
+
+            recopTextfieldDansCompo();
+            accu.Cste(0);
+            accu.Cste();
+            dspVerinController.calculerSansParametreExterne();
+            dspPumpController.calculerSansParametreExterne();
+            dspAccuController.calculerSansParametreExterne();
+            if (!listeDesTextfield.get(pression).getText().isEmpty() & listeDesTextfield.get(P2).getText().isEmpty())
+                accu.setP2(pompe.getPression());
+            if ((double) lstGet.get(pression).invoke(pompe) != 0.0d & (double) lstGet.get(sfond).invoke(verin) == 0.0d) {
+                verin.calculerSFond((double) lstGet.get(pression).invoke(pompe));}
+            if ((double) lstGet.get(pression).invoke(pompe) != 0.0d & (double) lstGet.get(sann).invoke(verin) == 0.0d) {
+                verin.calculerSAnnulaire((double) lstGet.get(pression).invoke(pompe));
+            }
+            verin.calculerForceSortie((double) lstGet.get(pression).invoke(pompe));
+            verin.calculerForceRentree((double) lstGet.get(pression).invoke(pompe));
+            verin.calculerForceDiff((double) lstGet.get(pression).invoke(pompe));
+
+            dspVerinController.calculerSansParametreExterne();
+            dspPumpController.calculerSansParametreExterne();
+            if ((double) lstGet.get(debit).invoke(pompe) != 0.0d & (double) lstGet.get(vfond).invoke(verin) == 0.0d) {
+                verin.calculerVFond((double) lstGet.get(debit).invoke(pompe));
+            }
+            if ((double) lstGet.get(debit).invoke(pompe) != 0.0d & (double) lstGet.get(vtige).invoke(verin) == 0.0d) {
+                verin.calculerVTige((double) lstGet.get(debit).invoke(pompe));
+            }
+            if ((double) lstGet.get(debit).invoke(pompe) != 0.0d) {
+                deltaPSing.calculerVitEcoulement((double) lstGet.get(debit).invoke(pompe));
+            }
+            dspDeltaPController.calculerSansParametreExterne();
+            verin.calculerVitSortie((double) lstGet.get(debit).invoke(pompe));
+            verin.calculerVitRentree((double) lstGet.get(debit).invoke(pompe));
+            verin.calculerVitDiff((double) lstGet.get(debit).invoke(pompe));
+            dspVerinController.calculerSansParametreExterne();
+            dspPumpController.calculerSansParametreExterne();
+            if ((double) lstGet.get(sfond).invoke(verin) != 0.0d & (double) lstGet.get(forcesortie).invoke(verin) != 0.0d) {
+                pompe.calculerPression((double) lstGet.get(sfond).invoke(verin), (double) lstGet.get(forcesortie).invoke(verin));
+            }
+            if ((double) lstGet.get(sann).invoke(verin) != 0.0d & (double) lstGet.get(forcerentree).invoke(verin) != 0.0d) {
+                pompe.calculerPression((double) lstGet.get(sann).invoke(verin), (double) lstGet.get(forcerentree).invoke(verin));
+            }
+            if (verin.getSDeLaTige() != 0.0d & (double) lstGet.get(forcediff).invoke(verin) != 0.0d) {
+                pompe.calculerPression(verin.getSDeLaTige(), (double) lstGet.get(forcediff).invoke(verin));
+            }
+            dspVerinController.calculerSansParametreExterne();
+            dspPumpController.calculerSansParametreExterne();if ((double) lstGet.get(sfond).invoke(verin) != 0.0d & (double) lstGet.get(vitsortie).invoke(verin) != 0.0d) {
+                pompe.calculerDebit((double) lstGet.get(sfond).invoke(verin), (double) lstGet.get(vitsortie).invoke(verin));
+            }
+            if ((double) lstGet.get(sann).invoke(verin) != 0.0d & (double) lstGet.get(vitrentree).invoke(verin) != 0.0d) {
+                pompe.calculerDebit((double) lstGet.get(sann).invoke(verin), (double) lstGet.get(vitrentree).invoke(verin));
+            }
+            if (verin.getSDeLaTige() != 0.0d & (double) lstGet.get(vitdiff).invoke(verin) != 0.0d) {
+                pompe.calculerDebit(verin.getSDeLaTige(), (double) lstGet.get(vitdiff).invoke(verin));
+            }
+            dspVerinController.calculerSansParametreExterne();
+            dspPumpController.calculerSansParametreExterne();
+            dspVerinController.calculerSansParametreExterne();
+            dspPumpController.calculerSansParametreExterne();
+            dspAccuController.calculerSansParametreExterne();
+
+            recopierComposantsDansTextField(verin, dfond, tpsdiff);
+            recopierComposantsDansTextField(pompe, debit, rendement);
+            recopierComposantsDansTextField(accu, V0, n);
+            recopierComposantsDansTextField(deltaPSing, diam, deltaP);
+        }
+        catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML private void buttonInit() {
+        if (!(listeDesTextfield.size() == 0))
+            for (TextField textfield : listeDesTextfield)
+                textfield.setText("");
+    }
+
+    private void creationDesListesDeMethodes(Object object, int indexDebut, int indexFin) {
+        Method[] tabMethod = object.getClass().getMethods();
+        for (int i = indexDebut; i < indexFin + 1; i++) {
             for (Method methode : tabMethod) {
                 if (methode.getParameterCount() == 0) {
                     if (methode.getName().contains("get" + listeDesTextfield.get(i).getId())) {
-                        if (!lstGet.contains(methode) & lstGet.size() < tpsdiff + 1) {
+                        if (!lstGet.contains(methode) & lstGet.size() < indexFin + 1) {
                             if (i > lstGet.size() - 1) lstGet.add(methode);
                             else lstGet.add(i, methode);
                         }
                     }
                     if (methode.getName().contains("calculer" + listeDesTextfield.get(i).getId())) {
-                        if (!lstCalcul.contains(methode) & lstCalcul.size() < tpsdiff + 1) {
+                        if (!lstCalcul.contains(methode) & lstCalcul.size() < indexFin + 1) {
                             if (i > lstCalcul.size() - 1) lstCalcul.add(methode);
                             else lstCalcul.add(i, methode);
                         }
                     }
                 } else if (methode.getParameterCount() == 1) {
                     if (methode.getName().contains("set" + listeDesTextfield.get(i).getId())) {
-                        if (!lstSet.contains(methode) & lstSet.size() < tpsdiff + 1) {
+                        if (!lstSet.contains(methode) & lstSet.size() < indexFin + 1) {
                             if (i > lstSet.size() - 1) lstSet.add(methode);
                             else lstSet.add(i, methode);
                         }
@@ -183,87 +185,30 @@ public class MainController implements Initializable {
                 }
             }
         }
-        tabMethod = Pump.class.getMethods();               // récupère la liste des methode de la class dans un tableau
-        for (int i = debit; i < rendement + 1; i++) {                                        //<= pour chaque textfields pompe 18 => 24
-            for (Method methode : tabMethod) {                         // si une methode dans le tableau des methode de la class
-                if (methode.getParameterCount() == 0) {                                        // n'a pas de parametre
-                    if (methode.getName().contains("get" + listeDesTextfield.get(i).getId())) {  // a un nom qui contient "get"
-                        if (!lstGet.contains(methode) & lstGet.size() < rendement + 1) {    // si la methode n'est pas deja ou que
-                            if (i > lstGet.size() - 1) lstGet.add(methode);
-                            else
-                                lstGet.add(i, methode);                 //la liste n'ai pas deja remplie ajout a la liste des
-                        }                                           //get a sa place ou a la dernière si sa place n'existe pas encore
-                    }
-                    if (methode.getName().contains("calculer" + listeDesTextfield.get(i).getId())) {
-                        if (!lstCalcul.contains(methode) & lstCalcul.size() < rendement + 1) {
-                            if (i > lstCalcul.size() - 1) lstCalcul.add(methode);
-                            else lstCalcul.add(i, methode);
-                        }
-                    }
-                } else if (methode.getParameterCount() == 1) {
-                    if (methode.getName().contains("set" + listeDesTextfield.get(i).getId())) {
-                        if (!lstSet.contains(methode) & lstSet.size() < rendement + 1) {
-                            if (i > lstSet.size() - 1) lstSet.add(methode);
-                            else lstSet.add(i, methode);
-                        }
-                    }
-                }
-            }
-        }
-        tabMethod = Accu.class.getMethods();               // récupère la liste des methode de la class dans un tableau
-        for (int i = V0; i < n + 1; i++) {                                        
-            for (Method methode : tabMethod) {                         
-                if (methode.getParameterCount() == 0) {                                        
-                    if (methode.getName().contains("get" + listeDesTextfield.get(i).getId())) {  
-                        if (!lstGet.contains(methode) & lstGet.size() < n + 1) {    
-                            if (i > lstGet.size() - 1) lstGet.add(methode);
-                            else
-                                lstGet.add(i, methode);          
-                        }                                           
-                    }
-                    if (methode.getName().contains("calculer" + listeDesTextfield.get(i).getId())) {
-                        if (!lstCalcul.contains(methode) & lstCalcul.size() < n + 1) {
-                            if (i > lstCalcul.size() - 1) lstCalcul.add(methode);
-                            else lstCalcul.add(i, methode);
-                        }
-                    }
-                } else if (methode.getParameterCount() == 1) {
-                    if (methode.getName().contains("set" + listeDesTextfield.get(i).getId())) {
-                        if (!lstSet.contains(methode) & lstSet.size() < n + 1) {
-                            if (i > lstSet.size() - 1) lstSet.add(methode);
-                            else lstSet.add(i, methode);
-                        }
-                    }
-                }
-            }
-        }
-        System.out.println("  Impression des listes de méthodes vérin: ");
+        System.out.println("  Impression des listes de méthodes: " + object);
         System.out.println("  liste des Set    ");
-        for (int i = dfond; i < lstSet.size(); i++)
+        for (int i = indexDebut; i < indexFin+1; i++)
             System.out.println(i + "   -   " + lstSet.get(i).toString());
         System.out.println("      ");
         System.out.println("  liste des Get    ");
-        for (int i = dfond; i < lstGet.size(); i++)
+        for (int i = indexDebut; i < indexFin+1; i++)
             System.out.println(i + "   -   " + lstGet.get(i).toString());
         System.out.println("      ");
         System.out.println("  liste des Calculer    ");
-        for (int i = dfond; i < lstCalcul.size(); i++)
+        for (int i = indexDebut; i < indexFin+1; i++)
             System.out.println(i + "   -   " + lstCalcul.get(i).toString());
         System.out.println("fini");
         System.out.println("      ");
     }
-
     /**
      * Vérifie que les champs sont biens remplis avec des nombres supérieurs a zéro
      * Elle crée en même temps la liste des Textfields
      */
     private void verifConversion_StringToDouble_possible() {
-        Pane parent = (Pane) btCalculer.getParent();
-        for (Node node : parent.getChildren()) {
-            if (node instanceof TextField) {
+        if (!(listeDesTextfield.size() == 0)){
+            for (TextField textfield : listeDesTextfield){
                 double nb;
-                listeDesTextfield.add((TextField) node);
-                String s = (((TextField) node).getText()).replace(',', '.').replaceAll("\\h","");
+                String s = textfield.getText().replace(',', '.').replaceAll("\\h","");
                 if (!s.isEmpty()) {
                     try {
                         nb = Double.parseDouble(s);
@@ -272,7 +217,7 @@ public class MainController implements Initializable {
                         Alert dialogW = new Alert(Alert.AlertType.WARNING);
                         dialogW.setTitle("Erreur de Saisie");
                         dialogW.setHeaderText(null); // No header
-                        dialogW.setContentText("Verifier la valeur entree en " + node.getId());
+                        dialogW.setContentText("Verifier la valeur entree en " + textfield.getId());
                         dialogW.showAndWait();
                         erreurDeSaisie = true;
                         return;
@@ -286,11 +231,10 @@ public class MainController implements Initializable {
         System.out.println("fini");
         System.out.println();
     }
-
     private double valeurDuParametre;
     private void recopTextfieldDansCompo() throws IllegalAccessException, InvocationTargetException {
 
-        for (int i = dfond; i < n+1; i++) {
+        for (int i = dfond; i < deltaP+1; i++) {
             if (!listeDesTextfield.get(i).getText().isEmpty()) {     // Si pas vide
                 valeurDuParametre = Double.parseDouble(listeDesTextfield.get(i).getText().replace(',', '.').replaceAll("\\h",""));
                 if (i < tpsdiff+1) {
@@ -301,6 +245,9 @@ public class MainController implements Initializable {
                 }
                 if (i > V0-1 & i<n+1) {
                     EcrireDansComposant(i, accu);
+                }
+                if (i > diam-1 & i<deltaP+1) {
+                    EcrireDansComposant(i, deltaPSing);
                 }
             }
             else {
@@ -313,16 +260,12 @@ public class MainController implements Initializable {
                 if (i > V0-1 & i<n+1) {
                     initialiserComposant(i, accu);
                 }
+                if (i > diam-1 & i<deltaP+1) {
+                    initialiserComposant(i, deltaPSing);
+                }
             }
         }
     }
-  /*  private void ComparerValeurEntreEtExistant(int i, Object composant) throws IllegalAccessException, InvocationTargetException {
-        if (!(valeurDuParametre+0.1 >= (double) lstGet.get(i).invoke(composant) & valeurDuParametre-0.1 <= (double) lstGet.get(i).invoke(composant)))
-            if (i < course + 1)
-                modifVerin = true;
-            if (i > debit-1 & i < cyl + 1)
-                modifPompe = true;
-    }*/
     private void EcrireDansComposant(int i, Object composant) throws IllegalAccessException, InvocationTargetException {
         lstSet.get(i).invoke(composant, valeurDuParametre);
         System.out.println("j'écris " + valeurDuParametre + " dans: " + listeDesTextfield.get(i).getId());
@@ -343,19 +286,19 @@ public class MainController implements Initializable {
             }
         }
     }
-
-    private void calculerSansParametreExterne() throws IllegalAccessException, InvocationTargetException {
-        System.out.println(" Entre dans les calculs sans paramètres");
-        System.out.println();
+    private void recopierComposantsDansTextField(Object composant, int indexDebut, int indexFin) throws IllegalAccessException, InvocationTargetException {
+        System.out.println("Recopie Valeurs de " + composant + " dans les textfields");
         double valeurDuParametre;
-        dspVerinController.calculerSansParametreExterne();
-        dspPumpController.calculerSansParametreExterne();
-        dspAccuController.calculerSansParametreExterne();
-        System.out.println("fini");
-        System.out.println();
+        for (int i = indexDebut; i < indexFin + 1; i++) { // NB de textfields Verin : 18
+            valeurDuParametre = (double) lstGet.get(i).invoke(composant);
+            if (valeurDuParametre != 0.0d) {
+                listeDesTextfield.get(i).setText(df.format(valeurDuParametre));
+            }
+            System.out.println(listeDesTextfield.get(i).getId() + " - " + valeurDuParametre);
+        }
+        System.out.println("");
     }
-
-    private void recopierComposantsDansTextField() throws IllegalAccessException, InvocationTargetException {
+   /* private void recopierComposantsDansTextField() throws IllegalAccessException, InvocationTargetException {
         System.out.println("Recopie Valeurs des composants dans les textfields");
         double valeurDuParametre;
         for (int i = dfond; i < tpsdiff + 1; i++) { // NB de textfields Verin : 18
@@ -380,6 +323,10 @@ public class MainController implements Initializable {
                 System.out.println(listeDesTextfield.get(i).getId() + " - " + valeurDuParametre);
         }
         System.out.println("fini");
-    }
+    }*/
 
 }
+
+
+
+
