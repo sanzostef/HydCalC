@@ -19,11 +19,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("HydCalC.fxml");
+        URL xmlUrl = getClass().getResource("FXML/HydCalC.fxml");
         //  Parent root = FXMLLoader.load(getClass().getResource("HydCalC.fxml"));
         loader.setLocation(xmlUrl);
         Parent root = loader.load();
-        primaryStage.setTitle("Calculs de Vérins");
+        primaryStage.setTitle("Calculs Hydrauliques");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="130.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.DeltaPController">
+<Pane prefHeight="130.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.DeltaPSingController">
 
     <!-- TextField Perte de charge -->
     <TextField id="diam" layoutX="145.0" onKeyTyped="#modif" layoutY="5.0" prefHeight="25.0" prefWidth="50.0" />

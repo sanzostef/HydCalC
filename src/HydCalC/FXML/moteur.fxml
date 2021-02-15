@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="215.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.MoteurController">
+    <!-- TextField Moteur -->
+    <TextField id="Couple" fx:id="txtCouple" layoutX="150.0" layoutY="05.0" onKeyTyped="#modifCouple" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="Cyl" fx:id="txtCyl" layoutX="150.0" layoutY="35.0" onKeyTyped="#modifCyl" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="VitDeRotation" fx:id="txtVitDeRotation" layoutX="150.0" layoutY="65.0" onKeyTyped="#modifVitDeRot" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="PwrMeca" fx:id="txtPwrMeca" layoutX="150.0" layoutY="95.0" onKeyTyped="#modifPwrMeca" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="ηvol" fx:id="txtηVol" layoutX="150.0" layoutY="125.0" onKeyTyped="#modifPwrHyd" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="ηhm" fx:id="txtη" layoutX="150.0" layoutY="155.0" onKeyTyped="#modifPwrHyd" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="ηtot" fx:id="txtηtot" layoutX="150.0" layoutY="185.0" onKeyTyped="#modifRendement" prefHeight="25.0" prefWidth="50.0" />
+    <!-- Label Moteur -->
+    <Label layoutX="5.0" layoutY="10.0" text="Couple:" />
+    <Label layoutX="5.0" layoutY="40.0" text="Cylindrée:" />
+    <Label layoutX="5.0" layoutY="70.0" text="Vitesse de Rot.:" />
+    <Label layoutX="5.0" layoutY="100.0" text="Puissance Méca.:" />
+    <Label layoutX="5.0" layoutY="130.0" text="Rendement Vol:" />
+    <Label layoutX="5.0" layoutY="160.0" text="Rendement Hydrau-méca:" />
+    <Label layoutX="5.0" layoutY="190.0" text="Rendement Total:" />
+</Pane>

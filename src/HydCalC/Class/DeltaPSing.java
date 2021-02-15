@@ -1,25 +1,19 @@
-package HydCalC;
+package HydCalC.Class;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class DeltaP {
+public class DeltaPSing {
 
     private double DeltaP; // Bar
     private double masseVol;  // Kg/m3
     private double vitEcoulement;  //m/s
-    private static double coeff; //1.12 coude 90 - 3 epingle - 0.1 tes tout droit
-   // private double Re;
-   //private double visco;
+    private double coeff; //1.12 coude 90 - 3 epingle - 0.1 tes tout droit
     private double diam; //mm
 
     public void setdiam(double d){this.diam = d;}
     public double getdiam(){ return this.diam;}
     public void calculerdiam(){}
-
-   // private void calculerRE(){
-   //     this.Re = (this.vitEcoulement*this.D)/this.visco;
-   // }
 
     public void setVitEcoulement(double vitecoulement){ this.vitEcoulement = vitecoulement;}
     public double getVitEcoulement(){ return this.vitEcoulement; }
@@ -31,26 +25,25 @@ public class DeltaP {
     public double getmasseVol(){ return this.masseVol;}
     public void calculermasseVol(){}
 
-
-    public static void setCoeff(double c){ coeff = c;}
+    public void setCoeff(double c){ this.coeff = c;}
 
     public void setDeltaP(double deltap){this.DeltaP = deltap; }
     public double getDeltaP(){ return this.DeltaP;}
     public void calculerDeltaP(){
-        this.DeltaP = coeff * (this.masseVol * Math.pow(this.vitEcoulement,2)) / 200000;
+        this.DeltaP = this.coeff * (this.masseVol * Math.pow(this.vitEcoulement,2)) / 200000;
     }
 
-    public static class Incident{
-    	String nom;
-    	double coeff;
-    	public Incident(String nom,double coeff){
-    		this.nom = nom;
-    		this.coeff = coeff;
+    public class Incident{
+        String nom;
+        public double coeff;
+    	public Incident(String n,double c){
+    		this.nom = n;
+    		this.coeff = c;
     	}
         @Override
-        public String toString(){ return this.nom + " - " + this.coeff; }
+        public String toString(){ return this.nom + " - " + coeff; }
     }
-    public static ObservableList<Incident> getIncidentList() {
+    public ObservableList<Incident> getIncidentList() {
         Incident coude90 = new Incident("coude 90°", 1.12);
         Incident coude45 = new Incident("coude épingle 45°", 3.0);
         Incident red10x = new Incident("Réduction 10 x Ø", 0.4);

@@ -1,5 +1,6 @@
 package HydCalC;
 
+import HydCalC.Class.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -24,8 +25,15 @@ public class MainController implements Initializable {
     @FXML private PumpController dspPumpController;
     @FXML private Pane dspAccu;
     @FXML private AccuController dspAccuController;
-    @FXML private Pane dspDeltaP;
-    @FXML private DeltaPController dspDeltaPController;
+    @FXML private Pane dspDeltaPSing;
+    @FXML private DeltaPSingController dspDeltaPSingController;
+    @FXML private Pane dspDeltaPLin;
+    @FXML private DeltaPLineaireController dspDeltaPLinController;
+    @FXML private Pane dspMoteur;
+    @FXML private MoteurController dspMoteurController;
+    @FXML private Pane dspClient;
+    @FXML private ClientController dspClientController;
+
 
     ArrayList<TextField> listeDesTextfield = new ArrayList<>();
     @Override
@@ -35,24 +43,23 @@ public class MainController implements Initializable {
         dspPumpController.injection(this);
         dspPumpController.injectionDspVerin(dspVerinController);
         dspAccuController.injection(this);
-        dspDeltaPController.injection(this);
+        dspDeltaPSingController.injection(this);
+        dspDeltaPLinController.injection(this);
+        dspMoteurController.injection(this);
         //Création de la liste des TextFields
-        for (Node node : dspVerin.getChildren()) {
-            if (node instanceof TextField) {listeDesTextfield.add((TextField) node);}
-        }
-        for (Node node : dspPump.getChildren()) {
-            if (node instanceof TextField) {listeDesTextfield.add((TextField) node);}
-        }
-        for (Node node : dspAccu.getChildren()) {
-            if (node instanceof TextField) {listeDesTextfield.add((TextField) node);}
-        }
-        for (Node node : dspDeltaP.getChildren()) {
-            if (node instanceof TextField) {listeDesTextfield.add((TextField) node);}
-        }
+        creationListeDesTextFields(dspVerin);
+        creationListeDesTextFields(dspPump);
+        creationListeDesTextFields(dspAccu);
+        creationListeDesTextFields(dspDeltaPSing);
+        creationListeDesTextFields(dspDeltaPLin);
+        creationListeDesTextFields(dspMoteur);
+        //Creation des listes des methodes
         creationDesListesDeMethodes(verin, dfond, tpsdiff);
         creationDesListesDeMethodes(pompe, debit, rendement);
         creationDesListesDeMethodes(accu, V0, n);
-        creationDesListesDeMethodes(deltaPSing, diam, deltaP);
+        creationDesListesDeMethodes(deltaPSinguliere, diamSing, deltaPSing);
+        creationDesListesDeMethodes(deltaPLineaire, diamLin, deltaPLin);
+        creationDesListesDeMethodes(moteur, couple, ηtot);
     }
 
     //DecimalFormat df = new DecimalFormat("###.##");
@@ -62,13 +69,17 @@ public class MainController implements Initializable {
     static final int tpssortie = 15, tpsrentree = 16, tpsdiff = 17;
     static final int debit = 18, pression = 19, cyl = 20, vitDeRot = 21, pwrHyd = 22, pwrMeca = 23, rendement = 24;
     static final int V0 = 25, V1 = 26, V2 = 27, P0 = 28, P1 = 29, P2 = 30, DeltaV = 31, n = 32;
-    static final int diam = 33, masseVol = 34, deltaP = 35;
+    static final int diamSing = 33, masseVol = 34, deltaPSing = 35;
+    static final int diamLin = 36, masseVolL = 37, l = 38, visco = 39, deltaPLin = 40;
+    static final int couple = 41, Cylm = 42, VitDeRotation = 43, PwrMeca = 44, ηvol = 45, ηhm = 46, ηtot = 47;
 
     private boolean erreurDeSaisie = false;
     final Verin verin = new Verin();
     final Pump pompe = new Pump();
     final Accu accu = new Accu();
-    final DeltaP deltaPSing = new DeltaP();
+    final DeltaPSing deltaPSinguliere = new DeltaPSing();
+    final DeltaPLineaire deltaPLineaire = new DeltaPLineaire();
+    final Moteur moteur = new Moteur();
 
     final ArrayList<Method> lstSet = new ArrayList<>();
     final ArrayList<Method> lstGet = new ArrayList<>();
@@ -110,9 +121,9 @@ public class MainController implements Initializable {
                 verin.calculerVTige((double) lstGet.get(debit).invoke(pompe));
             }
             if ((double) lstGet.get(debit).invoke(pompe) != 0.0d) {
-                deltaPSing.calculerVitEcoulement((double) lstGet.get(debit).invoke(pompe));
+                deltaPSinguliere.calculerVitEcoulement((double) lstGet.get(debit).invoke(pompe));
             }
-            dspDeltaPController.calculerSansParametreExterne();
+            dspDeltaPSingController.calculerSansParametreExterne();
             verin.calculerVitSortie((double) lstGet.get(debit).invoke(pompe));
             verin.calculerVitRentree((double) lstGet.get(debit).invoke(pompe));
             verin.calculerVitDiff((double) lstGet.get(debit).invoke(pompe));
@@ -146,7 +157,7 @@ public class MainController implements Initializable {
             recopierComposantsDansTextField(verin, dfond, tpsdiff);
             recopierComposantsDansTextField(pompe, debit, rendement);
             recopierComposantsDansTextField(accu, V0, n);
-            recopierComposantsDansTextField(deltaPSing, diam, deltaP);
+            recopierComposantsDansTextField(deltaPSinguliere, diamSing, deltaPSing);
         }
         catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
@@ -156,6 +167,12 @@ public class MainController implements Initializable {
         if (!(listeDesTextfield.size() == 0))
             for (TextField textfield : listeDesTextfield)
                 textfield.setText("");
+    }
+
+    private void creationListeDesTextFields(Pane pane){
+        for (Node node : pane.getChildren()) {
+            if (node instanceof TextField) {listeDesTextfield.add((TextField) node);}
+        }
     }
 
     private void creationDesListesDeMethodes(Object object, int indexDebut, int indexFin) {
@@ -234,7 +251,7 @@ public class MainController implements Initializable {
     private double valeurDuParametre;
     private void recopTextfieldDansCompo() throws IllegalAccessException, InvocationTargetException {
 
-        for (int i = dfond; i < deltaP+1; i++) {
+        for (int i = dfond; i < deltaPSing+1; i++) {
             if (!listeDesTextfield.get(i).getText().isEmpty()) {     // Si pas vide
                 valeurDuParametre = Double.parseDouble(listeDesTextfield.get(i).getText().replace(',', '.').replaceAll("\\h",""));
                 if (i < tpsdiff+1) {
@@ -246,8 +263,8 @@ public class MainController implements Initializable {
                 if (i > V0-1 & i<n+1) {
                     EcrireDansComposant(i, accu);
                 }
-                if (i > diam-1 & i<deltaP+1) {
-                    EcrireDansComposant(i, deltaPSing);
+                if (i > diamSing-1 & i<deltaPSing+1) {
+                    EcrireDansComposant(i, deltaPSinguliere);
                 }
             }
             else {
@@ -260,8 +277,8 @@ public class MainController implements Initializable {
                 if (i > V0-1 & i<n+1) {
                     initialiserComposant(i, accu);
                 }
-                if (i > diam-1 & i<deltaP+1) {
-                    initialiserComposant(i, deltaPSing);
+                if (i > diamSing-1 & i<deltaPSing+1) {
+                    initialiserComposant(i, deltaPSinguliere);
                 }
             }
         }
@@ -326,7 +343,4 @@ public class MainController implements Initializable {
     }*/
 
 }
-
-
-
 
