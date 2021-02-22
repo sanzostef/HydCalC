@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="130.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.AccuController">
+<Pane prefHeight="130.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller.AccuController">
     <!-- TextField Accu -->
     <TextField id="V0" fx:id="txtV0" layoutX="35.0" layoutY="5.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />
     <TextField id="V1" fx:id="txtV1" layoutX="35.0" layoutY="35.0" onKeyTyped="#resetDeltaV" prefHeight="25.0" prefWidth="50.0" />

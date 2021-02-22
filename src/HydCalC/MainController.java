@@ -1,11 +1,11 @@
 package HydCalC;
 
 import HydCalC.Class.*;
+import HydCalC.Controller.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import java.lang.reflect.InvocationTargetException;
@@ -16,28 +16,47 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-    @FXML
-    private Button btCalculer;
 
-    @FXML private Pane dspVerin;
-    @FXML private VerinController dspVerinController;
-    @FXML private Pane dspPump;
-    @FXML private PumpController dspPumpController;
-    @FXML private Pane dspAccu;
-    @FXML private AccuController dspAccuController;
-    @FXML private Pane dspDeltaPSing;
-    @FXML private DeltaPSingController dspDeltaPSingController;
-    @FXML private Pane dspDeltaPLin;
-    @FXML private DeltaPLineaireController dspDeltaPLinController;
-    @FXML private Pane dspMoteur;
-    @FXML private MoteurController dspMoteurController;
-    @FXML private Pane dspClient;
-    @FXML private ClientController dspClientController;
+    @FXML    private Pane dspVerin;
+    @FXML    private VerinController dspVerinController;
+    @FXML    private Pane dspPump;
+    @FXML    private PumpController dspPumpController;
+    @FXML    private Pane dspAccu;
+    @FXML    private AccuController dspAccuController;
+    @FXML    private Pane dspDeltaPSing;
+    @FXML    private DeltaPSingController dspDeltaPSingController;
+    @FXML    private Pane dspDeltaPLin;
+    @FXML    private DeltaPLineaireController dspDeltaPLinController;
+    @FXML    private Pane dspMoteur;
+    @FXML    private MoteurController dspMoteurController;
+    @FXML    private Pane dspClient;
+    @FXML    private ClientController dspClientController;
 
+    //DecimalFormat df = new DecimalFormat("###.##");
+    NumberFormat df = NumberFormat.getInstance();
+    public static final int dfond = 0, dtige = 1, course = 2, sfond = 3, sann = 4, r = 5, rinv = 6, vfond = 7, vtige = 8;
+    public static final int forcesortie = 9, forcerentree = 10, forcediff = 11, vitsortie = 12, vitrentree = 13, vitdiff = 14;
+    public static final int tpssortie = 15, tpsrentree = 16, tpsdiff = 17;
+    public static final int debit = 18, pression = 19, cyl = 20, vitDeRot = 21, pwrHyd = 22, pwrMeca = 23, rendement = 24;
+    public static final int V0 = 25, V1 = 26, V2 = 27, P0 = 28, P1 = 29, P2 = 30, DeltaV = 31, n = 32;
+    public static final int diamSing = 33, masseVol = 34, deltaPSing = 35;
+    public static final int diamLin = 36, masseVolL = 37, l = 38, visco = 39, deltaPLin = 40;
+    public static final int couple = 41, Cylm = 42, VitDeRotation = 43, PwrMeca = 44, ηvol = 45, ηhm = 46, ηtot = 47;
 
-    ArrayList<TextField> listeDesTextfield = new ArrayList<>();
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    private boolean erreurDeSaisie = false;
+    public final Verin verin = new Verin();
+    public final Pump pompe = new Pump();
+    public final Accu accu = new Accu();
+    public final DeltaPSing deltaPSinguliere = new DeltaPSing();
+    public final DeltaPLineaire deltaPLineaire = new DeltaPLineaire();
+    public final Moteur moteur = new Moteur();
+
+    public ArrayList<TextField> listeDesTextfield = new ArrayList<>();
+    final ArrayList<Method> lstSet = new ArrayList<>();
+    public final ArrayList<Method> lstGet = new ArrayList<>();
+    public final ArrayList<Method> lstCalcul = new ArrayList<>();
+
+    @Override    public void initialize(URL url, ResourceBundle rb) {
         //Injection des controleurs les un dans les autres
         dspVerinController.injection(this);
         dspPumpController.injection(this);
@@ -46,6 +65,7 @@ public class MainController implements Initializable {
         dspDeltaPSingController.injection(this);
         dspDeltaPLinController.injection(this);
         dspMoteurController.injection(this);
+        dspClientController.injection(this);
         //Création de la liste des TextFields
         creationListeDesTextFields(dspVerin);
         creationListeDesTextFields(dspPump);
@@ -62,30 +82,8 @@ public class MainController implements Initializable {
         creationDesListesDeMethodes(moteur, couple, ηtot);
     }
 
-    //DecimalFormat df = new DecimalFormat("###.##");
-    NumberFormat df = NumberFormat.getInstance();
-    static final int dfond = 0, dtige = 1, course = 2, sfond = 3, sann = 4, r = 5, rinv = 6, vfond = 7, vtige = 8;
-    static final int forcesortie = 9, forcerentree = 10, forcediff = 11, vitsortie = 12, vitrentree = 13, vitdiff = 14;
-    static final int tpssortie = 15, tpsrentree = 16, tpsdiff = 17;
-    static final int debit = 18, pression = 19, cyl = 20, vitDeRot = 21, pwrHyd = 22, pwrMeca = 23, rendement = 24;
-    static final int V0 = 25, V1 = 26, V2 = 27, P0 = 28, P1 = 29, P2 = 30, DeltaV = 31, n = 32;
-    static final int diamSing = 33, masseVol = 34, deltaPSing = 35;
-    static final int diamLin = 36, masseVolL = 37, l = 38, visco = 39, deltaPLin = 40;
-    static final int couple = 41, Cylm = 42, VitDeRotation = 43, PwrMeca = 44, ηvol = 45, ηhm = 46, ηtot = 47;
-
-    private boolean erreurDeSaisie = false;
-    final Verin verin = new Verin();
-    final Pump pompe = new Pump();
-    final Accu accu = new Accu();
-    final DeltaPSing deltaPSinguliere = new DeltaPSing();
-    final DeltaPLineaire deltaPLineaire = new DeltaPLineaire();
-    final Moteur moteur = new Moteur();
-
-    final ArrayList<Method> lstSet = new ArrayList<>();
-    final ArrayList<Method> lstGet = new ArrayList<>();
-    final ArrayList<Method> lstCalcul = new ArrayList<>();
-
-    @FXML private void buttonCalculer() {
+    @FXML
+    private void buttonCalculer() {
         try {
             int count = 0;
             erreurDeSaisie = false;
@@ -104,7 +102,8 @@ public class MainController implements Initializable {
             if (!listeDesTextfield.get(pression).getText().isEmpty() & listeDesTextfield.get(P2).getText().isEmpty())
                 accu.setP2(pompe.getPression());
             if ((double) lstGet.get(pression).invoke(pompe) != 0.0d & (double) lstGet.get(sfond).invoke(verin) == 0.0d) {
-                verin.calculerSFond((double) lstGet.get(pression).invoke(pompe));}
+                verin.calculerSFond((double) lstGet.get(pression).invoke(pompe));
+            }
             if ((double) lstGet.get(pression).invoke(pompe) != 0.0d & (double) lstGet.get(sann).invoke(verin) == 0.0d) {
                 verin.calculerSAnnulaire((double) lstGet.get(pression).invoke(pompe));
             }
@@ -122,11 +121,14 @@ public class MainController implements Initializable {
             }
             if ((double) lstGet.get(debit).invoke(pompe) != 0.0d) {
                 deltaPSinguliere.calculerVitEcoulement((double) lstGet.get(debit).invoke(pompe));
+                deltaPLineaire.calculerVitEcoulement((double) lstGet.get(debit).invoke(pompe));
+                deltaPLineaire.calculerRE((double) lstGet.get(debit).invoke(pompe));
+                verin.calculerVitSortie((double) lstGet.get(debit).invoke(pompe));
+                verin.calculerVitRentree((double) lstGet.get(debit).invoke(pompe));
+                verin.calculerVitDiff((double) lstGet.get(debit).invoke(pompe));
             }
             dspDeltaPSingController.calculerSansParametreExterne();
-            verin.calculerVitSortie((double) lstGet.get(debit).invoke(pompe));
-            verin.calculerVitRentree((double) lstGet.get(debit).invoke(pompe));
-            verin.calculerVitDiff((double) lstGet.get(debit).invoke(pompe));
+            dspDeltaPLinController.calculerSansParametreExterne();
             dspVerinController.calculerSansParametreExterne();
             dspPumpController.calculerSansParametreExterne();
             if ((double) lstGet.get(sfond).invoke(verin) != 0.0d & (double) lstGet.get(forcesortie).invoke(verin) != 0.0d) {
@@ -139,7 +141,8 @@ public class MainController implements Initializable {
                 pompe.calculerPression(verin.getSDeLaTige(), (double) lstGet.get(forcediff).invoke(verin));
             }
             dspVerinController.calculerSansParametreExterne();
-            dspPumpController.calculerSansParametreExterne();if ((double) lstGet.get(sfond).invoke(verin) != 0.0d & (double) lstGet.get(vitsortie).invoke(verin) != 0.0d) {
+            dspPumpController.calculerSansParametreExterne();
+            if ((double) lstGet.get(sfond).invoke(verin) != 0.0d & (double) lstGet.get(vitsortie).invoke(verin) != 0.0d) {
                 pompe.calculerDebit((double) lstGet.get(sfond).invoke(verin), (double) lstGet.get(vitsortie).invoke(verin));
             }
             if ((double) lstGet.get(sann).invoke(verin) != 0.0d & (double) lstGet.get(vitrentree).invoke(verin) != 0.0d) {
@@ -158,20 +161,25 @@ public class MainController implements Initializable {
             recopierComposantsDansTextField(pompe, debit, rendement);
             recopierComposantsDansTextField(accu, V0, n);
             recopierComposantsDansTextField(deltaPSinguliere, diamSing, deltaPSing);
-        }
-        catch (IllegalAccessException | InvocationTargetException e) {
+            recopierComposantsDansTextField(deltaPLineaire, diamLin, deltaPLin);
+            recopierComposantsDansTextField(moteur, couple, ηtot);
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
-    @FXML private void buttonInit() {
+
+    @FXML
+    private void buttonInit() {
         if (!(listeDesTextfield.size() == 0))
             for (TextField textfield : listeDesTextfield)
                 textfield.setText("");
     }
 
-    private void creationListeDesTextFields(Pane pane){
+    private void creationListeDesTextFields(Pane pane) {
         for (Node node : pane.getChildren()) {
-            if (node instanceof TextField) {listeDesTextfield.add((TextField) node);}
+            if (node instanceof TextField) {
+                listeDesTextfield.add((TextField) node);
+            }
         }
     }
 
@@ -204,28 +212,29 @@ public class MainController implements Initializable {
         }
         System.out.println("  Impression des listes de méthodes: " + object);
         System.out.println("  liste des Set    ");
-        for (int i = indexDebut; i < indexFin+1; i++)
+        for (int i = indexDebut; i < indexFin + 1; i++)
             System.out.println(i + "   -   " + lstSet.get(i).toString());
         System.out.println("      ");
         System.out.println("  liste des Get    ");
-        for (int i = indexDebut; i < indexFin+1; i++)
+        for (int i = indexDebut; i < indexFin + 1; i++)
             System.out.println(i + "   -   " + lstGet.get(i).toString());
         System.out.println("      ");
         System.out.println("  liste des Calculer    ");
-        for (int i = indexDebut; i < indexFin+1; i++)
+        for (int i = indexDebut; i < indexFin + 1; i++)
             System.out.println(i + "   -   " + lstCalcul.get(i).toString());
         System.out.println("fini");
         System.out.println("      ");
     }
+
     /**
      * Vérifie que les champs sont biens remplis avec des nombres supérieurs a zéro
      * Elle crée en même temps la liste des Textfields
      */
     private void verifConversion_StringToDouble_possible() {
-        if (!(listeDesTextfield.size() == 0)){
-            for (TextField textfield : listeDesTextfield){
+        if (!(listeDesTextfield.size() == 0)) {
+            for (TextField textfield : listeDesTextfield) {
                 double nb;
-                String s = textfield.getText().replace(',', '.').replaceAll("\\h","");
+                String s = textfield.getText().replace(',', '.').replaceAll("\\h", "");
                 if (!s.isEmpty()) {
                     try {
                         nb = Double.parseDouble(s);
@@ -248,45 +257,60 @@ public class MainController implements Initializable {
         System.out.println("fini");
         System.out.println();
     }
+
     private double valeurDuParametre;
+
     private void recopTextfieldDansCompo() throws IllegalAccessException, InvocationTargetException {
 
-        for (int i = dfond; i < deltaPSing+1; i++) {
+        for (int i = dfond; i < ηtot + 1; i++) {
             if (!listeDesTextfield.get(i).getText().isEmpty()) {     // Si pas vide
-                valeurDuParametre = Double.parseDouble(listeDesTextfield.get(i).getText().replace(',', '.').replaceAll("\\h",""));
-                if (i < tpsdiff+1) {
+                valeurDuParametre = Double.parseDouble(listeDesTextfield.get(i).getText().replace(',', '.').replaceAll("\\h", ""));
+                if (i < tpsdiff + 1) {
                     EcrireDansComposant(i, verin);
                 }
-                if (i > debit-1 & i < rendement + 1) {
+                if (i > debit - 1 & i < rendement + 1) {
                     EcrireDansComposant(i, pompe);
                 }
-                if (i > V0-1 & i<n+1) {
+                if (i > V0 - 1 & i < n + 1) {
                     EcrireDansComposant(i, accu);
                 }
-                if (i > diamSing-1 & i<deltaPSing+1) {
+                if (i > diamSing - 1 & i < deltaPSing + 1) {
                     EcrireDansComposant(i, deltaPSinguliere);
                 }
-            }
-            else {
+                if (i > diamLin - 1 & i < deltaPLin + 1) {
+                    EcrireDansComposant(i, deltaPLineaire);
+                }
+                if (i > couple - 1 & i < ηtot + 1) {
+                    EcrireDansComposant(i, moteur);
+                }
+            } else {
                 if (i < tpsdiff + 1) {
                     initialiserComposant(i, verin);
                 }
-                if (i > debit-1 & i < rendement + 1) {
+                if (i > debit - 1 & i < rendement + 1) {
                     initialiserComposant(i, pompe);
                 }
-                if (i > V0-1 & i<n+1) {
+                if (i > V0 - 1 & i < n + 1) {
                     initialiserComposant(i, accu);
                 }
-                if (i > diamSing-1 & i<deltaPSing+1) {
+                if (i > diamSing - 1 & i < deltaPSing + 1) {
                     initialiserComposant(i, deltaPSinguliere);
+                }
+                if (i > diamLin - 1 & i < deltaPLin + 1) {
+                    initialiserComposant(i, deltaPLineaire);
+                }
+                if (i > couple - 1 & i < ηtot + 1) {
+                    initialiserComposant(i, moteur);
                 }
             }
         }
     }
+
     private void EcrireDansComposant(int i, Object composant) throws IllegalAccessException, InvocationTargetException {
         lstSet.get(i).invoke(composant, valeurDuParametre);
         System.out.println("j'écris " + valeurDuParametre + " dans: " + listeDesTextfield.get(i).getId());
     }
+
     private void initialiserComposant(int i, Object composant) throws IllegalAccessException, InvocationTargetException {
         switch (i) {
             case (rendement) -> {
@@ -303,6 +327,7 @@ public class MainController implements Initializable {
             }
         }
     }
+
     private void recopierComposantsDansTextField(Object composant, int indexDebut, int indexFin) throws IllegalAccessException, InvocationTargetException {
         System.out.println("Recopie Valeurs de " + composant + " dans les textfields");
         double valeurDuParametre;
@@ -313,8 +338,9 @@ public class MainController implements Initializable {
             }
             System.out.println(listeDesTextfield.get(i).getId() + " - " + valeurDuParametre);
         }
-        System.out.println("");
+        System.out.println();
     }
+}
    /* private void recopierComposantsDansTextField() throws IllegalAccessException, InvocationTargetException {
         System.out.println("Recopie Valeurs des composants dans les textfields");
         double valeurDuParametre;
@@ -342,5 +368,5 @@ public class MainController implements Initializable {
         System.out.println("fini");
     }*/
 
-}
+
 

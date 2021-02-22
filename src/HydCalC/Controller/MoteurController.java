@@ -1,23 +1,19 @@
-package HydCalC;
+package HydCalC.Controller;
 
+import HydCalC.MainController;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import java.lang.reflect.InvocationTargetException;
 
-public class PumpController {
-
-    private static final int debit = 18, rendement = 24;
+public class MoteurController {
 
     private MainController mainController = new MainController();
-    private VerinController dspVerin = new VerinController();
 
-    void injection(MainController controller) { this.mainController = controller; }
-    void injectionDspVerin(VerinController controller) { this.dspVerin = controller; }
+    public void injection(MainController controller) { this.mainController = controller; }
     void calculerSansParametreExterne() throws IllegalAccessException, InvocationTargetException{
         System.out.println(" Entre dans les calculs sans paramètres Pompe:");
         System.out.println();
         double valeurDuParametre;
-        for (int i = debit; i < rendement + 1; i++) { // POMPE
+        for (int i = MainController.couple; i < MainController.ηtot + 1; i++) { // POMPE
             valeurDuParametre = (double) mainController.lstGet.get(i).invoke(mainController.pompe);
             if (valeurDuParametre == 0.0d) {
                 mainController.lstCalcul.get(i).invoke(mainController.pompe);
@@ -40,12 +36,9 @@ public class PumpController {
         mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
         mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML private void modifPression(){
+    @FXML private void modifCouple(){
         mainController.listeDesTextfield.get(MainController.pwrHyd).setText("");
         mainController.listeDesTextfield.get(MainController.pwrMeca).setText("");
-        mainController.listeDesTextfield.get(MainController.forcesortie).setText("");
-        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
-        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
     }
     @FXML private void modifCyl(){
         mainController.listeDesTextfield.get(MainController.pwrHyd).setText("");

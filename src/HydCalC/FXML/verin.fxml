@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.VerinController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller.VerinController">
     <!-- TextField Verin -->
     <TextField id="DFond" fx:id="txtDFond" layoutX="115.0" onKeyTyped="#modifDFond" prefHeight="25.0" prefWidth="50.0" />
     <TextField id="DTige" fx:id="txtDTige" layoutX="115.0" layoutY="30.0" onKeyTyped="#modifDTige" prefHeight="25.0" prefWidth="50.0" />

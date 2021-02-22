@@ -3,7 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="215.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.MoteurController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="215.0"
+      xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller.MoteurController">
     <!-- TextField Moteur -->
     <TextField id="Couple" fx:id="txtCouple" layoutX="150.0" layoutY="05.0" onKeyTyped="#modifCouple" prefHeight="25.0" prefWidth="50.0" />
     <TextField id="Cyl" fx:id="txtCyl" layoutX="150.0" layoutY="35.0" onKeyTyped="#modifCyl" prefHeight="25.0" prefWidth="50.0" />

@@ -21,6 +21,8 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("FXML/HydCalC.fxml");
         //  Parent root = FXMLLoader.load(getClass().getResource("HydCalC.fxml"));
+        System.out.println(getClass().getResource("HydCalC/HydCalC/FXML/imprimer.fxml"));
+
         loader.setLocation(xmlUrl);
         Parent root = loader.load();
         primaryStage.setTitle("Calculs Hydrauliques");

@@ -31,6 +31,7 @@ public class DeltaPLineaire {
     public void setDeltaP(double dp) { this.deltaP = dp;}
     public double getDeltaP() { return this.deltaP;}
     public void calculerDeltaP(){
+        if (this.Re!=0 & this.masseVol!=0 & this.L!=0 & this.vitEcoulement!=0)
         if (Re<1200) //laminaire
             this.lambda = 64/this.Re;
         if (Re>=1200) //turbulent
@@ -41,7 +42,8 @@ public class DeltaPLineaire {
     public double getRE(){ return this.Re;}
     public void calculerRE(double Q){
         //this.Re = (this.vitEcoulement*this.D)/this.visco;
-        this.Re = 21.2*(Q/(diam/100*visco/100));
+        if (this.diam !=0 & this.visco!=0)
+        this.Re = 21.2*(Q/(diam/10*visco/100));
     }
     public void setvisco(double v) {this.visco = v;}
     public double getvisco() {return this.visco;}

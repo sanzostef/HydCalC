@@ -3,20 +3,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="130.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.ClientController">
-    <Button id="btImprimer" layoutX="400.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonImprimer" text="Imprimer" />
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller.ClientController">
+
+    <Button id="btImprimer" layoutX="560.0" layoutY="211.0" mnemonicParsing="false" onAction="#buttonImprimer" text="Imprimer" />
     <!-- TextField Client -->
-    <TextField id="contact" fx:id="contact" layoutX="145.0" layoutY="5.0" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="telephone" fx:id="telephone" layoutX="145.0" layoutY="5.0" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="mail" fx:id="mail" layoutX="145.0" layoutY="5.0" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="adresse" fx:id="adresse" layoutX="145.0" layoutY="35.0" prefHeight="25.0" prefWidth="50.0" />
-    <ComboBox id="client" fx:id="cbClient" layoutX="145.0" layoutY="65.0" prefWidth="150.0" />''
-    <TextField id="raisonSociale" fx:id="raisonSociale" layoutX="145.0" layoutY="95.0" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="raisonSociale" fx:id="raisonSociale" layoutX="100.0" layoutY="5.0" prefHeight="25.0" prefWidth="250.0" />
+    <TextField id="adresse" fx:id="adresse" layoutX="100.0" layoutY="35.0" prefHeight="25.0" prefWidth="250.0" />
+    <TextField id="contact" fx:id="contact" layoutX="100.0" layoutY="65.0" prefHeight="25.0" prefWidth="250.0" />
+    <TextField id="mail" fx:id="mail" layoutX="100.0" layoutY="95.0" prefHeight="25.0" prefWidth="250.0" />
+    <TextField id="tel" fx:id="telephone" layoutX="100.0" layoutY="125.0" prefHeight="25.0" prefWidth="250.0" />
+    <ComboBox id="client" fx:id="cbClient" layoutX="375.0" layoutY="5.0" prefHeight="25.0" prefWidth="250.0" />
     <!-- Label Client -->
-    <Label layoutX="5.0" layoutY="10.0" text="Nom:" />
+    <Label layoutX="5.0" layoutY="10.0" text="Raison  Sociale:" />
     <Label layoutX="5.0" layoutY="40.0" text="Adresse:" />
     <Label layoutX="5.0" layoutY="70.0" text="Contact:" />
-    <Label layoutX="5.0" layoutY="100.0" text="Téléphone:" />
-    <Label layoutX="5.0" layoutY="100.0" text="Téléphone:" />
+    <Label layoutX="5.0" layoutY="100.0" text="Mail:" />
+    <Label layoutX="5.0" layoutY="130.0" text="Téléphone:" />
 
 </Pane>

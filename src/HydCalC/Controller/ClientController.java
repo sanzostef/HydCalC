@@ -1,11 +1,20 @@
-package HydCalC;
+package HydCalC.Controller;
 
 import HydCalC.Class.Client;
+import HydCalC.MainController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -13,19 +22,16 @@ import java.util.ResourceBundle;
 
 public class ClientController implements Initializable{
 
-    @FXML Pane dspImprimer;
-    @FXML imprimerController dspImprimerController;
     @FXML ComboBox<Client> cbClient;
     @FXML TextField raisonSociale, contact, telephone, mail, adresse;
     Client client;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         client = new Client();
-        //cbClient.setPromptText("Client");
-        //  cbClient.setItems(BddClient.getClientList());
     }
     private MainController mainController = new MainController();
-    void injection(MainController controller) { this.mainController = controller; }
+    public void injection(MainController controller) { this.mainController = controller; }
+
 
     @FXML private void buttonImprimer() {
         client.setRaisonSociale(raisonSociale.getText());
@@ -33,24 +39,26 @@ public class ClientController implements Initializable{
         client.setTelephone(telephone.getText());
         client.setMail(mail.getText());
         client.setAdresse(adresse.getText());
-
         try {
-            imprimer();
+            ApercuImpression();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void imprimer() throws IOException {
-       /* FXMLLoader imprimLoader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("imprimer.fxml");
-        //  Parent root = FXMLLoader.load(getClass().getResource("HydCalC.fxml"));
-        imprimLoader.setLocation(xmlUrl);
-        Parent root = imprimLoader.load();
-        newStage.setTitle("Impression");
-        newStage.setScene(new Scene(root));
-        newStage.show();  */
+    private void ApercuImpression() throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HydCalC/HydCalC/FXML/HydCalC.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("ABC");
+        stage.setScene(new Scene(root1));
+        stage.show();
     }
-
-
 }
+
+
+
+

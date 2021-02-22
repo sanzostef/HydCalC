@@ -1,20 +1,20 @@
-package HydCalC;
+package HydCalC.Controller;
 
+import HydCalC.MainController;
 import javafx.fxml.FXML;
 import java.lang.reflect.InvocationTargetException;
 
 public class VerinController {
 
-    private static final int dfond = 0, tpsdiff = 17;
     private MainController mainController = new MainController();
-    void injection(MainController controller) { this.mainController = controller; }
+    public void injection(MainController controller) { this.mainController = controller; }
 
-    void calculerSansParametreExterne() throws IllegalAccessException, InvocationTargetException {
+    public void calculerSansParametreExterne() throws IllegalAccessException, InvocationTargetException {
         System.out.println();
         System.out.println(" Entre dans les calculs sans paramètres verin:");
         System.out.println();
         double valeurDuParametre;
-        for (int i = dfond; i < tpsdiff + 1; i++) { // VERIN
+        for (int i = MainController.dfond; i < MainController.tpsdiff + 1; i++) { // VERIN
             valeurDuParametre = (double) mainController.lstGet.get(i).invoke(mainController.verin);
             if (valeurDuParametre == 0.0d) {
                 mainController.lstCalcul.get(i).invoke(mainController.verin);

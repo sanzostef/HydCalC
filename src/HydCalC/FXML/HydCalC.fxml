@@ -24,7 +24,7 @@
                 <fx:include fx:id="dspDeltaPSing" source="deltaPSing.fxml" />
             </Pane>
             <Pane layoutX="888.0" layoutY="382.0" maxHeight="160.0" maxWidth="215.0" prefHeight="160.0" prefWidth="215.0">
-                <fx:include fx:id="dspDeltaPLin" source="../deltaPLineaire.fxml" />
+                <fx:include fx:id="dspDeltaPLin" source="deltaPLineaire.fxml" />
             </Pane>
             <Pane layoutX="914.0" layoutY="14.0" maxHeight="266.0" maxWidth="220.0" prefHeight="235.0" prefWidth="220.0">
                 <fx:include fx:id="dspMoteur" source="moteur.fxml" />
@@ -35,7 +35,7 @@
     </Tab>
     <Tab closable="false" text="Client">
         <Pane layoutX="5.0" layoutY="5.0" maxHeight="450" maxWidth="850.0" prefHeight="450.0" prefWidth="850.0">
-            <Button layoutX="118.0" layoutY="49.0" mnemonicParsing="false" text="Button" />
+            <fx:include fx:id="dspClient" source="client.fxml" />
         </Pane>
     </Tab>
 </TabPane>

@@ -1,5 +1,6 @@
-package HydCalC;
+package HydCalC.Controller;
 
+import HydCalC.MainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -16,9 +17,9 @@ public class DeltaPLineaireController implements Initializable{
         masseVol.setText("850");
     }
     private MainController mainController = new MainController();
-    void injection(MainController controller) { this.mainController = controller; }
+    public void injection(MainController controller) { this.mainController = controller; }
 
-    void calculerSansParametreExterne() throws IllegalAccessException, InvocationTargetException {
+    public void calculerSansParametreExterne() throws IllegalAccessException, InvocationTargetException {
         System.out.println(" Entre dans les calculs sans paramètres Pertes de charge lineaire");
         System.out.println();
         double valeurDuParametre;

@@ -1,16 +1,20 @@
-package HydCalC;
+package HydCalC.Controller;
 
+import HydCalC.MainController;
 import javafx.fxml.FXML;
+
 import java.lang.reflect.InvocationTargetException;
 
-public class MoteurController {
+public class PumpController {
 
     private static final int debit = 18, rendement = 24;
 
     private MainController mainController = new MainController();
+    private VerinController dspVerin = new VerinController();
 
-    void injection(MainController controller) { this.mainController = controller; }
-    void calculerSansParametreExterne() throws IllegalAccessException, InvocationTargetException{
+    public void injection(MainController controller) { this.mainController = controller; }
+    public void injectionDspVerin(VerinController controller) { this.dspVerin = controller; }
+    public void calculerSansParametreExterne() throws IllegalAccessException, InvocationTargetException{
         System.out.println(" Entre dans les calculs sans paramètres Pompe:");
         System.out.println();
         double valeurDuParametre;
@@ -37,9 +41,12 @@ public class MoteurController {
         mainController.listeDesTextfield.get(MainController.tpsrentree).setText("");
         mainController.listeDesTextfield.get(MainController.tpsdiff).setText("");
     }
-    @FXML private void modifCouple(){
+    @FXML private void modifPression(){
         mainController.listeDesTextfield.get(MainController.pwrHyd).setText("");
         mainController.listeDesTextfield.get(MainController.pwrMeca).setText("");
+        mainController.listeDesTextfield.get(MainController.forcesortie).setText("");
+        mainController.listeDesTextfield.get(MainController.forcerentree).setText("");
+        mainController.listeDesTextfield.get(MainController.forcediff).setText("");
     }
     @FXML private void modifCyl(){
         mainController.listeDesTextfield.get(MainController.pwrHyd).setText("");

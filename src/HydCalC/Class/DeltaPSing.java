@@ -30,7 +30,7 @@ public class DeltaPSing {
     public void setDeltaP(double deltap){this.DeltaP = deltap; }
     public double getDeltaP(){ return this.DeltaP;}
     public void calculerDeltaP(){
-        this.DeltaP = this.coeff * (this.masseVol * Math.pow(this.vitEcoulement,2)) / 200000;
+        this.DeltaP = this.coeff * (this.masseVol * Math.pow(this.vitEcoulement,2)/2) / 100000;
     }
 
     public class Incident{

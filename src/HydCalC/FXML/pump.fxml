@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="175.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.PumpController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="175.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller.PumpController">
     <!-- TextField Pompe -->
     <TextField id="Debit" fx:id="txtDebit" layoutX="110.0" layoutY="25.0" onKeyTyped="#modifDebit" prefHeight="25.0" prefWidth="50.0" />
     <TextField id="Pression" fx:id="txtPression" layoutX="110.0" layoutY="55.0" onKeyTyped="#modifPression" prefHeight="25.0" prefWidth="50.0" />
