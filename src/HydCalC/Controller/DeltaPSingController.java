@@ -2,7 +2,7 @@ package HydCalC.Controller;
 
 
 import HydCalC.Class.DeltaPSing;
-import HydCalC.MainController;
+import HydCalC.HydCalCController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -18,21 +18,21 @@ public class DeltaPSingController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cbIncident.setPromptText("Type de raccords");
-        cbIncident.setItems(mainController.deltaPSinguliere.getIncidentList());
+        cbIncident.setItems(hydCalCController.deltaPSinguliere.getIncidentList());
     }
-    private MainController mainController = new MainController();
-    public void injection(MainController controller) { this.mainController = controller; }
+    private HydCalCController hydCalCController = new HydCalCController();
+    public void injection(HydCalCController controller) { this.hydCalCController = controller; }
 
     public void calculerSansParametreExterne() throws IllegalAccessException, InvocationTargetException {
         System.out.println("Entre dans les calculs sans paramètres Pertes de charge Singulières");
         System.out.println();
         double valeurDuParametre;
-        for (int i = MainController.diamSing; i < MainController.deltaPSing + 1; i++) { // Accu
-            valeurDuParametre = (double) mainController.lstGet.get(i).invoke(mainController.deltaPSinguliere);
+        for (int i = HydCalCController.diamSing; i < HydCalCController.deltaPSing + 1; i++) { // Accu
+            valeurDuParametre = (double) hydCalCController.lstGet.get(i).invoke(hydCalCController.deltaPSinguliere);
             if (valeurDuParametre == 0.0d) {
-                mainController.lstCalcul.get(i).invoke(mainController.deltaPSinguliere);
-                valeurDuParametre = (double) mainController.lstGet.get(i).invoke(mainController.deltaPSinguliere);
-                System.out.println("je calcul : " + mainController.listeDesTextfield.get(i).getId() + " - résultat => " + valeurDuParametre);
+                hydCalCController.lstCalcul.get(i).invoke(hydCalCController.deltaPSinguliere);
+                valeurDuParametre = (double) hydCalCController.lstGet.get(i).invoke(hydCalCController.deltaPSinguliere);
+                System.out.println("je calcul : " + hydCalCController.listeDesTextfield.get(i).getId() + " - résultat => " + valeurDuParametre);
             }
         }
         System.out.println("fini");
@@ -41,12 +41,12 @@ public class DeltaPSingController implements Initializable{
 
     @FXML
     private void choixIncident(){
-        mainController.deltaPSinguliere.setCoeff(cbIncident.getValue().coeff);
-        mainController.listeDesTextfield.get(MainController.deltaPSing).setText("");
+        hydCalCController.deltaPSinguliere.setCoeff(cbIncident.getValue().coeff);
+        hydCalCController.listeDesTextfield.get(HydCalCController.deltaPSing).setText("");
         System.out.println(cbIncident.getValue().toString() + " sélectionné.");
     }
     @FXML private void modif(){
-        mainController.listeDesTextfield.get(MainController.deltaPSing).setText("");
+        hydCalCController.listeDesTextfield.get(HydCalCController.deltaPSing).setText("");
     }
 
 }

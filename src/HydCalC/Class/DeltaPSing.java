@@ -26,6 +26,7 @@ public class DeltaPSing {
     public void calculermasseVol(){}
 
     public void setCoeff(double c){ this.coeff = c;}
+    public double getCoeff(){ return this.coeff;}
 
     public void setDeltaP(double deltap){this.DeltaP = deltap; }
     public double getDeltaP(){ return this.DeltaP;}

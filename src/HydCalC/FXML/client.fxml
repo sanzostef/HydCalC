@@ -7,17 +7,19 @@
 
     <Button id="btImprimer" layoutX="560.0" layoutY="211.0" mnemonicParsing="false" onAction="#buttonImprimer" text="Imprimer" />
     <!-- TextField Client -->
-    <TextField id="raisonSociale" fx:id="raisonSociale" layoutX="100.0" layoutY="5.0" prefHeight="25.0" prefWidth="250.0" />
-    <TextField id="adresse" fx:id="adresse" layoutX="100.0" layoutY="35.0" prefHeight="25.0" prefWidth="250.0" />
-    <TextField id="contact" fx:id="contact" layoutX="100.0" layoutY="65.0" prefHeight="25.0" prefWidth="250.0" />
-    <TextField id="mail" fx:id="mail" layoutX="100.0" layoutY="95.0" prefHeight="25.0" prefWidth="250.0" />
-    <TextField id="tel" fx:id="telephone" layoutX="100.0" layoutY="125.0" prefHeight="25.0" prefWidth="250.0" />
+    <TextField id="raisonSociale" fx:id="raisonSociale" layoutX="120.0" layoutY="5.0" prefHeight="25.0" prefWidth="250.0" />
+    <TextField id="adresse" fx:id="adresse" layoutX="120.0" layoutY="35.0" prefHeight="25.0" prefWidth="250.0" />
+    <TextField id="contact" fx:id="contact" layoutX="120.0" layoutY="65.0" prefHeight="25.0" prefWidth="250.0" />
+    <TextField id="tel" fx:id="tel" layoutX="120.0" layoutY="95.0" prefHeight="25.0" prefWidth="250.0" />
+    <TextField id="mail" fx:id="mail" layoutX="120.0" layoutY="125.0" prefHeight="25.0" prefWidth="250.0" />
+    <TextField id="tel" fx:id="telContact" layoutX="120.0" layoutY="155.0" prefHeight="25.0" prefWidth="250.0" />
     <ComboBox id="client" fx:id="cbClient" layoutX="375.0" layoutY="5.0" prefHeight="25.0" prefWidth="250.0" />
     <!-- Label Client -->
-    <Label layoutX="5.0" layoutY="10.0" text="Raison  Sociale:" />
+    <Label layoutX="5.0" layoutY="10.0" text="Raison Sociale:" />
     <Label layoutX="5.0" layoutY="40.0" text="Adresse:" />
-    <Label layoutX="5.0" layoutY="70.0" text="Contact:" />
-    <Label layoutX="5.0" layoutY="100.0" text="Mail:" />
-    <Label layoutX="5.0" layoutY="130.0" text="Téléphone:" />
+    <Label layoutX="5.0" layoutY="70.0" text="Téléphone:" />
+    <Label layoutX="5.0" layoutY="100.0" text="Contact:" />
+    <Label layoutX="5.0" layoutY="130.0" text="Mail:" />
+    <Label layoutX="5.0" layoutY="160.0" text="Téléphone Contact:" />
 
 </Pane>

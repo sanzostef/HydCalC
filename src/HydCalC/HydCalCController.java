@@ -15,7 +15,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class HydCalCController implements Initializable {
 
     @FXML    private Pane dspVerin;
     @FXML    private VerinController dspVerinController;
@@ -60,7 +60,7 @@ public class MainController implements Initializable {
         //Injection des controleurs les un dans les autres
         dspVerinController.injection(this);
         dspPumpController.injection(this);
-        dspPumpController.injectionDspVerin(dspVerinController);
+        dspPumpController.injection(dspVerinController);
         dspAccuController.injection(this);
         dspDeltaPSingController.injection(this);
         dspDeltaPLinController.injection(this);
