@@ -1,186 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
 
-<Pane prefHeight="950.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="HydCalC.Controller.ImprimerController">
-  <StackPane maxHeight="841" maxWidth="594" minHeight="841" minWidth="594" prefHeight="841.0" prefWidth="594.0"
-             style="-fx-fx-background-color: White;" translateX="340.0" translateY="50.0">
-    <BorderPane>
-      <top>
-        <HBox prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-          <ImageView fitHeight="80.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true"/>
-          <Label alignment="CENTER" contentDisplay="TOP" prefHeight="60.0" prefWidth="326.0" text="FEUILLE DE CALCULS"
-                 textAlignment="CENTER">
-            <font>
-              <Font name="System Bold" size="24.0"/>
-            </font>
-          </Label>
-        </HBox>
-      </top>
-      <bottom>
-        <HBox prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER"/>
-      </bottom>
-      <center>
-        <GridPane BorderPane.alignment="CENTER">
-          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="246.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="405.0" minWidth="10.0" prefWidth="348.0"/>
-          </columnConstraints>
-          <rowConstraints>
-            <RowConstraints maxHeight="651.0" minHeight="10.0" prefHeight="135.0" vgrow="SOMETIMES"/>
-            <RowConstraints maxHeight="651.0" minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES"/>
-            <RowConstraints maxHeight="651.0" minHeight="10.0" prefHeight="160.0" vgrow="SOMETIMES"/>
-            <RowConstraints maxHeight="651.0" minHeight="0.0" prefHeight="85.0" vgrow="SOMETIMES"/>
-            <RowConstraints maxHeight="651.0" minHeight="10.0" prefHeight="135.0" vgrow="SOMETIMES"/>
-          </rowConstraints>
+<Pane prefHeight="725.0" prefWidth="476.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller.ImprimerController">
+  <fx:include fx:id="dspPagePreview" source="pagePreview.fxml"/>
 
-          <!-- Label client -->
-          <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0"
-                prefWidth="450.0" GridPane.columnSpan="2" xmlns="http://javafx.com/javafx/11.0.1"
-                xmlns:fx="http://javafx.com/fxml/1">
-            <Label layoutX="25.0" layoutY="10.0" text="Client:">
-              <font>
-                <Font name="System Bold" size="13.0"/>
-              </font>
-            </Label>
-            <Label layoutX="15.0" layoutY="50.0" text="Raison  Sociale:"/>
-            <Label layoutX="15.0" layoutY="70.0" text="Adresse:"/>
-            <Label layoutX="15.0" layoutY="90.0" text="Téléphone:"/>
-            <Label layoutX="270.0" layoutY="50.0" text="Contact:"/>
-            <Label layoutX="270.0" layoutY="70.0" text="Mail:"/>
-            <Label layoutX="270.0" layoutY="90.0" text="Téléphone Contact:"/>
-          </Pane>
-          <!-- Label Pompe -->
-          <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0"
-                prefWidth="114.0" GridPane.rowIndex="1" xmlns="http://javafx.com/javafx/11.0.1"
-                xmlns:fx="http://javafx.com/fxml/1">
-            <Label layoutX="25.0" layoutY="5.0" text="POMPE:">
-              <font>
-                <Font name="System Bold" size="13.0"/>
-              </font>
-            </Label>
-            <Label fx:id="lblDebit" layoutX="15.0" layoutY="30.0" text="Débit: __ l/min"/>
-            <Label fx:id="lblPression" layoutX="15.0" layoutY="50.0" text="Pression: __ Bar"/>
-            <Label fx:id="lblCyl" layoutX="15.0" layoutY="70.0" text="Cylindrée: __ cc"/>
-            <Label fx:id="lblVitDeRot" layoutX="15.0" layoutY="90.0" text="Vitesse de Rot.: __ tr/min"/>
-            <Label fx:id="lblPwrHyd" layoutX="15.0" layoutY="110.0" text="Puissance Hydrau.: __ kW"/>
-            <Label fx:id="lblPwrMeca" layoutX="15.0" layoutY="130.0" text="Puissance Méca.: __ kW"/>
-            <Label fx:id="lblRendement" layoutX="15.0" layoutY="150.0" text="Rendement: __"/>
-          </Pane>
-          <!-- Label Verin -->
-          <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0"
-                prefWidth="458.0" GridPane.columnSpan="2" GridPane.rowIndex="2" xmlns="http://javafx.com/javafx/11.0.1"
-                xmlns:fx="http://javafx.com/fxml/1">
-            <Label layoutX="25.0" layoutY="5.0" text="Verin:">
-              <font>
-                <Font name="System Bold" size="13.0"/>
-              </font>
-            </Label>
-            <Label fx:id="lblDFond" layoutX="15.0" layoutY="30.0" text="Diam. Fond: __ mm"/>
-            <Label fx:id="lblSFond" layoutX="15.0" layoutY="50.0" text="Section Fond: __ cm²"/>
-            <Label fx:id="lblVFond" layoutX="15.0" layoutY="70.0" text="Volume fond: __ l"/>
-            <Label fx:id="lblFSortie" layoutX="15.0" layoutY="90.0" text="Force en sortie: __ t"/>
-            <Label fx:id="lblVitSortie" layoutX="15.0" layoutY="110.0" text="Vitesse de sortie: __ m/s"/>
-            <Label fx:id="lblTpsSortie" layoutX="15.0" layoutY="130.0" text="Tps de sortie: __ s"/>
-            <Label fx:id="lblDTige" layoutX="180.0" layoutY="30.0" text="Diam. Tige: __ mm"/>
-            <Label fx:id="lblSAnn" layoutX="180.0" layoutY="50.0" text="Section Tige: __ cm²"/>
-            <Label fx:id="lblVTige" layoutX="180.0" layoutY="70.0" text="Volume tige:  __ l"/>
-            <Label fx:id="lblFRentree" layoutX="180.0" layoutY="90.0" text="Force en rentrée: __ t"/>
-            <Label fx:id="lblVitRentree" layoutX="180.0" layoutY="110.0" text="Vitesse de rentrée: __ m/s"/>
-            <Label fx:id="lblTpsRentree" layoutX="180.0" layoutY="130.0" text="Tps de rentrée: __ s"/>
-            <Label fx:id="lblCourse" layoutX="350.0" layoutY="30.0" text="Course: __ mm"/>
-            <Label fx:id="lblR" layoutX="350.0" layoutY="50.0" text="Rapport de section: __ "/>
-            <Label fx:id="lblRInv" layoutX="350.0" layoutY="70.0" text="Rapport de section inv.: __"/>
-            <Label fx:id="lblFDiff" layoutX="350.0" layoutY="90.0" text="Force en differentiel: __ t"/>
-            <Label fx:id="lblVitDiff" layoutX="350.0" layoutY="110.0" text="Vitesse en differentiel: __ m/s"/>
-            <Label fx:id="lblTpsDiff" layoutX="350.0" layoutY="130.0" text="Tps de sortie en différentiel: __ s"/>
-          </Pane>
-          <!-- Label Moteur -->
-          <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0"
-                prefWidth="154.0" GridPane.columnIndex="1" GridPane.rowIndex="1" xmlns="http://javafx.com/javafx/11.0.1"
-                xmlns:fx="http://javafx.com/fxml/1">
-            <Label layoutX="25.0" layoutY="5.0" text="Moteur:">
-              <font>
-                <Font name="System Bold" size="13.0"/>
-              </font>
-            </Label>
-            <Label fx:id="lblCouple" layoutX="15.0" layoutY="30.0" text="Couple: __ daN.m"/>
-            <Label fx:id="lblCylMot" layoutX="15.0" layoutY="50.0" text="Cylindrée: __ cc"/>
-            <Label fx:id="lblVitRotMot" layoutX="15.0" layoutY="70.0" text="Vitesse de Rot.: __ tr/min"/>
-            <Label fx:id="lblPwrMecaMot" layoutX="15.0" layoutY="90.0" text="Puissance Méca.: __ kW"/>
-            <Label fx:id="lblRendVol" layoutX="15.0" layoutY="110.0" text="Rendement Vol: __"/>
-            <Label fx:id="lblRendHydMeca" layoutX="15.0" layoutY="130.0" text="Rendement Hydrau-méca: __"/>
-            <Label fx:id="lblRendTot" layoutX="15.0" layoutY="150.0" text="Rendement Total: __"/>
-          </Pane>
-          <!-- Label Accu -->
-          <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0"
-                prefWidth="322.0" GridPane.columnSpan="2" GridPane.rowIndex="3" xmlns="http://javafx.com/javafx/11.0.1"
-                xmlns:fx="http://javafx.com/fxml/1">
-            <Label layoutX="25.0" layoutY="5.0" text="Accumulateur:">
-              <font>
-                <Font name="System Bold" size="13.0"/>
-              </font>
-            </Label>
-            <Label fx:id="lblV0" layoutX="15.0" layoutY="30.0" text="V0: __ l"/>
-            <Label fx:id="lblDeltaV" layoutX="15.0" layoutY="51.0" text="DelatV: __ l"/>
-            <Label fx:id="lblP0" layoutX="115.0" layoutY="30.0" text="P0: __ Bar"/>
-            <Label fx:id="lblP2" layoutX="115.0" layoutY="50.0" text="P2: __ Bar"/>
-            <Label fx:id="lblP1" layoutX="185.0" layoutY="30.0" text="P1: __ Bar"/>
-            <Label fx:id="lblN" layoutX="185.0" layoutY="50.0" text="Coefficient: __"/>
-            <Label fx:id="lblV1" layoutX="305.0" layoutY="30.0" text="V1: __ l"/>
-            <Label fx:id="lblV2" layoutX="305.0" layoutY="50.0" text="V2: __ l"/>
-          </Pane>
-          <!-- Label DelatP Sing-->
-          <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                GridPane.columnIndex="1" GridPane.rowIndex="4" xmlns="http://javafx.com/javafx/11.0.1"
-                xmlns:fx="http://javafx.com/fxml/1">
-            <Label layoutX="25.0" layoutY="5.0" text="DeltaP Singulière:">
-              <font>
-                <Font name="System Bold" size="13.0"/>
-              </font>
-            </Label>
-            <Label fx:id="lblDiamSing" layoutX="15.0" layoutY="30.0" text="Diamètre: __ mm"/>
-            <Label fx:id="lblMasseVol" layoutX="15.0" layoutY="50.0" text="Masse Volume (Densité): __ kg/m³"/>
-            <Label fx:id="lblIncident" layoutX="15.0" layoutY="70.0" text="Type d'incident: __"/>
-            <Label fx:id="lblDeltaPSing" layoutX="15.0" layoutY="90.0" text="Pertes de charge: __ Bar"/>
-          </Pane><!-- Label DelatP Lin-->
-          <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0"
-                prefWidth="146.0" GridPane.rowIndex="4" xmlns="http://javafx.com/javafx/11.0.1"
-                xmlns:fx="http://javafx.com/fxml/1">
-            <Label layoutX="25.0" layoutY="5.0" text="DeltaP Linéaire:">
-              <font>
-                <Font name="System Bold" size="13.0"/>
-              </font>
-            </Label>
-            <Label fx:id="lblDiamLin" layoutX="15.0" layoutY="30.0" text="Diametre: __ mm"/>
-            <Label fx:id="lblmasseVolL" layoutX="15.0" layoutY="50.0" text="Masse Volume (Densité): __ kg/m³"/>
-            <Label fx:id="lblL" layoutX="15.0" layoutY="70.0" text="Longueur Canalisation: __ m"/>
-            <Label fx:id="lblVisco" layoutX="15.0" layoutY="90.0" text="Viscosité: __ Cst"/>
-            <Label fx:id="lblDeltaPLin" layoutX="15.0" layoutY="110.0" text="Pertes de charge: __ Bar"/>
-            <GridPane.margin>
-              <Insets/>
-            </GridPane.margin>
-          </Pane>
-        </GridPane>
-      </center>
-    </BorderPane>
-    <Line endX="100.0" endY="50.0" startX="-450" startY="50" translateY="-350"/>
-    <Line endX="80.0" endY="50.0" startX="-450" startY="50" translateY="-345"/>
-    <Line endX="100.0" endY="50.0" startX="-450" startY="50" translateY="-340"/>
-    <Line endX="100.0" endY="50.0" startX="-450" startY="50" translateY="-210"/>
-    <Line endX="80.0" endY="50.0" startX="-430" startY="50" translateY="-205"/>
-    <Line endX="100.0" endY="50.0" startX="-450" startY="50" translateY="-200.0"/>
-    <Line endX="100.0" endY="50.0" startX="-450" startY="50" translateY="-15"/>
-    <Line endX="100.0" endY="50.0" startX="-450" startY="50" translateY="160"/>
-    <Line endX="100.0" endY="50.0" startX="-450" startY="50" translateY="250"/>
-    <Line endX="100.0" endY="50.0" startX="-450" startY="50" translateY="380"/>
-    <Line endY="160.0" translateX="-50" translateY="-110"/>
-
-  </StackPane>
+  <!--<RadioButton fx:id="auto" layoutX="20.0" layoutY="300.0" mnemonicParsing="false" text="Auto">
+    <toggleGroup>
+      <ToggleGroup fx:id="OrientationGroup" />
+    </toggleGroup>
+  </RadioButton>
+  <RadioButton layoutX="20.0" layoutY="325.0" mnemonicParsing="false" text="Portrait" toggleGroup="$OrientationGroup" />
+  <RadioButton layoutX="20.0" layoutY="350.0" mnemonicParsing="false" text="Paysage" toggleGroup="$OrientationGroup" />
+  <CheckBox layoutX="210.0" layoutY="120.0" mnemonicParsing="false" text="noir et blanc" />-->
+  <ComboBox fx:id="cbImprimante" layoutX="10.0" layoutY="14.0" onAction="#choixImprimante" prefHeight="25.0" prefWidth="236.0" />
+  <Button layoutX="333.0" layoutY="14.0" mnemonicParsing="false" onAction="#imprimer" text="Imprimer" />
+  <Button layoutX="408.0" layoutY="14.0" mnemonicParsing="false" onAction="#annuler" text="Annuler" />
+   <Label fx:id="lblStatus" layoutX="300.0" layoutY="705.0" text="Impression" />
 </Pane>

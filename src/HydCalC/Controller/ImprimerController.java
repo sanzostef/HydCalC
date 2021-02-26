@@ -1,37 +1,96 @@
 package HydCalC.Controller;
 
 import HydCalC.HydCalCController;
+import HydCalC.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.print.*;
+import javafx.scene.Parent;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Scale;
+import javafx.scene.transform.Translate;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class ImprimerController{
 
-    @FXML Label lblDFond; @FXML Label lblDTige; @FXML Label lblCourse; @FXML Label lblSFond; @FXML Label lblSAnn; @FXML Label lblR; @FXML Label lblIncident;
-    @FXML Label lblVFond; @FXML Label lblVTige; @FXML Label lblFSortie; @FXML Label lblFRentree; @FXML Label lblFDiff; @FXML Label lblVitSortie;
-    @FXML Label lblVitRentree; @FXML Label lblVitDiff; @FXML Label lblTpsSortie; @FXML Label lblTpsRentree; @FXML Label lblTpsDiff; @FXML Label lblDebit;
-    @FXML Label lblVitDeRot; @FXML Label lblPwrHyd; @FXML Label lblPwrMeca; @FXML Label lblRendement; @FXML Label lblV0; @FXML Label lblV1;
-    @FXML Label lblPression; @FXML Label lblRInv; @FXML Label lblCyl; @FXML Label lblP1; @FXML Label lblP2; @FXML Label lblDeltaV;
-    @FXML Label lblN; @FXML Label lblDiamSing; @FXML Label lblMasseVol; @FXML Label lblDeltaPSing; @FXML Label lblV2; @FXML Label lblP0;
-    @FXML Label lblVisco; @FXML Label lblDeltaPLin; @FXML Label lblCouple; @FXML Label lblCylMot; @FXML Label lblVitRotMot; @FXML Label lblDiamLin;
-    @FXML Label lblL; @FXML Label lblmasseVolL; @FXML Label lblPwrMecaMot; @FXML Label lblRendVol; @FXML Label lblRendHydMeca; @FXML Label lblRendTot;
+    @FXML StackPane dspPagePreview;
+    @FXML PagePreviewController dspPagePreviewController;
+    @FXML ComboBox<Printer> cbImprimante;
+    @FXML Label lblStatus;
+
+    Printer selectedPrinter;
 
     public void main() {
-        Label[] tabLabel = new Label[48];
-        tabLabel[0]= lblDFond; tabLabel[1]=lblDTige; tabLabel[2]=lblCourse; tabLabel[3]=lblSFond; tabLabel[4]=lblSAnn; tabLabel[5]=lblR; tabLabel[6]=lblRInv;
-        tabLabel[7]=lblVFond;tabLabel[8]=lblVTige; tabLabel[9]=lblFSortie; tabLabel[10]=lblFRentree; tabLabel[11]=lblFDiff; tabLabel[12]=lblVitSortie; tabLabel[13]=lblVitRentree;
-        tabLabel[14]=lblVitDiff; tabLabel[15]=lblTpsSortie; tabLabel[16]=lblTpsRentree; tabLabel[17]=lblTpsDiff; tabLabel[18]=lblDebit; tabLabel[19]=lblPression; tabLabel[20]=lblCyl;
-        tabLabel[21]=lblVitDeRot; tabLabel[22]=lblPwrHyd; tabLabel[23]=lblPwrMeca; tabLabel[24]=lblRendement; tabLabel[25]=lblV0; tabLabel[26]=lblV1; tabLabel[27]=lblV2; tabLabel[28]=lblP0;
-        tabLabel[29]=lblP1; tabLabel[30]=lblP2; tabLabel[31]=lblDeltaV; tabLabel[32]=lblN; tabLabel[33]=lblDiamSing; tabLabel[34]=lblMasseVol; tabLabel[35]=lblDeltaPSing; tabLabel[36]=lblDiamLin;
-        tabLabel[37]=lblmasseVolL; tabLabel[38]=lblL; tabLabel[39]=lblVisco; tabLabel[40]=lblDeltaPLin; tabLabel[41]=lblCouple; tabLabel[42]=lblCylMot; tabLabel[43]=lblVitRotMot;
-        tabLabel[44]=lblPwrMecaMot; tabLabel[45]=lblRendVol; tabLabel[46]=lblRendHydMeca; tabLabel[47]=lblRendTot;
 
-        for (int i = 0; i< hydCalCController.listeDesTextfield.size(); i++){
-            Label lbltmp = new Label();
-            lbltmp.setText(hydCalCController.listeDesTextfield.get(i).getText());
-            tabLabel[i].setText(tabLabel[i].getText().replace("__", hydCalCController.listeDesTextfield.get(i).getText()));
+        dspPagePreviewController.injection(hydCalCController);
+        dspPagePreviewController.remplirLabel();
+        ObservableSet<Printer> printers = Printer.getAllPrinters();
+        ArrayList<Printer> printerlist = new ArrayList<>(printers);
+        cbImprimante.setPromptText("Imprimante");
+        cbImprimante.setItems(FXCollections.observableArrayList(printerlist));
+        Printer defaultprinter = Printer.getDefaultPrinter();
+        if (defaultprinter != null) {
+            cbImprimante.getSelectionModel().select(defaultprinter);
+            selectedPrinter = defaultprinter;
         }
-        lblIncident.setText(lblIncident.getText().replace("__", String.valueOf(hydCalCController.deltaPSinguliere.getCoeff())));
     }
     private HydCalCController hydCalCController = new HydCalCController();
     public void injection(HydCalCController controller) { this.hydCalCController = controller; }
+
+    @FXML
+    private void choixImprimante(){
+        selectedPrinter = cbImprimante.getValue();
+    }
+
+    @FXML
+    private void annuler(){
+        // get a handle to the stage
+        Stage stage = (Stage) cbImprimante.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+    }
+
+    @FXML
+    private void imprimer() {
+        // Create a printer job for the printer
+        lblStatus.setText("Impression: En cour...");
+        PageLayout pageLayout = selectedPrinter.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.HARDWARE_MINIMUM);
+        PrinterJob job = PrinterJob.createPrinterJob(selectedPrinter);
+        double scaleX = pageLayout.getPrintableWidth() / dspPagePreview.getBoundsInParent().getWidth();
+        double scaleY = pageLayout.getPrintableHeight() / dspPagePreview.getBoundsInParent().getHeight();
+        Scale scale = new Scale(scaleX, scaleY);
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrlImprimer = Main.class.getResource("FXML/pagePreview.fxml");
+        loader.setLocation(xmlUrlImprimer);
+        try {
+            StackPane node = loader.load();
+            PagePreviewController pagePreviewController = loader.getController();
+            pagePreviewController.remplirLabel();
+            node.getTransforms().add(scale);
+            if (job != null) {
+                //job.showPageSetupDialog(cbImprimante.getScene().getWindow());
+                // Print the node
+                boolean printed = job.printPage(pageLayout, node);
+                // node.getTransforms().remove(scale);
+                if (printed) {
+                    // End the printer job
+                    job.endJob();
+                    lblStatus.setText("Impression: Terminée.");
+                } else {
+                    lblStatus.setText("Impression: Annulée/Echec.");
+                }
+            } else { lblStatus.setText("Impression: Impossible de creer le travail d'impression."); }
+        }
+        catch (IOException e) { e.printStackTrace(); }
+    }
 }

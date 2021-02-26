@@ -29,7 +29,7 @@ public class HydCalCController implements Initializable {
     @FXML    private DeltaPLineaireController dspDeltaPLinController;
     @FXML    private Pane dspMoteur;
     @FXML    private MoteurController dspMoteurController;
-    @FXML    private Pane dspClient;
+    //@FXML    private Pane dspClient;
     @FXML    private ClientController dspClientController;
 
     //DecimalFormat df = new DecimalFormat("###.##");
