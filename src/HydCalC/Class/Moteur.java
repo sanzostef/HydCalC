@@ -5,6 +5,7 @@ public class Moteur {
     private double cyl;
     private double vitDeRotation;
     private double pwrMeca;
+    private double pwrHyd;
     private double ηhm = 0.85;
     private double ηvol = 0.97;
     private double ηtot = ηvol * ηhm;
@@ -43,9 +44,18 @@ public class Moteur {
     public void setPwrMeca(double pwr) {        this.pwrMeca = pwr;    }
     public double getPwrMeca() {        return this.pwrMeca;    }
     public void calculerPwrMeca() {
-        if (this.pwrMeca != 0.0d & this.ηtot != 0.0d) {
-            this.pwrMeca = this.pwrMeca * this.ηtot * 100;
+        if (this.pwrHyd != 0.0d & this.ηtot != 0.0d) {
+            this.pwrMeca = this.pwrHyd * this.ηtot;
         }
+    }
+    public void setPwrHyd(double W) {        this.pwrHyd = W;    }
+    public double getPwrHyd() {        return this.pwrHyd;    }
+    public void calculerPwrHyd() {
+        if (this.pression != 0.0d & this.debit != 0.0d) {
+            this.pwrHyd = ((this.pression * this.debit) / 600);
+        }
+        if (this.pwrMeca != 0.0d & this.ηtot != 0.0d)
+            this.pwrHyd = this.pwrMeca / this.ηtot;
     }
     public void setηtot(double n) {        this.ηtot = n;    }
     public double getηtot() {        return this.ηtot;    }
@@ -69,16 +79,6 @@ public class Moteur {
     public void calculerPression() {
         if (this.pwrMeca != 0.0d & this.debit != 0.0d)
             this.pression = (600 * this.pwrMeca / ηtot) / this.debit;
-    }
-
-    public void setPwrHyd(double W) {        this.pwrMeca = W;    }
-    public double getPwrHyd() {        return this.pwrMeca;    }
-    public void calculerPwrHyd() {
-        if (this.pression != 0.0d & this.debit != 0.0d) {
-            this.pwrMeca = ((this.pression * this.debit) / 600) * ηtot;
-        }
-        if (this.pwrMeca != 0.0d & this.ηtot != 0.0d)
-            this.pwrMeca = this.pwrMeca / this.ηtot / 100;
     }
 }
 

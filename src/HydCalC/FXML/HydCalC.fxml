@@ -1,41 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="1185.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.HydCalCController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.HydCalCController">
 
     <Tab closable="false" text="Calculs">
-        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="1174.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
             <Label layoutX="247.0" layoutY="14.0" prefHeight="17.0" prefWidth="67.0" text="HydCalC" />
             <Button id="btCalcul" fx:id="btCalculer" layoutX="310.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonCalculer" text="Calculer" />
             <Button id="btInit" layoutX="400.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonInit" text="Ré-initialiser" />
 
-            <Pane layoutX="5.0" layoutY="50.0" maxHeight="250" maxWidth="600.0" prefHeight="250.0" prefWidth="600.0">
+            <Pane layoutX="5.0" layoutY="50.0">
                 <fx:include fx:id="dspVerin" source="verin.fxml" />
             </Pane>
-            <Pane layoutX="668.0" layoutY="94.0" maxHeight="251.0" maxWidth="300.0" prefHeight="251.0" prefWidth="207.0">
+            <Pane layoutX="1186.0" layoutY="467.0">
                 <fx:include fx:id="dspPump" source="pump.fxml" />
             </Pane>
-            <Pane layoutX="5.0" layoutY="310.0" maxHeight="125" maxWidth="432.0" prefHeight="125.0" prefWidth="432.0">
+            <Pane layoutX="910.0" layoutY="23.0">
                 <fx:include fx:id="dspAccu" source="accu.fxml" />
             </Pane>
-            <Pane layoutX="466.0" layoutY="424.0" maxHeight="125" maxWidth="305.0" prefHeight="125.0" prefWidth="305.0">
+            <Pane layoutX="525.0" layoutY="428.0">
                 <fx:include fx:id="dspDeltaPSing" source="deltaPSing.fxml" />
             </Pane>
-            <Pane layoutX="888.0" layoutY="382.0" maxHeight="160.0" maxWidth="215.0" prefHeight="160.0" prefWidth="215.0">
+            <Pane layoutX="649.0" layoutY="132.0" prefHeight="160.0" prefWidth="206.0">
                 <fx:include fx:id="dspDeltaPLin" source="deltaPLineaire.fxml" />
             </Pane>
-            <Pane layoutX="914.0" layoutY="14.0" maxHeight="266.0" maxWidth="220.0" prefHeight="235.0" prefWidth="220.0">
+            <Pane layoutX="1146.0" layoutY="292.0">
+                <fx:include fx:id="dspGicleur" source="gicleur.fxml" />
+            </Pane>
+            <Pane layoutX="14.0" layoutY="470.0">
                 <fx:include fx:id="dspMoteur" source="moteur.fxml" />
             </Pane>
-
             <Separator layoutX="89.0" layoutY="40.0" prefHeight="3.0" prefWidth="422.0" />
+            <ImageView fitHeight="125.0" fitWidth="102.0" layoutX="1060.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                <Image url="@/HydCalC/image/motoPompe.png"/>
+            </ImageView>
+            <ImageView fitWidth="20.0" layoutX="1072.0" layoutY="655.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                <Image url="@/HydCalC/image/reservoir.png"/>
+            </ImageView>
+            <ImageView fitWidth="40.0" layoutX="1120.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                <Image url="@/HydCalC/image/accu.png"/>
+            </ImageView>
+            <ImageView fitHeight="70.0" fitWidth="260.0" layoutX="170.0" layoutY="60.0" pickOnBounds="true" smooth="false">
+                <Image url="@/HydCalC/image/verin.png"/>
+            </ImageView>
+            <ImageView fitWidth="60.0" layoutX="220" layoutY="550.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                <Image url="@/HydCalC/image/moteur.png"/>
+            </ImageView>
+            <ImageView fitWidth="60.0" layoutX="500" layoutY="350.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                <Image url="@/HydCalC/image/vanne.png"/>
+            </ImageView>
         </Pane>
     </Tab>
     <Tab closable="false" text="Client">
         <Pane layoutX="5.0" layoutY="5.0" maxHeight="450" maxWidth="850.0" prefHeight="450.0" prefWidth="850.0">
             <fx:include fx:id="dspClient" source="client.fxml" />
+        </Pane>
+    </Tab>
+    <Tab closable="false" text="Outil">
+        <Pane layoutX="5.0" layoutY="5.0" maxHeight="450" maxWidth="850.0" prefHeight="450.0" prefWidth="850.0">
+            <fx:include fx:id="dspOutil" source="outil.fxml" />
         </Pane>
     </Tab>
 </TabPane>

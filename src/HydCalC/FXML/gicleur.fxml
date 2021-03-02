@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="70.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller.GicleurController">
+
+    <!-- TextField Perte de charge -->
+    <TextField id="DiamOrifice" layoutX="145.0" layoutY="5.0" onKeyTyped="#modif" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="DeltaPOrifice" layoutX="145.0" layoutY="35.0" prefHeight="25.0" prefWidth="50.0" />
+    <!-- Label DeltaP -->
+    <Label layoutX="5.0" layoutY="10.0" text="Diametre (Ø):" />
+    <Label layoutX="5.0" layoutY="40.0" text="Pertes de charge (ΔP):" />
+
+</Pane>

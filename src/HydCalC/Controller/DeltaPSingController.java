@@ -6,6 +6,7 @@ import HydCalC.HydCalCController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
@@ -13,12 +14,13 @@ import java.util.ResourceBundle;
 
 public class DeltaPSingController implements Initializable{
 
-    @FXML
-    ComboBox<DeltaPSing.Incident> cbIncident;
+    @FXML ComboBox<DeltaPSing.Incident> cbIncident;
+    @FXML TextField masseVol;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cbIncident.setPromptText("Type de raccords");
         cbIncident.setItems(hydCalCController.deltaPSinguliere.getIncidentList());
+        masseVol.setText("850");
     }
     private HydCalCController hydCalCController = new HydCalCController();
     public void injection(HydCalCController controller) { this.hydCalCController = controller; }

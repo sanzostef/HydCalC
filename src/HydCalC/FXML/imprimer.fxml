@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 
 <Pane prefHeight="725.0" prefWidth="476.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller.ImprimerController">
-  <fx:include fx:id="dspPagePreview" source="pagePreview.fxml"/>
+  <fx:include fx:id="dspPagePreview" layoutY="50" source="pagePreview.fxml"/>
 
   <!--<RadioButton fx:id="auto" layoutX="20.0" layoutY="300.0" mnemonicParsing="false" text="Auto">
     <toggleGroup>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="492.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller.OutilController">
+
+    <Button id="btImprimer" layoutX="405.0" layoutY="5.0" mnemonicParsing="false" onAction="#buttonImprimer" text="Imprimer" />
+    <!-- TextField Outil-->
+    <TextField id="outil" fx:id="txtOutil" layoutX="120.0" layoutY="5.0" prefHeight="25.0" prefWidth="250.0" />
+    <TextField id="fonction" fx:id="txtFonction" layoutX="120.0" layoutY="35.0" prefHeight="25.0" prefWidth="250.0" />
+    <TextArea id="description" fx:id="txtDescription" layoutX="120.0" layoutY="65.0" prefHeight="146.0" prefWidth="250.0" />
+    <!-- Label Outil -->
+    <Label layoutX="5.0" layoutY="10.0" text="Outil: " />
+    <Label layoutX="5.0" layoutY="40.0" text="Fonction: " />
+    <Label layoutX="5.0" layoutY="70.0" text="Description: " />
+
+</Pane>

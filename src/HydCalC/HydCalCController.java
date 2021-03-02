@@ -7,7 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -18,19 +21,22 @@ import java.util.ResourceBundle;
 public class HydCalCController implements Initializable {
 
     @FXML    private Pane dspVerin;
-    @FXML    private VerinController dspVerinController;
+    @FXML    public VerinController dspVerinController;
     @FXML    private Pane dspPump;
-    @FXML    private PumpController dspPumpController;
+    @FXML    public PumpController dspPumpController;
     @FXML    private Pane dspAccu;
-    @FXML    private AccuController dspAccuController;
+    @FXML    public AccuController dspAccuController;
     @FXML    private Pane dspDeltaPSing;
-    @FXML    private DeltaPSingController dspDeltaPSingController;
+    @FXML    public DeltaPSingController dspDeltaPSingController;
     @FXML    private Pane dspDeltaPLin;
-    @FXML    private DeltaPLineaireController dspDeltaPLinController;
+    @FXML    public DeltaPLineaireController dspDeltaPLinController;
     @FXML    private Pane dspMoteur;
-    @FXML    private MoteurController dspMoteurController;
+    @FXML    public MoteurController dspMoteurController;
+    @FXML    private Pane dspGicleur;
+    @FXML    public GicleurController dspGicleurController;
     //@FXML    private Pane dspClient;
-    @FXML    private ClientController dspClientController;
+    @FXML    public ClientController dspClientController;
+    @FXML    public OutilController dspOutilController;
 
     //DecimalFormat df = new DecimalFormat("###.##");
     NumberFormat df = NumberFormat.getInstance();
@@ -41,7 +47,8 @@ public class HydCalCController implements Initializable {
     public static final int V0 = 25, V1 = 26, V2 = 27, P0 = 28, P1 = 29, P2 = 30, DeltaV = 31, n = 32;
     public static final int diamSing = 33, masseVol = 34, deltaPSing = 35;
     public static final int diamLin = 36, masseVolL = 37, l = 38, visco = 39, deltaPLin = 40;
-    public static final int couple = 41, Cylm = 42, VitDeRotation = 43, PwrMeca = 44, ηvol = 45, ηhm = 46, ηtot = 47;
+    public static final int couple = 41, cylm = 42, VitDeRotationM = 43, pwrMecaM = 44, ηvol = 45, ηhm = 46, ηtot = 47;
+    public static final int diamOrifice = 48, deltaPOrifice = 49;
 
     private boolean erreurDeSaisie = false;
     public final Verin verin = new Verin();
@@ -50,6 +57,7 @@ public class HydCalCController implements Initializable {
     public final DeltaPSing deltaPSinguliere = new DeltaPSing();
     public final DeltaPLineaire deltaPLineaire = new DeltaPLineaire();
     public final Moteur moteur = new Moteur();
+    public final Gicleur gicleur = new Gicleur();
 
     public ArrayList<TextField> listeDesTextfield = new ArrayList<>();
     final ArrayList<Method> lstSet = new ArrayList<>();
@@ -57,6 +65,7 @@ public class HydCalCController implements Initializable {
     public final ArrayList<Method> lstCalcul = new ArrayList<>();
 
     @Override    public void initialize(URL url, ResourceBundle rb) {
+
         //Injection des controleurs les un dans les autres
         dspVerinController.injection(this);
         dspPumpController.injection(this);
@@ -65,7 +74,9 @@ public class HydCalCController implements Initializable {
         dspDeltaPSingController.injection(this);
         dspDeltaPLinController.injection(this);
         dspMoteurController.injection(this);
+        dspGicleurController.injection(this);
         dspClientController.injection(this);
+        dspOutilController.injection(this);
         //Création de la liste des TextFields
         creationListeDesTextFields(dspVerin);
         creationListeDesTextFields(dspPump);
@@ -73,6 +84,7 @@ public class HydCalCController implements Initializable {
         creationListeDesTextFields(dspDeltaPSing);
         creationListeDesTextFields(dspDeltaPLin);
         creationListeDesTextFields(dspMoteur);
+        creationListeDesTextFields(dspGicleur);
         //Creation des listes des methodes
         creationDesListesDeMethodes(verin, dfond, tpsdiff);
         creationDesListesDeMethodes(pompe, debit, rendement);
@@ -80,6 +92,7 @@ public class HydCalCController implements Initializable {
         creationDesListesDeMethodes(deltaPSinguliere, diamSing, deltaPSing);
         creationDesListesDeMethodes(deltaPLineaire, diamLin, deltaPLin);
         creationDesListesDeMethodes(moteur, couple, ηtot);
+        creationDesListesDeMethodes(gicleur, diamOrifice, deltaPOrifice);
     }
 
     @FXML
@@ -94,6 +107,9 @@ public class HydCalCController implements Initializable {
             }
 
             recopTextfieldDansCompo();
+            if ((double) lstGet.get(debit).invoke(pompe) != 0.0d) {
+                gicleur.setDebit(pompe.getDebit());
+            }
             accu.Cste(0);
             accu.Cste();
             dspVerinController.calculerSansParametreExterne();
@@ -129,6 +145,7 @@ public class HydCalCController implements Initializable {
             }
             dspDeltaPSingController.calculerSansParametreExterne();
             dspDeltaPLinController.calculerSansParametreExterne();
+            dspGicleurController.calculerSansParametreExterne();
             dspVerinController.calculerSansParametreExterne();
             dspPumpController.calculerSansParametreExterne();
             if ((double) lstGet.get(sfond).invoke(verin) != 0.0d & (double) lstGet.get(forcesortie).invoke(verin) != 0.0d) {
@@ -163,6 +180,7 @@ public class HydCalCController implements Initializable {
             recopierComposantsDansTextField(deltaPSinguliere, diamSing, deltaPSing);
             recopierComposantsDansTextField(deltaPLineaire, diamLin, deltaPLin);
             recopierComposantsDansTextField(moteur, couple, ηtot);
+            recopierComposantsDansTextField(gicleur, diamOrifice, deltaPOrifice);
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
@@ -262,7 +280,7 @@ public class HydCalCController implements Initializable {
 
     private void recopTextfieldDansCompo() throws IllegalAccessException, InvocationTargetException {
 
-        for (int i = dfond; i < ηtot + 1; i++) {
+        for (int i = dfond; i < deltaPOrifice+ 1; i++) {
             if (!listeDesTextfield.get(i).getText().isEmpty()) {     // Si pas vide
                 valeurDuParametre = Double.parseDouble(listeDesTextfield.get(i).getText().replace(',', '.').replaceAll("\\h", ""));
                 if (i < tpsdiff + 1) {
@@ -321,7 +339,11 @@ public class HydCalCController implements Initializable {
                 lstSet.get(i).invoke(composant, 1.4d);
                 System.out.println("j'écris " + 1.4d + " dans: " + listeDesTextfield.get(i).getId());
             }
-            default -> {
+
+            case (masseVol) -> {
+                lstSet.get(i).invoke(composant, 850);
+                System.out.println("j'écris " + 850 + " dans: " + listeDesTextfield.get(i).getId());
+            }            default -> {
                 lstSet.get(i).invoke(composant, 0.0d);
                 System.out.println("j'écris " + 0.0d + " dans: " + listeDesTextfield.get(i).getId());
             }
@@ -367,6 +389,5 @@ public class HydCalCController implements Initializable {
         }
         System.out.println("fini");
     }*/
-
 
 

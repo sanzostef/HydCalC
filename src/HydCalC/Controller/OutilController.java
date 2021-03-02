@@ -1,42 +1,37 @@
 package HydCalC.Controller;
 
-import HydCalC.Class.Client;
-import HydCalC.Main;
+import HydCalC.Class.Outil;
 import HydCalC.HydCalCController;
+import HydCalC.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ClientController implements Initializable {
+public class OutilController implements Initializable {
 
-    @FXML ComboBox<Client> cbClient;
-    @FXML TextField raisonSociale, contact, tel, mail, adresse, telContact;
-    Client client;
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        client = new Client();
-    }
-
+    @FXML TextField txtOutil, txtFonction;
+    @FXML TextArea txtDescription;
     private HydCalCController hydCalCController = new HydCalCController();
     public void injection(HydCalCController controller) { this.hydCalCController = controller; }
+    Outil outil;
 
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        outil = new Outil();
+    }
     @FXML private void buttonImprimer() {
-        client.setRaisonSociale(raisonSociale.getText());
-        client.setContact(contact.getText());
-        client.setTelephone(tel.getText());
-        client.setMail(mail.getText());
-        client.setAdresse(adresse.getText());
-        client.setTelephoneContact(telContact.getText());
-
+        outil.setOutil(txtOutil.getText());
+        outil.setFonction(txtFonction.getText());
+        outil.setDescription(txtDescription.getText());
         try {
             ApercuImpression();
         } catch (IOException e) {
@@ -52,7 +47,7 @@ public class ClientController implements Initializable {
         ImprimerController imprimerController = loader.getController();
         imprimerController.injection(hydCalCController);
         imprimerController.injection(this);
-        imprimerController.controllerAppelant("client");
+        imprimerController.controllerAppelant("outil");
         imprimerController.main();
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -61,10 +56,9 @@ public class ClientController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
 
-        }
+    }
 
 }
-
 
 
 

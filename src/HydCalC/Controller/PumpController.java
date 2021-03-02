@@ -10,10 +10,10 @@ public class PumpController {
     private static final int debit = 18, rendement = 24;
 
     private HydCalCController hydCalCController = new HydCalCController();
-    private VerinController dspVerin = new VerinController();
+    private VerinController dspVerinController = new VerinController();
 
     public void injection(HydCalCController controller) { this.hydCalCController = controller; }
-    public void injection(VerinController controller) { this.dspVerin = controller; }
+    public void injection(VerinController controller) { this.dspVerinController = controller; }
     public void calculerSansParametreExterne() throws IllegalAccessException, InvocationTargetException{
         System.out.println(" Entre dans les calculs sans paramètres Pompe:");
         System.out.println();

@@ -2,22 +2,34 @@ package HydCalC.Controller;
 
 import HydCalC.HydCalCController;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MoteurController {
+public class MoteurController implements Initializable {
 
+    @FXML
+    TextField txtηVol, txtηMeca, txtηtot;
     private HydCalCController hydCalCController = new HydCalCController();
-
     public void injection(HydCalCController controller) { this.hydCalCController = controller; }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        txtηVol.setText("0.97");
+        txtηMeca.setText("0.85");
+        txtηtot.setText("0.82");
+    }
     void calculerSansParametreExterne() throws IllegalAccessException, InvocationTargetException{
-        System.out.println(" Entre dans les calculs sans paramètres Pompe:");
+        System.out.println(" Entre dans les calculs sans paramètres Moteur:");
         System.out.println();
         double valeurDuParametre;
-        for (int i = HydCalCController.couple; i < HydCalCController.ηtot + 1; i++) { // POMPE
-            valeurDuParametre = (double) hydCalCController.lstGet.get(i).invoke(hydCalCController.pompe);
+        for (int i = HydCalCController.couple; i < HydCalCController.ηtot + 1; i++) {
+            valeurDuParametre = (double) hydCalCController.lstGet.get(i).invoke(hydCalCController.moteur);
             if (valeurDuParametre == 0.0d) {
-                hydCalCController.lstCalcul.get(i).invoke(hydCalCController.pompe);
-                valeurDuParametre = (double) hydCalCController.lstGet.get(i).invoke(hydCalCController.pompe);
+                hydCalCController.lstCalcul.get(i).invoke(hydCalCController.moteur);
+                valeurDuParametre = (double) hydCalCController.lstGet.get(i).invoke(hydCalCController.moteur);
                 System.out.println("je calcul : " + hydCalCController.listeDesTextfield.get(i).getId() + " - résultat => " + valeurDuParametre);
             }
         }
@@ -25,79 +37,34 @@ public class MoteurController {
         System.out.println();
     }
 
-    @FXML protected void modifDebit(){
-        hydCalCController.listeDesTextfield.get(HydCalCController.cyl).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.pwrHyd).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.pwrMeca).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitsortie).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitrentree).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitdiff).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpssortie).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpsrentree).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpsdiff).setText("");
-    }
     @FXML private void modifCouple(){
-        hydCalCController.listeDesTextfield.get(HydCalCController.pwrHyd).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.pwrMeca).setText("");
+        hydCalCController.listeDesTextfield.get(HydCalCController.pwrMecaM).setText("");
     }
     @FXML private void modifCyl(){
-        hydCalCController.listeDesTextfield.get(HydCalCController.pwrHyd).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.pwrMeca).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.debit).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.pwrHyd).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.pwrMeca).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitsortie).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitrentree).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitdiff).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpssortie).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpsrentree).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpsdiff).setText("");
+        hydCalCController.listeDesTextfield.get(HydCalCController.pwrMecaM).setText("");
+        hydCalCController.listeDesTextfield.get(HydCalCController.VitDeRotationM).setText("");
+        hydCalCController.listeDesTextfield.get(HydCalCController.VitDeRotationM).setText("");
     }
     @FXML private void modifVitDeRot(){
-        hydCalCController.listeDesTextfield.get(HydCalCController.pwrHyd).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.pwrMeca).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.cyl).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.pwrHyd).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitsortie).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitrentree).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitdiff).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpssortie).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpsrentree).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpsdiff).setText("");
+        hydCalCController.listeDesTextfield.get(HydCalCController.pwrMecaM).setText("");
+        hydCalCController.listeDesTextfield.get(HydCalCController.cylm).setText("");
     }
-    @FXML private void modifPwrHyd(){
-        hydCalCController.listeDesTextfield.get(HydCalCController.pression).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.pwrMeca).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.debit).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.cyl).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitDeRot).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitsortie).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitrentree).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitdiff).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpssortie).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpsrentree).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpsdiff).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.forcesortie).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.forcerentree).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.forcediff).setText("");
+    @FXML private void modifRendHydMeca(){
+        hydCalCController.listeDesTextfield.get(HydCalCController.pwrMecaM).setText("");
+        hydCalCController.listeDesTextfield.get(HydCalCController.cylm).setText("");
     }
     @FXML private void modifPwrMeca(){
-        hydCalCController.listeDesTextfield.get(HydCalCController.pression).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.pwrHyd).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.debit).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.cyl).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitDeRot).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitsortie).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitrentree).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.vitdiff).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpssortie).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpsrentree).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.tpsdiff).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.forcesortie).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.forcerentree).setText("");
-        hydCalCController.listeDesTextfield.get(HydCalCController.forcediff).setText("");
+        hydCalCController.listeDesTextfield.get(HydCalCController.cylm).setText("");
     }
     @FXML private void modifRendement(){
-        hydCalCController.listeDesTextfield.get(HydCalCController.pwrMeca).setText("");
+        hydCalCController.listeDesTextfield.get(HydCalCController.pwrMecaM).setText("");
+        hydCalCController.listeDesTextfield.get(HydCalCController.ηvol).setText("");
+        hydCalCController.listeDesTextfield.get(HydCalCController.ηhm).setText("");
     }
+    @FXML private void modifRendVol(){
+        hydCalCController.listeDesTextfield.get(HydCalCController.VitDeRotationM).setText("");
+        hydCalCController.listeDesTextfield.get(HydCalCController.ηhm).setText("");
+        hydCalCController.listeDesTextfield.get(HydCalCController.pwrMecaM).setText("");
+    }
+
 }

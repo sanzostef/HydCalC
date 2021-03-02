@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane fx:id="feuille" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-           maxHeight="841" maxWidth="594" prefHeight="645.0" prefWidth="456.0" translateX="10.0" translateY="50.0"
-           fx:controller="HydCalC.Controller.PagePreviewController">
+<StackPane fx:id="feuille" maxHeight="841" maxWidth="594" prefHeight="645.0" prefWidth="456.0" translateX="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller.PagePreviewController">
 
-    <BorderPane id="pane"  style="-fx-background-color: WHITE;">
+    <BorderPane id="pane" style="-fx-background-color: WHITE;">
             <top>
                 <HBox prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <ImageView fitHeight="30.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
                     <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="191.0" text="FEUILLE DE CALCULS" textAlignment="CENTER">
                         <font>
-                            <Font name="System Bold" size="18.0" />
+                            <Font name="System Bold" size="15.0" />
                         </font>
                     </Label>
                 </HBox>
@@ -33,125 +30,135 @@
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints maxHeight="651.0" minHeight="10.0" prefHeight="101.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="651.0" minHeight="10.0" prefHeight="135.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="651.0" minHeight="10.0" prefHeight="121.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="651.0" minHeight="0.0" prefHeight="76.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="651.0" minHeight="0.0" prefHeight="153.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="651.0" minHeight="10.0" prefHeight="139.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="651.0" minHeight="10.0" prefHeight="131.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="651.0" minHeight="0.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="651.0" minHeight="0.0" prefHeight="111.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="651.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
                     </rowConstraints>
 
                     <!-- Label client -->
                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="414.0" style="-fx-background-color: white;" GridPane.columnSpan="2" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-                      <Label layoutX="25.0" layoutY="5.0" text="Client:">
+                      <Label fx:id="lblClient" layoutX="25.0" layoutY="5.0" text="Client:">
                         <font>
-                          <Font name="System Bold" size="13.0" />
+                          <Font name="System Bold" size="12.0" />
                         </font>
                       </Label>
-                      <Label layoutX="15.0" layoutY="25.0" text="Raison Sociale:" />
-                      <Label layoutX="15.0" layoutY="40.0" text="Adresse:" />
-                      <Label layoutX="15.0" layoutY="55.0" text="Téléphone:" />
-                      <Label layoutX="270.0" layoutY="25.0" text="Contact:" />
-                      <Label layoutX="270.0" layoutY="40.0" text="Mail:" />
-                      <Label layoutX="270.0" layoutY="55.0" text="Téléphone Contact:" />
+                      <Label fx:id="lblRaisonSociale" layoutX="15.0" layoutY="25.0" text="Raison Sociale:"><font> <Font size="10.0" /> </font>  </Label>
+                        <Label fx:id="lblAdresse" layoutX="15.0" layoutY="40.0" text="Adresse:"><font> <Font size="10.0" /> </font>  </Label>
+                        <Label fx:id="lblTel" layoutX="15.0" layoutY="55.0" text="Téléphone:"><font> <Font size="10.0" /> </font>  </Label>
+                        <Label fx:id="lblTitreDescription" alignment="TOP_LEFT" layoutX="160.0" layoutY="5.0" text="Description: "> <font> <Font size="10.0" /> </font>  </Label>
+                        <Label fx:id="lblDescription" alignment="TOP_LEFT" layoutX="220.0" layoutY="5.0" prefHeight="65.0" prefWidth="200.0"> <font> <Font size="10.0" /> </font>  </Label>
+                        <Label fx:id="lblContact" layoutX="250.0" layoutY="25.0" text="Contact:"><font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblMail" layoutX="250.0" layoutY="40.0" text="Mail:"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblTelContact" layoutX="250.0" layoutY="55.0" text="Téléphone Contact:"> <font> <Font size="10.0" /> </font>  </Label>
                     </Pane>
                     <!-- Label Pompe -->
                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="136.0" prefWidth="167.0" GridPane.rowIndex="1" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-                      <Label layoutX="25.0" layoutY="5.0" text="POMPE:">
+                      <Label layoutX="25.0" layoutY="5.0" text="Pompe:">
                         <font>
-                          <Font name="System Bold" size="13.0" />
+                          <Font name="System Bold" size="12.0" />
                         </font>
                       </Label>
-                      <Label fx:id="lblDebit" layoutX="15.0" layoutY="25.0" text="Débit: __ l/min" />
-                      <Label fx:id="lblPression" layoutX="15.0" layoutY="40.0" text="Pression: __ Bar" />
-                      <Label fx:id="lblCyl" layoutX="15.0" layoutY="55.0" text="Cylindrée: __ cc" />
-                      <Label fx:id="lblVitDeRot" layoutX="15.0" layoutY="70.0" text="Vitesse de Rot.: __ tr/min" />
-                      <Label fx:id="lblPwrHyd" layoutX="15.0" layoutY="85.0" text="Puissance Hydrau.: __ kW" />
-                      <Label fx:id="lblPwrMeca" layoutX="15.0" layoutY="100.0" text="Puissance Méca.: __ kW" />
-                      <Label fx:id="lblRendement" layoutX="15.0" layoutY="115.0" text="Rendement: __" />
+                      <Label fx:id="lblDebit" layoutX="15.0" layoutY="25.0" text="Débit: __ l/min"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblPression" layoutX="15.0" layoutY="40.0" text="Pression: __ Bar"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblCyl" layoutX="15.0" layoutY="55.0" text="Cylindrée: __ cc"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblVitDeRot" layoutX="15.0" layoutY="70.0" text="Vitesse de Rot.: __ tr/min"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblPwrHyd" layoutX="15.0" layoutY="85.0" text="Puissance Hydrau.: __ kW"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblPwrMeca" layoutX="15.0" layoutY="100.0" text="Puissance Méca.: __ kW"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblRendement" layoutX="15.0" layoutY="115.0" text="Rendement: __"> <font> <Font size="10.0" /> </font>  </Label>
                     </Pane>
                     <!-- Label Verin -->
-                    <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="124.0" prefWidth="456.0" GridPane.columnSpan="2" GridPane.rowIndex="2" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+                    <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="124.0" prefWidth="455.0" GridPane.columnSpan="2" GridPane.rowIndex="2" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
                       <Label layoutX="25.0" layoutY="5.0" text="Verin:">
                         <font>
-                          <Font name="System Bold" size="13.0" />
+                          <Font name="System Bold" size="12.0" />
                         </font>
                       </Label>
-                      <Label fx:id="lblDFond" layoutX="15.0" layoutY="25.0" text="Diam. Fond: __ mm" />
-                      <Label fx:id="lblSFond" layoutX="15.0" layoutY="40.0" text="Section Fond: __ cm²" />
-                      <Label fx:id="lblVFond" layoutX="15.0" layoutY="55.0" text="Volume fond: __ l" />
-                      <Label fx:id="lblFSortie" layoutX="15.0" layoutY="70.0" text="Force en sortie: __ t" />
-                      <Label fx:id="lblVitSortie" layoutX="15.0" layoutY="85.0" text="Vitesse de sortie: __ m/s" />
-                      <Label fx:id="lblTpsSortie" layoutX="15.0" layoutY="100.0" text="Tps de sortie: __ s" />
-                      <Label fx:id="lblDTige" layoutX="150.0" layoutY="25.0" text="Diam. Tige: __ mm" />
-                      <Label fx:id="lblSAnn" layoutX="150.0" layoutY="40.0" text="Section Tige: __ cm²" />
-                      <Label fx:id="lblVTige" layoutX="150.0" layoutY="55.0" text="Volume tige:  __ l" />
-                      <Label fx:id="lblFRentree" layoutX="150.0" layoutY="70.0" text="Force en rentrée: __ t" />
-                      <Label fx:id="lblVitRentree" layoutX="150.0" layoutY="85.0" text="Vitesse de rentrée: __ m/s" />
-                      <Label fx:id="lblTpsRentree" layoutX="150.0" layoutY="100.0" text="Tps de rentrée: __ s" />
-                      <Label fx:id="lblCourse" layoutX="300.0" layoutY="25.0" text="Course: __ mm" />
-                      <Label fx:id="lblR" layoutX="300.0" layoutY="40.0" text="Rap. section: __ " />
-                      <Label fx:id="lblRInv" layoutX="300.0" layoutY="55.0" text="Rap. section inv.: __" />
-                      <Label fx:id="lblFDiff" layoutX="300.0" layoutY="70.0" text="Force differentiel: __ t" />
-                      <Label fx:id="lblVitDiff" layoutX="300.0" layoutY="85.0" text="Vitesse differentiel: __ m/s" />
-                      <Label fx:id="lblTpsDiff" layoutX="300.0" layoutY="100.0" text="Tps sortie différentiel: __ s" />
+                      <Label fx:id="lblDFond" layoutX="15.0" layoutY="25.0" text="Diam. Fond: __ mm"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblSFond" layoutX="15.0" layoutY="40.0" text="Section Fond: __ cm²"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblVFond" layoutX="15.0" layoutY="55.0" text="Volume fond: __ l"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblFSortie" layoutX="15.0" layoutY="70.0" text="Force en sortie: __ t"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblVitSortie" layoutX="15.0" layoutY="85.0" text="Vitesse de sortie: __ m/s"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblTpsSortie" layoutX="15.0" layoutY="100.0" text="Tps de sortie: __ s"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblDTige" layoutX="150.0" layoutY="25.0" text="Diam. Tige: __ mm"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblSAnn" layoutX="150.0" layoutY="40.0" text="Section Tige: __ cm²"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblVTige" layoutX="150.0" layoutY="55.0" text="Volume tige:  __ l"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblFRentree" layoutX="150.0" layoutY="70.0" text="Force en rentrée: __ t"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblVitRentree" layoutX="150.0" layoutY="85.0" text="Vitesse de rentrée: __ m/s"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblTpsRentree" layoutX="150.0" layoutY="100.0" text="Tps de rentrée: __ s"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblCourse" layoutX="300.0" layoutY="25.0" text="Course: __ mm"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblR" layoutX="300.0" layoutY="40.0" text="Rap. section: __ "> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblRInv" layoutX="300.0" layoutY="55.0" text="Rap. section inv.: __"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblFDiff" layoutX="300.0" layoutY="70.0" text="Force differentiel: __ t"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblVitDiff" layoutX="300.0" layoutY="85.0" text="Vitesse differentiel: __ m/s"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblTpsDiff" layoutX="300.0" layoutY="100.0" text="Tps sortie différentiel: __ s"> <font> <Font size="10.0" /> </font>  </Label>
                     </Pane>
                     <!-- Label Moteur -->
                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="216.0" GridPane.columnIndex="1" GridPane.rowIndex="1" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
                       <Label layoutX="25.0" layoutY="5.0" text="Moteur:">
                         <font>
-                          <Font name="System Bold" size="13.0" />
+                          <Font name="System Bold" size="12.0" />
                         </font>
                       </Label>
-                      <Label fx:id="lblCouple" layoutX="15.0" layoutY="25.0" text="Couple: __ daN.m" />
-                      <Label fx:id="lblCylMot" layoutX="15.0" layoutY="40.0" text="Cylindrée: __ cc" />
-                      <Label fx:id="lblVitRotMot" layoutX="15.0" layoutY="55.0" text="Vitesse de Rot.: __ tr/min" />
-                      <Label fx:id="lblPwrMecaMot" layoutX="15.0" layoutY="70.0" text="Puissance Méca.: __ kW" />
-                      <Label fx:id="lblRendVol" layoutX="15.0" layoutY="85.0" text="Rendement Vol: __" />
-                      <Label fx:id="lblRendHydMeca" layoutX="15.0" layoutY="100.0" text="Rendement Hydrau-méca: __" />
-                      <Label fx:id="lblRendTot" layoutX="15.0" layoutY="115.0" text="Rendement Total: __" />
+                      <Label fx:id="lblCouple" layoutX="15.0" layoutY="25.0" text="Couple: __ daN.m"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblCylMot" layoutX="15.0" layoutY="40.0" text="Cylindrée: __ cc"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblVitRotMot" layoutX="15.0" layoutY="55.0" text="Vitesse de Rot.: __ tr/min"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblPwrMecaMot" layoutX="15.0" layoutY="70.0" text="Puissance Méca.: __ kW"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblRendVol" layoutX="15.0" layoutY="85.0" text="Rendement Vol: __"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblRendHydMeca" layoutX="15.0" layoutY="100.0" text="Rendement Hydrau-méca: __"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblRendTot" layoutX="15.0" layoutY="115.0" text="Rendement Total: __"> <font> <Font size="10.0" /> </font>  </Label>
                     </Pane>
                     <!-- Label Accu -->
                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="322.0" GridPane.columnSpan="2" GridPane.rowIndex="3" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
                       <Label layoutX="25.0" layoutY="5.0" text="Accumulateur:">
                         <font>
-                          <Font name="System Bold" size="13.0" />
+                          <Font name="System Bold" size="12.0" />
                         </font>
                       </Label>
-                      <Label fx:id="lblV0" layoutX="15.0" layoutY="30.0" text="V0: __ l" />
-                      <Label fx:id="lblDeltaV" layoutX="15.0" layoutY="51.0" text="DelatV: __ l" />
-                      <Label fx:id="lblP0" layoutX="115.0" layoutY="30.0" text="P0: __ Bar" />
-                      <Label fx:id="lblP2" layoutX="115.0" layoutY="50.0" text="P2: __ Bar" />
-                      <Label fx:id="lblP1" layoutX="185.0" layoutY="30.0" text="P1: __ Bar" />
-                      <Label fx:id="lblN" layoutX="185.0" layoutY="50.0" text="Coefficient: __" />
-                      <Label fx:id="lblV1" layoutX="305.0" layoutY="30.0" text="V1: __ l" />
-                      <Label fx:id="lblV2" layoutX="305.0" layoutY="50.0" text="V2: __ l" />
-                    </Pane>
-                    <!-- Label DelatP Sing-->
-                    <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="105.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="4" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-                      <Label layoutX="25.0" layoutY="5.0" text="DeltaP Singulière:">
-                        <font>
-                          <Font name="System Bold" size="13.0" />
-                        </font>
-                      </Label>
-                      <Label fx:id="lblDiamSing" layoutX="15.0" layoutY="25.0" text="Diamètre: __ mm" />
-                      <Label fx:id="lblMasseVol" layoutX="15.0" layoutY="40.0" text="Masse Volume (Densité): __ kg/m³" />
-                      <Label fx:id="lblIncident" layoutX="15.0" layoutY="55.0" text="Type d'incident: __" />
-                      <Label fx:id="lblDeltaPSing" layoutX="15.0" layoutY="70.0" text="Pertes de charge: __ Bar" />
+                      <Label fx:id="lblV0" layoutX="15.0" layoutY="30.0" text="V0: __ l"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblDeltaV" layoutX="15.0" layoutY="51.0" text="DelatV: __ l"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblP0" layoutX="115.0" layoutY="30.0" text="P0: __ Bar"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblP2" layoutX="115.0" layoutY="50.0" text="P2: __ Bar"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblP1" layoutX="185.0" layoutY="30.0" text="P1: __ Bar"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblN" layoutX="185.0" layoutY="50.0" text="Coefficient: __"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblV1" layoutX="305.0" layoutY="30.0" text="V1: __ l"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblV2" layoutX="305.0" layoutY="50.0" text="V2: __ l"> <font> <Font size="10.0" /> </font>  </Label>
                     </Pane>
                     <!-- Label DelatP Lin-->
                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.rowIndex="4" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
                       <Label layoutX="25.0" layoutY="5.0" text="DeltaP Linéaire:">
                         <font>
-                          <Font name="System Bold" size="13.0" />
+                          <Font name="System Bold" size="12.0" />
                         </font>
                       </Label>
-                      <Label fx:id="lblDiamLin" layoutX="15.0" layoutY="25.0" text="Diametre: __ mm" />
-                      <Label fx:id="lblmasseVolL" layoutX="15.0" layoutY="40.0" text="Masse Volume (Densité): __ kg/m³" />
-                      <Label fx:id="lblL" layoutX="15.0" layoutY="55.0" text="Longueur Canalisation: __ m" />
-                      <Label fx:id="lblVisco" layoutX="15.0" layoutY="70.0" text="Viscosité: __ Cst" />
-                      <Label fx:id="lblDeltaPLin" layoutX="15.0" layoutY="85.0" text="Pertes de charge: __ Bar" />
-                      <GridPane.margin>
-                        <Insets />
-                      </GridPane.margin>
+                      <Label fx:id="lblDiamLin" layoutX="15.0" layoutY="25.0" text="Diametre: __ mm"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblmasseVolL" layoutX="15.0" layoutY="40.0" text="Masse Volume (Densité): __ kg/m³"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblL" layoutX="15.0" layoutY="55.0" text="Longueur Canalisation: __ m"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblVisco" layoutX="15.0" layoutY="70.0" text="Viscosité: __ Cst"> <font> <Font size="10.0" /> </font>  </Label>
+                      <Label fx:id="lblDeltaPLin" layoutX="15.0" layoutY="85.0" text="Pertes de charge: __ Bar"> <font> <Font size="10.0" /> </font>  </Label>
+                    </Pane>
+                    <!-- Label DelatP Sing-->
+                    <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="105.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="4" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+                        <Label layoutX="25.0" layoutY="5.0" text="DeltaP Singulière:">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lblDiamSing" layoutX="15.0" layoutY="25.0" text="Diamètre: __ mm"> <font> <Font size="10.0" /> </font>  </Label>
+                        <Label fx:id="lblMasseVol" layoutX="15.0" layoutY="40.0" text="Masse Volume (Densité): __ kg/m³"> <font> <Font size="10.0" /> </font>  </Label>
+                        <Label fx:id="lblIncident" layoutX="15.0" layoutY="55.0" text="Type d'incident: __"> <font> <Font size="10.0" /> </font>  </Label>
+                        <Label fx:id="lblDeltaPSing" layoutX="15.0" layoutY="70.0" text="Pertes de charge: __ Bar"> <font> <Font size="10.0" /> </font>  </Label>
+                    </Pane>
+                    <!-- Label DelatP Gicleur-->
+                    <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="184.0" GridPane.columnIndex="1" GridPane.rowIndex="5" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+                        <Label layoutX="25.0" text="DeltaP Gicleur:">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lblDiamGicleur" layoutX="15.0" layoutY="20.0" text="Diamètre: __ mm"> <font> <Font size="10.0" /> </font>  </Label>
+                        <Label fx:id="lblDeltaPGicleur" layoutX="15.0" layoutY="35.0" text="Pertes de charge: __ Bar"> <font> <Font size="10.0" /> </font>  </Label>
                     </Pane>
                   </GridPane>
                 </center>
@@ -164,8 +171,7 @@
     <Line endX="400.0" translateY="-197.5" />
     <Line endX="400.0" translateY="-55" />
     <Line endX="400.0" translateY="70" />
-    <Line endX="400.0" translateY="150" />
-    <Line endX="400.0" translateY="280" />
+    <Line endX="400.0" translateY="140" />
+    <Line endX="400.0" translateY="245" />
     <Line endY="80.0" translateX="-50" translateY="-110" />
-
 </StackPane>

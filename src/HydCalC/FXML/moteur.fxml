@@ -10,8 +10,8 @@
     <TextField id="Cyl" fx:id="txtCyl" layoutX="150.0" layoutY="35.0" onKeyTyped="#modifCyl" prefHeight="25.0" prefWidth="50.0" />
     <TextField id="VitDeRotation" fx:id="txtVitDeRotation" layoutX="150.0" layoutY="65.0" onKeyTyped="#modifVitDeRot" prefHeight="25.0" prefWidth="50.0" />
     <TextField id="PwrMeca" fx:id="txtPwrMeca" layoutX="150.0" layoutY="95.0" onKeyTyped="#modifPwrMeca" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="ηvol" fx:id="txtηVol" layoutX="150.0" layoutY="125.0" onKeyTyped="#modifPwrHyd" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="ηhm" fx:id="txtη" layoutX="150.0" layoutY="155.0" onKeyTyped="#modifPwrHyd" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="ηvol" fx:id="txtηVol" layoutX="150.0" layoutY="125.0" onKeyTyped="#modifRendVol" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="ηhm" fx:id="txtηMeca" layoutX="150.0" layoutY="155.0" onKeyTyped="#modifRendHydMeca" prefHeight="25.0" prefWidth="50.0" />
     <TextField id="ηtot" fx:id="txtηtot" layoutX="150.0" layoutY="185.0" onKeyTyped="#modifRendement" prefHeight="25.0" prefWidth="50.0" />
     <!-- Label Moteur -->
     <Label layoutX="5.0" layoutY="10.0" text="Couple:" />

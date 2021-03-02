@@ -7,6 +7,7 @@ public class Client {
     private String telephone;
     private String mail;
     private String adresse;
+    private String telephoneContact;
 
 	/*public Client(String raison) {
 		this.raisonSociale = raison;
@@ -26,4 +27,7 @@ public class Client {
 
     public void setAdresse(String adress){ this.adresse = adress;}
     public String getAdresse(){ return this.adresse;}
+
+    public void setTelephoneContact(String tel){ this.telephoneContact = tel;}
+    public String getTelephoneContact(){ return this.telephoneContact;}
 }

@@ -7,14 +7,10 @@ import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.print.*;
-import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Scale;
-import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,12 +24,20 @@ public class ImprimerController{
     @FXML ComboBox<Printer> cbImprimante;
     @FXML Label lblStatus;
 
+    String controllerAppelant;
     Printer selectedPrinter;
+    public void controllerAppelant(String controller){   controllerAppelant = controller; }
 
     public void main() {
-
         dspPagePreviewController.injection(hydCalCController);
-        dspPagePreviewController.remplirLabel();
+        if (controllerAppelant == "client") {
+            dspPagePreviewController.injection(clientController);
+            dspPagePreviewController.remplirLabelClient();
+        }
+        if (controllerAppelant == "outil") {
+            dspPagePreviewController.injection(OutilController);
+            dspPagePreviewController.remplirLabelOutil();
+        }
         ObservableSet<Printer> printers = Printer.getAllPrinters();
         ArrayList<Printer> printerlist = new ArrayList<>(printers);
         cbImprimante.setPromptText("Imprimante");
@@ -44,8 +48,15 @@ public class ImprimerController{
             selectedPrinter = defaultprinter;
         }
     }
+    private ClientController clientController = new ClientController();
     private HydCalCController hydCalCController = new HydCalCController();
-    public void injection(HydCalCController controller) { this.hydCalCController = controller; }
+    private OutilController OutilController = new OutilController();
+    //private ArrayList<Controller> lstController = new ArrayList<Controller>;
+    public void injection(HydCalCController controller) { hydCalCController = controller; }
+    public void injection(ClientController controller) { clientController = controller; }
+    public void injection(OutilController controller) { OutilController = controller; }
+
+    //]  public void injection(ClientController controller) { clientController = controller; }
 
     @FXML
     private void choixImprimante(){
@@ -66,6 +77,7 @@ public class ImprimerController{
         lblStatus.setText("Impression: En cour...");
         PageLayout pageLayout = selectedPrinter.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.HARDWARE_MINIMUM);
         PrinterJob job = PrinterJob.createPrinterJob(selectedPrinter);
+      //  lblStatus.textProperty().bind(job.jobStatusProperty().asString());
         double scaleX = pageLayout.getPrintableWidth() / dspPagePreview.getBoundsInParent().getWidth();
         double scaleY = pageLayout.getPrintableHeight() / dspPagePreview.getBoundsInParent().getHeight();
         Scale scale = new Scale(scaleX, scaleY);
@@ -75,7 +87,15 @@ public class ImprimerController{
         try {
             StackPane node = loader.load();
             PagePreviewController pagePreviewController = loader.getController();
-            pagePreviewController.remplirLabel();
+            dspPagePreviewController.injection(hydCalCController);
+            if (controllerAppelant == "client") {
+                dspPagePreviewController.injection(clientController);
+                dspPagePreviewController.remplirLabelClient();
+            }
+            if (controllerAppelant == "outil") {
+                dspPagePreviewController.injection(OutilController);
+                dspPagePreviewController.remplirLabelOutil();
+            }
             node.getTransforms().add(scale);
             if (job != null) {
                 //job.showPageSetupDialog(cbImprimante.getScene().getWindow());
