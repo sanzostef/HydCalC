@@ -3,55 +3,128 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.HydCalCController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.HydCalCController">
 
     <Tab closable="false" text="Calculs">
-        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
             <Label layoutX="247.0" layoutY="14.0" prefHeight="17.0" prefWidth="67.0" text="HydCalC" />
             <Button id="btCalcul" fx:id="btCalculer" layoutX="310.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonCalculer" text="Calculer" />
             <Button id="btInit" layoutX="400.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonInit" text="Ré-initialiser" />
 
             <Pane layoutX="5.0" layoutY="50.0">
                 <fx:include fx:id="dspVerin" source="verin.fxml" />
+               <Label layoutX="478.0" layoutY="53.0" text="VERIN">
+                   <font>
+                       <Font name="System Bold" size="18.0" />
+                   </font>
+               </Label>
             </Pane>
-            <Pane layoutX="1186.0" layoutY="467.0">
+            <Pane layoutX="1186.0" layoutY="420.0">
                 <fx:include fx:id="dspPump" source="pump.fxml" />
             </Pane>
             <Pane layoutX="910.0" layoutY="23.0">
                 <fx:include fx:id="dspAccu" source="accu.fxml" />
+               <Label layoutX="46.0" layoutY="103.0" text="ACCUMULATEUR">
+                   <font>
+                       <Font name="System Bold" size="18.0" />
+                   </font>
+               </Label>
             </Pane>
-            <Pane layoutX="525.0" layoutY="428.0">
+            <Pane layoutX="424.0" layoutY="467.0">
                 <fx:include fx:id="dspDeltaPSing" source="deltaPSing.fxml" />
             </Pane>
-            <Pane layoutX="649.0" layoutY="132.0" prefHeight="160.0" prefWidth="206.0">
+            <Pane layoutX="704.0" layoutY="172.0" prefHeight="160.0" prefWidth="206.0">
                 <fx:include fx:id="dspDeltaPLin" source="deltaPLineaire.fxml" />
             </Pane>
             <Pane layoutX="1146.0" layoutY="292.0">
                 <fx:include fx:id="dspGicleur" source="gicleur.fxml" />
             </Pane>
-            <Pane layoutX="14.0" layoutY="470.0">
+            <Pane layoutX="14.0" layoutY="450.0">
                 <fx:include fx:id="dspMoteur" source="moteur.fxml" />
             </Pane>
-            <Separator layoutX="89.0" layoutY="40.0" prefHeight="3.0" prefWidth="422.0" />
-            <ImageView fitHeight="125.0" fitWidth="102.0" layoutX="1060.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                <Image url="@/HydCalC/image/motoPompe.png"/>
+            <ImageView fitHeight="125.0" fitWidth="102.0" layoutX="1062.0" layoutY="582.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                <Image url="@/HydCalC/image/motoPompe.png" />
             </ImageView>
-            <ImageView fitWidth="20.0" layoutX="1072.0" layoutY="655.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                <Image url="@/HydCalC/image/reservoir.png"/>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="1072.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                <Image url="@/HydCalC/image/reservoir.png" />
             </ImageView>
-            <ImageView fitWidth="40.0" layoutX="1120.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                <Image url="@/HydCalC/image/accu.png"/>
+            <ImageView fitWidth="40.0" layoutX="1120.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                <Image url="@/HydCalC/image/accu.png" />
+            </ImageView>
+            <ImageView fitWidth="140.0" layoutX="467.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" smooth="false">
+                <Image url="@/HydCalC/image/distri.png" />
             </ImageView>
             <ImageView fitHeight="70.0" fitWidth="260.0" layoutX="170.0" layoutY="60.0" pickOnBounds="true" smooth="false">
-                <Image url="@/HydCalC/image/verin.png"/>
+                <Image url="@/HydCalC/image/verin.png" />
             </ImageView>
             <ImageView fitWidth="60.0" layoutX="220" layoutY="550.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                <Image url="@/HydCalC/image/moteur.png"/>
+                <Image url="@/HydCalC/image/moteur.png" />
             </ImageView>
-            <ImageView fitWidth="60.0" layoutX="500" layoutY="350.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                <Image url="@/HydCalC/image/vanne.png"/>
-            </ImageView>
+            <!-- Verticales -->
+            <Line endY="384" layoutX="184.0" startY="120.0" />
+            <Line endY="590.0" layoutX="1084.0" startY="210" />
+            <Line endY="660.0" layoutX="1084.0" startY="635" />
+            <Line endY="558.0" layoutX="243.0" startY="384" />
+            <Line endY="640.0" layoutX="243.0" startY="588" />
+            <Line endY="370" layoutX="372.0" startY="120.0" />
+            <Line endY="640.0" layoutX="1000.0" startY="390.0" />
+            <Line endY="370.0" layoutX="1000.0" startY="380.0" />
+            <Line endY="640.0" layoutX="324.0" startY="390" />
+            <Line endY="380.0" layoutX="324.0" startY="370" />
+            <!-- Horizontales -->
+            <Line endX="1140.0" layoutY="210.0" startX="1084.0" />
+            <Line endX="530.0" layoutY="384.0" startX="184" />
+            <Line endX="1084" layoutY="384.0" startX="550.0" />
+            <Line endX="324.0" layoutY="640.0" startX="243" />
+            <Line endX="1083.0" layoutY="640.0" startX="1000" />
+            <Line endX="530.0" layoutY="370.0" startX="324" />
+            <Line endX="1000" layoutY="370.0" startX="550.0" />
+            <Circle fill="BLACK" layoutX="243.0" layoutY="385.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="1084.0" layoutY="385.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="1084.0" layoutY="641.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="373.0" layoutY="370.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label layoutX="46.0" layoutY="425.0" text="MOTEUR">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+            <Label layoutX="1097.0" layoutY="519.0" text="POMPE">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+            <Label layoutX="579.0" layoutY="421.0" text="ΔP Singulière">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+            <Label layoutX="752.0" layoutY="140.0" text="ΔP Linéaire">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+            <Label layoutX="1186.0" layoutY="258.0" text="ΔP Gicleur">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+           <Line layoutX="1090.0" layoutY="320.0" startX="14.0" startY="8" />
+            <Line layoutX="1090.0" layoutY="320.0" startX="14.0" startY="-8.0" />
+            <Line layoutX="1077.0" layoutY="320.0" startX="-14.0" startY="8" />
+            <Line layoutX="1077.0" layoutY="320.0" startX="-14.0" startY="-8.0" />
+            <Line endX="900" layoutY="350.0" startX="750.0" />
+            <Line layoutX="750.0" layoutY="350.0" startX="14" startY="5" />
+            <Line layoutX="750.0" layoutY="350.0" startX="14" startY="-5" />
+            <Line layoutX="900.0" layoutY="350.0" startX="-14" startY="5" />
+            <Line layoutX="900.0" layoutY="350.0" startX="-14" startY="-5" />
+         <Label layoutX="1230.0" layoutY="6.0" text="Temps de décharge:">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
         </Pane>
     </Tab>
     <Tab closable="false" text="Client">

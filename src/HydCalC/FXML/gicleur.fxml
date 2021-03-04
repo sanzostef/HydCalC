@@ -9,7 +9,7 @@
     <TextField id="DiamOrifice" layoutX="145.0" layoutY="5.0" onKeyTyped="#modif" prefHeight="25.0" prefWidth="50.0" />
     <TextField id="DeltaPOrifice" layoutX="145.0" layoutY="35.0" prefHeight="25.0" prefWidth="50.0" />
     <!-- Label DeltaP -->
-    <Label layoutX="5.0" layoutY="10.0" text="Diametre (Ø):" />
-    <Label layoutX="5.0" layoutY="40.0" text="Pertes de charge (ΔP):" />
+    <Label layoutX="5.0" layoutY="10.0" text="Diametre (mm):" />
+    <Label layoutX="5.0" layoutY="40.0" text="Pertes de charge (Bar):" />
 
 </Pane>

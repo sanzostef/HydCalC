@@ -31,12 +31,13 @@ public class DeltaPLineaire {
     public void setDeltaP(double dp) { this.deltaP = dp;}
     public double getDeltaP() { return this.deltaP;}
     public void calculerDeltaP(){
-        if (this.Re!=0 & this.masseVol!=0 & this.L!=0 & this.vitEcoulement!=0)
-        if (Re<1200) //laminaire
-            this.lambda = 64/this.Re;
-        if (Re>=1200) //turbulent
-            this.lambda = 0.316/Math.pow(Re,0.25);
-        this.deltaP = (lambda*L*masseVol*Math.pow(vitEcoulement,2)/(diam/1000*2))/100000;
+        if (this.Re!=0 & this.masseVol!=0 & this.L!=0 & this.vitEcoulement!=0) {
+            if (Re < 1200) //laminaire
+                this.lambda = 64 / this.Re;
+            if (Re >= 1200) //turbulent
+                this.lambda = 0.316 / Math.pow(Re, 0.25);
+            this.deltaP = (lambda * L * masseVol * Math.pow(vitEcoulement, 2) / (diam / 1000 * 2)) / 100000;
+        }
     }
     public void setRE(double re){this.Re = re;}
     public double getRE(){ return this.Re;}

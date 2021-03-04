@@ -21,7 +21,7 @@ public class MoteurController implements Initializable {
         txtηMeca.setText("0.85");
         txtηtot.setText("0.82");
     }
-    void calculerSansParametreExterne() throws IllegalAccessException, InvocationTargetException{
+    public void calculerSansParametreExterne() throws IllegalAccessException, InvocationTargetException{
         System.out.println(" Entre dans les calculs sans paramètres Moteur:");
         System.out.println();
         double valeurDuParametre;

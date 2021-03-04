@@ -2,6 +2,7 @@ package HydCalC;
 
 import HydCalC.Class.*;
 import HydCalC.Controller.*;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -14,8 +15,12 @@ import javafx.scene.layout.Pane;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class HydCalCController implements Initializable {
@@ -66,6 +71,27 @@ public class HydCalCController implements Initializable {
 
     @Override    public void initialize(URL url, ResourceBundle rb) {
 
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date now = new Date();
+            Date dateLimite= df.parse("01-04-2021");
+            if (now.after(dateLimite)){
+                Alert dialogW = new Alert(Alert.AlertType.WARNING);
+                dialogW.setTitle("Période d'essai expirée:");
+                dialogW.setHeaderText(null); // No header
+                dialogW.getDialogPane().setMinWidth(450);
+                dialogW.setContentText("""
+                        La période d'essai est dépassée, merci de contacter le développeur:\s
+                        Stéphane Bouzika\s
+                        07.51.65.12.09.\s
+                        stephanebouzika@vivaldi.net""");
+                dialogW.showAndWait();
+                Platform.exit();
+            }
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
+
         //Injection des controleurs les un dans les autres
         dspVerinController.injection(this);
         dspPumpController.injection(this);
@@ -115,8 +141,12 @@ public class HydCalCController implements Initializable {
             dspVerinController.calculerSansParametreExterne();
             dspPumpController.calculerSansParametreExterne();
             dspAccuController.calculerSansParametreExterne();
-            if (!listeDesTextfield.get(pression).getText().isEmpty() & listeDesTextfield.get(P2).getText().isEmpty())
+            if (!listeDesTextfield.get(pression).getText().isEmpty() & listeDesTextfield.get(P2).getText().isEmpty()) {
                 accu.setP2(pompe.getPression());
+            }
+            if (!listeDesTextfield.get(pression).getText().isEmpty()) {
+                moteur.setPression(pompe.getPression());
+            }
             if ((double) lstGet.get(pression).invoke(pompe) != 0.0d & (double) lstGet.get(sfond).invoke(verin) == 0.0d) {
                 verin.calculerSFond((double) lstGet.get(pression).invoke(pompe));
             }
@@ -126,6 +156,7 @@ public class HydCalCController implements Initializable {
             verin.calculerForceSortie((double) lstGet.get(pression).invoke(pompe));
             verin.calculerForceRentree((double) lstGet.get(pression).invoke(pompe));
             verin.calculerForceDiff((double) lstGet.get(pression).invoke(pompe));
+            moteur.setPression(pompe.getPression());
 
             dspVerinController.calculerSansParametreExterne();
             dspPumpController.calculerSansParametreExterne();
@@ -136,6 +167,7 @@ public class HydCalCController implements Initializable {
                 verin.calculerVTige((double) lstGet.get(debit).invoke(pompe));
             }
             if ((double) lstGet.get(debit).invoke(pompe) != 0.0d) {
+                moteur.setDebit(pompe.getDebit());
                 deltaPSinguliere.calculerVitEcoulement((double) lstGet.get(debit).invoke(pompe));
                 deltaPLineaire.calculerVitEcoulement((double) lstGet.get(debit).invoke(pompe));
                 deltaPLineaire.calculerRE((double) lstGet.get(debit).invoke(pompe));
@@ -148,6 +180,8 @@ public class HydCalCController implements Initializable {
             dspGicleurController.calculerSansParametreExterne();
             dspVerinController.calculerSansParametreExterne();
             dspPumpController.calculerSansParametreExterne();
+            dspMoteurController.calculerSansParametreExterne();
+            moteur.calculerPwrHyd();
             if ((double) lstGet.get(sfond).invoke(verin) != 0.0d & (double) lstGet.get(forcesortie).invoke(verin) != 0.0d) {
                 pompe.calculerPression((double) lstGet.get(sfond).invoke(verin), (double) lstGet.get(forcesortie).invoke(verin));
             }
@@ -158,6 +192,8 @@ public class HydCalCController implements Initializable {
                 pompe.calculerPression(verin.getSDeLaTige(), (double) lstGet.get(forcediff).invoke(verin));
             }
             dspVerinController.calculerSansParametreExterne();
+            accu.Cste();
+            dspAccuController.calculerSansParametreExterne();
             dspPumpController.calculerSansParametreExterne();
             if ((double) lstGet.get(sfond).invoke(verin) != 0.0d & (double) lstGet.get(vitsortie).invoke(verin) != 0.0d) {
                 pompe.calculerDebit((double) lstGet.get(sfond).invoke(verin), (double) lstGet.get(vitsortie).invoke(verin));
@@ -168,10 +204,13 @@ public class HydCalCController implements Initializable {
             if (verin.getSDeLaTige() != 0.0d & (double) lstGet.get(vitdiff).invoke(verin) != 0.0d) {
                 pompe.calculerDebit(verin.getSDeLaTige(), (double) lstGet.get(vitdiff).invoke(verin));
             }
+            accu.Cste();
+            dspAccuController.calculerSansParametreExterne();
             dspVerinController.calculerSansParametreExterne();
             dspPumpController.calculerSansParametreExterne();
             dspVerinController.calculerSansParametreExterne();
             dspPumpController.calculerSansParametreExterne();
+            dspMoteurController.calculerSansParametreExterne();
             dspAccuController.calculerSansParametreExterne();
 
             recopierComposantsDansTextField(verin, dfond, tpsdiff);
@@ -258,7 +297,7 @@ public class HydCalCController implements Initializable {
                         nb = Double.parseDouble(s);
                         if (nb < 0) throw new NumberFormatException();
                     } catch (Exception e) {
-                        Alert dialogW = new Alert(Alert.AlertType.WARNING);
+                        Alert dialogW = new Alert(Alert.AlertType.INFORMATION);
                         dialogW.setTitle("Erreur de Saisie");
                         dialogW.setHeaderText(null); // No header
                         dialogW.setContentText("Verifier la valeur entree en " + textfield.getId());
@@ -301,6 +340,9 @@ public class HydCalCController implements Initializable {
                 if (i > couple - 1 & i < ηtot + 1) {
                     EcrireDansComposant(i, moteur);
                 }
+                if (i > diamOrifice - 1 & i < deltaPOrifice + 1) {
+                    EcrireDansComposant(i, gicleur);
+                }
             } else {
                 if (i < tpsdiff + 1) {
                     initialiserComposant(i, verin);
@@ -319,6 +361,9 @@ public class HydCalCController implements Initializable {
                 }
                 if (i > couple - 1 & i < ηtot + 1) {
                     initialiserComposant(i, moteur);
+                }
+                if (i > diamOrifice - 1 & i < deltaPOrifice + 1) {
+                    initialiserComposant(i, gicleur);
                 }
             }
         }
@@ -363,31 +408,6 @@ public class HydCalCController implements Initializable {
         System.out.println();
     }
 }
-   /* private void recopierComposantsDansTextField() throws IllegalAccessException, InvocationTargetException {
-        System.out.println("Recopie Valeurs des composants dans les textfields");
-        double valeurDuParametre;
-        for (int i = dfond; i < tpsdiff + 1; i++) { // NB de textfields Verin : 18
-                valeurDuParametre = (double) lstGet.get(i).invoke(verin);
-                if (valeurDuParametre != 0.0d) {
-                    listeDesTextfield.get(i).setText(df.format(valeurDuParametre));
-                }
-                System.out.println(listeDesTextfield.get(i).getId() + " - " + valeurDuParametre);
-        }
-        for (int i = debit; i < rendement + 1; i++) { // 1er textfields Pompe: 18 => dernier: 25
-                valeurDuParametre = (double) lstGet.get(i).invoke(pompe);
-                if (valeurDuParametre != 0.0d) {
-                    listeDesTextfield.get(i).setText(df.format(valeurDuParametre));
-                }
-                System.out.println(listeDesTextfield.get(i).getId() + " - " + valeurDuParametre);
-        }
-        for (int i = V0; i < n + 1; i++) { // 1er textfields Pompe: 18 => dernier: 25
-                valeurDuParametre = (double) lstGet.get(i).invoke(accu);
-                if (valeurDuParametre != 0.0d) {
-                    listeDesTextfield.get(i).setText(df.format(valeurDuParametre));
-                }
-                System.out.println(listeDesTextfield.get(i).getId() + " - " + valeurDuParametre);
-        }
-        System.out.println("fini");
-    }*/
+
 
 

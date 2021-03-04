@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller.VerinController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller.VerinController">
     <!-- TextField Verin -->
     <TextField id="DFond" fx:id="txtDFond" layoutX="115.0" onKeyTyped="#modifDFond" prefHeight="25.0" prefWidth="50.0" />
     <TextField id="DTige" fx:id="txtDTige" layoutX="115.0" layoutY="30.0" onKeyTyped="#modifDTige" prefHeight="25.0" prefWidth="50.0" />
@@ -24,26 +24,23 @@
     <TextField id="TpsRentree" fx:id="txtTpsRentree" layoutX="530.0" layoutY="180.0" onKeyTyped="#modifTpsRentree" prefHeight="25.0" prefWidth="50.0" />
     <TextField id="TpsDiff" fx:id="txtTpsDiff" layoutX="530.0" layoutY="210.0" onKeyTyped="#RAZverin" prefHeight="25.0" prefWidth="50.0" />
     <!-- Label Verin -->
-    <Label layoutX="5.0" layoutY="5.0" text="Diam. Fond:" />
-    <Label layoutX="5.0" layoutY="35.0" text="Diam. Tige:" />
-    <Label layoutX="5.0" layoutY="65.0" text="Course:" />
-    <Label layoutX="5.0" layoutY="95.0" text="Section Fond:" />
-    <Label layoutX="5.0" layoutY="125.0" text="Volume fond:" />
-    <Label layoutX="5.0" layoutY="155.0" text="Force en sortie:" />
-    <Label layoutX="5.0" layoutY="185.0" text="Force en rentrée:" />
-    <Label layoutX="5.0" layoutY="215.0" text="Force en differentiel:" />
-    <Label layoutX="185.0" layoutY="95.0" text="Section Tige:" />
-    <Label layoutX="185.0" layoutY="125.0" text="Volume tige:" />
-    <Label layoutX="185.0" layoutY="155.0" text="Vitesse de sortie:" />
-    <Label layoutX="185.0" layoutY="185.0" text="Vitesse de rentrée:" />
-    <Label layoutX="185.0" layoutY="215.0" text="Vitesse en differentiel:" />
+    <Label layoutX="5.0" layoutY="5.0" text="Diam. Fond (mm):" />
+    <Label layoutX="5.0" layoutY="35.0" text="Diam. Tige (mm):" />
+    <Label layoutX="5.0" layoutY="65.0" text="Course (mm):" />
+    <Label layoutX="5.0" layoutY="95.0" text="Section Fond (cm²):" />
+    <Label layoutX="5.0" layoutY="125.0" text="Volume fond (l):" />
+    <Label layoutX="5.0" layoutY="155.0" text="Force sortie (daN):" />
+    <Label layoutX="5.0" layoutY="185.0" text="Forcerentrée (daN):" />
+    <Label layoutX="5.0" layoutY="215.0" text="F. differentiel (daN):" />
+    <Label layoutX="185.0" layoutY="95.0" text="Section Tige (cm²):" />
+    <Label layoutX="185.0" layoutY="125.0" text="Volume tige (l):" />
+    <Label layoutX="185.0" layoutY="155.0" text="Vitesse sortie (m/s):" />
+    <Label layoutX="185.0" layoutY="185.0" text="Vitesse rentrée (m/s):" />
+    <Label layoutX="185.0" layoutY="215.0" text="Vitesse diff (m/s):" />
     <Label layoutX="380.0" layoutY="95.0" text="Rapport de section:" />
     <Label layoutX="380.0" layoutY="125.0" text="Rapport inverse:" />
-    <Label layoutX="380.0" layoutY="155.0" text="Tps de sortie:" />
-    <Label layoutX="380.0" layoutY="185.0" text="Tps de rentrée:" />
-    <Label layoutX="380.0" layoutY="215.0" text="Tps de sortie en différentiel:" />
-
-    <Separator layoutX="85.0" layoutY="87.5" prefHeight="3.0" prefWidth="406.0" />
-    <Separator layoutX="83.0" layoutY="147.5" prefHeight="3.0" prefWidth="406.0" />
+    <Label layoutX="380.0" layoutY="155.0" text="Tps de sortie (s):" />
+    <Label layoutX="380.0" layoutY="185.0" text="Tps de rentrée (s):" />
+    <Label layoutX="380.0" layoutY="215.0" text="Tps sortie différentiel (s):" />
 
 </Pane>

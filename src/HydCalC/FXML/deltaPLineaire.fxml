@@ -3,18 +3,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="160.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller.DeltaPLineaireController">
+<Pane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HydCalC.Controller.DeltaPLineaireController">
 
     <!-- TextField Perte de charge -->
-    <TextField id="diam" onKeyTyped="#modif" layoutX="145.0" layoutY="5.0" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="masseVolL" fx:id="masseVol" onKeyTyped="#modif" layoutX="145.0" layoutY="35.0" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="L" fx:id="L" onKeyTyped="#modif" layoutX="145.0" layoutY="65.0" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="visco" fx:id="visco" onKeyTyped="#modif" layoutX="145.0" layoutY="95.0" prefHeight="25.0" prefWidth="50.0" />
-    <TextField id="DeltaP" layoutX="145.0" layoutY="125.0" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="diam" layoutX="150.0" layoutY="5.0" onKeyTyped="#modif" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="masseVolL" fx:id="masseVol" layoutX="150.0" layoutY="35.0" onKeyTyped="#modif" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="L" fx:id="L" layoutX="150.0" layoutY="65.0" onKeyTyped="#modif" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="visco" fx:id="visco" layoutX="150.0" layoutY="95.0" onKeyTyped="#modif" prefHeight="25.0" prefWidth="50.0" />
+    <TextField id="DeltaP" layoutX="150.0" layoutY="125.0" prefHeight="25.0" prefWidth="50.0" />
     <!-- Label DeltaP -->
-    <Label layoutX="5.0" layoutY="10.0" text="Diametre (Ø):" />
+    <Label layoutX="5.0" layoutY="10.0" text="Diametre (mm):" />
     <Label layoutX="5.0" layoutY="40.0" text="Masse Volume (Densité):" />
-    <Label layoutX="5.0" layoutY="70.0" text="Longueur Canalisat°:" />
+    <Label layoutX="5.0" layoutY="70.0" text="Longueur Canalisation (m):" />
     <Label layoutX="5.0" layoutY="100.0" text="Viscosité: (Cst)" />
     <Label layoutX="5.0" layoutY="130.0" text="Pertes de charge (ΔP):" />
 

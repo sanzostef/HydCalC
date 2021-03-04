@@ -13,11 +13,11 @@
     <TextField id="PwrMeca" fx:id="txtPwrMeca" layoutX="110.0" layoutY="175.0" onKeyTyped="#modifPwrMeca" prefHeight="25.0" prefWidth="50.0" />
     <TextField id="Rendement" fx:id="txtRendement" layoutX="110.0" layoutY="205.0" onKeyTyped="#modifRendement" prefHeight="25.0" prefWidth="50.0" />
     <!-- Label Pompe -->
-    <Label layoutX="5.0" layoutY="30.0" text="Débit:" />
-    <Label layoutX="5.0" layoutY="60.0" text="Pression:" />
-    <Label layoutX="5.0" layoutY="90.0" text="Cylindrée:" />
-    <Label layoutX="5.0" layoutY="120.0" text="Vitesse de Rot.:" />
-    <Label layoutX="5.0" layoutY="150.0" text="Puissance Hydrau.:" />
-    <Label layoutX="5.0" layoutY="180.0" text="Puissance Méca.:" />
+    <Label layoutX="5.0" layoutY="30.0" text="Débit (l/min):" />
+    <Label layoutX="5.0" layoutY="60.0" text="Pression (Bar):" />
+    <Label layoutX="5.0" layoutY="90.0" text="Cylindrée (cc):" />
+    <Label layoutX="5.0" layoutY="120.0" text="Vit de Rot. (tr/min):" />
+    <Label layoutX="5.0" layoutY="150.0" text="Pwr Hydrau. (kW):" />
+    <Label layoutX="5.0" layoutY="180.0" text="Pwr Méca. (kW):" />
     <Label layoutX="5.0" layoutY="210.0" text="Rendement:" />
 </Pane>

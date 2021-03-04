@@ -15,11 +15,11 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("FXML/HydCalC.fxml");
         //  Parent root = FXMLLoader.load(getClass().getResource("HydCalC.fxml"));
-        System.out.println(getClass().getResource("FXML/HydCalC.fxml"));
-        System.out.println(getClass().getResource("FXML/imprimer.fxml"));
         URL xmlUrlImprimer = getClass().getResource("FXML/imprimer.fxml");
         loader.setLocation(xmlUrl);
         Parent root = loader.load();
+        primaryStage.setY(0.1);
+        primaryStage.setX(-0.9);
         primaryStage.setTitle("Calculs Hydrauliques");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -27,5 +27,5 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
+            }
 }

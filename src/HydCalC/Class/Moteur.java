@@ -12,6 +12,13 @@ public class Moteur {
     private double debit;
     private double pression;
 
+    public void setDebit(double Q) { this.debit = Q; }
+    public double getDebit() { return this.debit; }
+    public void calculerDebit() {
+        if (this.cyl != 0.0d & this.vitDeRotation != 0.0d)
+            this.debit = this.cyl * (this.vitDeRotation * ηvol) / 1000;
+    }
+
     public void setCouple(double c) {
         this.couple = c;
     }
@@ -23,16 +30,14 @@ public class Moteur {
             this.couple = ((this.cyl * this.pression / 200 * Math.PI * ηhm));
         }
     }
-
     public void setCyl(double q) {
-        this.ηvol = q;
+        this.cyl = q;
     }
     public double getCyl() {        return this.cyl;    }
     public void calculerCyl() {
         if (this.debit != 0.0d & this.vitDeRotation != 0.0d)
             this.cyl = (1000 * this.debit) / (this.vitDeRotation * ηvol);
     }
-
     public void setVitDeRotation(double n) {        this.vitDeRotation = n;    }
     public double getVitDeRotation() {        return this.vitDeRotation;    }
     public void calculerVitDeRotation() {

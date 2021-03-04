@@ -22,8 +22,10 @@ public class Accu {
         if (this.V1!=0 & this.P1!=0){ cste2 = this.P1 * Math.pow(this.V1,this.n); }
         if (this.V2!=0 & this.P2!=0){ cste3 = this.P2 * Math.pow(this.V2,this.n); }
         if (cste1!=0 & cste2!=0 & cste3!=0){
-        	if (cste1!=cste2)
-        		return;
+        	if (cste1!=0){
+                this.cste = cste1;
+                return;
+            }
         	if (cste2!=cste3)
         		return;
         	this.cste = cste1;
@@ -57,7 +59,7 @@ public class Accu {
     public double getV2() {return this.V2;}
     public void calculerV2() {
         if (this.DeltaV!=0 & this.V1!=0) {
-            this.V2 = this.V1 + this.DeltaV;
+            this.V2 = this.V1 - this.DeltaV;
             return;
         }
         if (this.cste!=0 & this.P2!=0){ this.V2 = Math.pow(this.cste/this.P2,1/this.n); }
