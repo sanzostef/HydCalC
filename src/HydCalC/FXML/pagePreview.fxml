@@ -11,8 +11,10 @@
     <BorderPane id="pane" style="-fx-background-color: WHITE;">
             <top>
                 <HBox prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <ImageView fitHeight="30.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
-                    <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="191.0" text="FEUILLE DE CALCULS" textAlignment="CENTER">
+                    <ImageView fitHeight="30.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@/HydCalC/image/preview.png" />
+                    </ImageView>
+                    <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="304.0" text="FEUILLE DE CALCULS" textAlignment="CENTER">
                         <font>
                             <Font name="System Bold" size="15.0" />
                         </font>

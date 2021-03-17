@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 public class MoteurController implements Initializable {
 
     @FXML
-    TextField txtηVol, txtηMeca, txtηtot;
+    public TextField txtηVol, txtηMeca, txtηtot;
     private HydCalCController hydCalCController = new HydCalCController();
     public void injection(HydCalCController controller) { this.hydCalCController = controller; }
 

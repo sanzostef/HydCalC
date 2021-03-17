@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 public class DeltaPSingController implements Initializable{
 
     @FXML ComboBox<DeltaPSing.Incident> cbIncident;
-    @FXML TextField masseVol;
+    @FXML public TextField masseVol;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cbIncident.setPromptText("Type de raccords");

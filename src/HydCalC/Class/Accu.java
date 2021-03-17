@@ -16,12 +16,15 @@ public class Accu {
     private double cste3;
     public void Cste(int raz){
         this.cste = raz;
+        this.cste1 = raz;
+        this.cste2 = raz;
+        this.cste3 = raz;
     }
     public void Cste(){
         if (this.V0!=0 & this.P0!=0){ cste1 = this.P0 * Math.pow(this.V0,this.n); }
         if (this.V1!=0 & this.P1!=0){ cste2 = this.P1 * Math.pow(this.V1,this.n); }
         if (this.V2!=0 & this.P2!=0){ cste3 = this.P2 * Math.pow(this.V2,this.n); }
-        if (cste1!=0 & cste2!=0 & cste3!=0){
+        if (cste!=0 & cste1!=0 & cste2!=0 & cste3!=0){
         	if (cste1!=0){
                 this.cste = cste1;
                 return;

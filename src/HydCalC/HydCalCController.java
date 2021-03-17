@@ -8,8 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.lang.reflect.InvocationTargetException;
@@ -74,17 +72,13 @@ public class HydCalCController implements Initializable {
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         try {
             Date now = new Date();
-            Date dateLimite= df.parse("01-04-2021");
+            Date dateLimite= df.parse("15-04-2021");
             if (now.after(dateLimite)){
                 Alert dialogW = new Alert(Alert.AlertType.WARNING);
                 dialogW.setTitle("Période d'essai expirée:");
                 dialogW.setHeaderText(null); // No header
                 dialogW.getDialogPane().setMinWidth(450);
-                dialogW.setContentText("""
-                        La période d'essai est dépassée, merci de contacter le développeur:\s
-                        Stéphane Bouzika\s
-                        07.51.65.12.09.\s
-                        stephanebouzika@vivaldi.net""");
+                dialogW.setContentText("La période d'essai est dépassée, merci de contacter le développeur:\n Stéphane Bouzika\n 07.51.65.12.09.\n stephanebouzika@vivaldi.net");
                 dialogW.showAndWait();
                 Platform.exit();
             }
@@ -230,6 +224,13 @@ public class HydCalCController implements Initializable {
         if (!(listeDesTextfield.size() == 0))
             for (TextField textfield : listeDesTextfield)
                 textfield.setText("");
+        listeDesTextfield.get(ηvol).setText("0.97");
+        listeDesTextfield.get(ηhm).setText("0.85");
+        listeDesTextfield.get(ηtot).setText("0.82");
+        listeDesTextfield.get(masseVol).setText("850");
+        listeDesTextfield.get(masseVolL).setText("850");
+        listeDesTextfield.get(n).setText("1.4");
+        listeDesTextfield.get(rendement).setText("80");
     }
 
     private void creationListeDesTextFields(Pane pane) {
@@ -376,19 +377,23 @@ public class HydCalCController implements Initializable {
 
     private void initialiserComposant(int i, Object composant) throws IllegalAccessException, InvocationTargetException {
         switch (i) {
-            case (rendement) -> {
+            case (rendement) : {
                 lstSet.get(i).invoke(composant, 80);
                 System.out.println("j'écris " + 80.0d + " dans: " + listeDesTextfield.get(i).getId());
+                return;
             }
-            case (n) -> {
+            case (n) : {
                 lstSet.get(i).invoke(composant, 1.4d);
                 System.out.println("j'écris " + 1.4d + " dans: " + listeDesTextfield.get(i).getId());
+                return;
             }
 
-            case (masseVol) -> {
+            case (masseVol) : {
                 lstSet.get(i).invoke(composant, 850);
                 System.out.println("j'écris " + 850 + " dans: " + listeDesTextfield.get(i).getId());
-            }            default -> {
+                return;
+            }
+            default : {
                 lstSet.get(i).invoke(composant, 0.0d);
                 System.out.println("j'écris " + 0.0d + " dans: " + listeDesTextfield.get(i).getId());
             }

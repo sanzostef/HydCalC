@@ -29,9 +29,9 @@
     <Label layoutX="5.0" layoutY="65.0" text="Course (mm):" />
     <Label layoutX="5.0" layoutY="95.0" text="Section Fond (cm²):" />
     <Label layoutX="5.0" layoutY="125.0" text="Volume fond (l):" />
-    <Label layoutX="5.0" layoutY="155.0" text="Force sortie (daN):" />
-    <Label layoutX="5.0" layoutY="185.0" text="Forcerentrée (daN):" />
-    <Label layoutX="5.0" layoutY="215.0" text="F. differentiel (daN):" />
+    <Label layoutX="5.0" layoutY="155.0" text="Force sortie (T):" />
+    <Label layoutX="5.0" layoutY="185.0" text="Forcerentrée (T):" />
+    <Label layoutX="5.0" layoutY="215.0" text="F. differentiel (T):" />
     <Label layoutX="185.0" layoutY="95.0" text="Section Tige (cm²):" />
     <Label layoutX="185.0" layoutY="125.0" text="Volume tige (l):" />
     <Label layoutX="185.0" layoutY="155.0" text="Vitesse sortie (m/s):" />
